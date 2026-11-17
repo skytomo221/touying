@@ -339,79 +339,79 @@ sidebar_position: 8
 
 - **feat: themes style the speaker-note panel through `touying-notes`**
 
-  `touying-notes` takes `header`, `header-fill`, `fill`, `note-setting` and `preview-setting`; a theme may use the `note-setting` to style the page and content. `header-height` collapses to its content by default, and `header: none` drops the strip entirely. `preview-setting` receives the full-size slide preview, so a theme can scale and place it freely, for example `preview => place(bottom + right, box(scale(x: 30%, y: 15%, reflow: true, preview)))`. All six bundled themes ship one. See [Speaker Notes](https://touying-typ.github.io/docs/tutorials/speaker-notes).
+  `touying-notes` は `header`、`header-fill`、`fill`、`note-setting`、`preview-setting` を受け取ります。テーマは `note-setting` でページや内容を装飾できます。`header-height` は既定で内容の高さに合わせて縮み、`header: none` では帯を完全に削除します。`preview-setting` には元のサイズのスライドプレビューが渡されるため、`preview => place(bottom + right, box(scale(x: 30%, y: 15%, reflow: true, preview)))` のように自由に拡大縮小・配置できます。組み込みの6テーマはすべて独自の設定を持ちます。詳しくは[発表者ノート](https://touying-typ.github.io/docs/tutorials/speaker-notes)を参照してください。
 
-- **feat: `show-notes-on-second-screen` accepts `top` and `left`** as well as `bottom` and `right`. The page is doubled along the corresponding axis and the extra half pushed into the margin, so the slide keeps its own dimensions in all four directions.
+- **機能：`show-notes-on-second-screen` が `bottom`・`right` に加えて `top`・`left` に対応しました。** 対応する方向にページが2倍へ広がり、追加領域はマージンに配置されるため、スライド本体の寸法は4方向のいずれでも維持されます。
 
-- **feat: better covering, with `alpha-changing-cover` and `color-changing-cover` reworked** ([#112](https://github.com/touying-typ/touying/issues/112))
+- **機能：`alpha-changing-cover` と `color-changing-cover` の再設計によるカバー表示の改善** ([#112](https://github.com/touying-typ/touying/issues/112))
 
-  `utils.alpha-changing-cover` is now the recommended semi-transparent cover, replacing the deprecated `semi-transparent-cover` above. It governs every stylable colour, inherits the outer scope's colour when an element declares none, understands gradients and tilings, and converts spot colours to Oklch before opacifying. Its automatic fallback alpha depends on the lightness of the colour it is dimming, and the fallback path is used far more sparingly, so images and diagrams no longer turn into grey blocks. `utils.color-changing-cover` remains the compile-cheap alternative that flattens everything to one colour: it overwrites colours instead of reading them, so it makes no `context` call. Both walk the same tree, so they treat strokes, table cells and the bodies of `underline`, `highlight` and `strike` alike, and neither moves the content it covers. Where an element paints its own background, flattening it together with the content on top would leave that unreadable, so `color-changing-cover(hide-filled: true)` (the default) hands those to `fallback-hide`, which now defaults to `auto` and dims them to match the recoloured text. See [Cover Function](https://touying-typ.github.io/docs/tutorials/dynamic/cover).
+  推奨される半透明のカバーは、非推奨となった `semi-transparent-cover` に代わる `utils.alpha-changing-cover` です。装飾可能なすべての色を扱い、要素に色指定がない場合は外側のスコープから継承し、グラデーションやタイルにも対応し、特色をOklchへ変換してから透明度を設定します。代替処理のアルファ値は対象色の明るさに応じて決まり、代替処理自体の使用も抑えられるため、画像や図が灰色のブロックになりにくくなりました。`utils.color-changing-cover` は色を読み取る代わりに上書きするため `context` を呼ばず、コンパイル負荷の小さい代替手段です。両者は同じ木構造を走査し、線、表のセル、`underline`、`highlight`、`strike` の本文を同様に扱い、内容の位置を動かしません。独自の背景を持つ要素では前景と背景を同色にすると読めなくなるため、既定の `color-changing-cover(hide-filled: true)` はそれらを `fallback-hide` に渡します。`fallback-hide` の既定値は `auto` となり、変更後の文字色に合わせて薄くします。詳しくは[カバー関数](https://touying-typ.github.io/docs/tutorials/dynamic/cover)を参照してください。
 
-- **feat: `components.left-mid-right` places content in three columns** ([#397](https://github.com/touying-typ/touying/pull/397), thanks @thomas-saigre)
+- **機能：`components.left-mid-right` で内容を3列に配置** ([#397](https://github.com/touying-typ/touying/pull/397), thanks @thomas-saigre)
 
-- **feat: `utils.get-input` for reading command-line inputs**
+- **機能：コマンドライン入力を読み取る `utils.get-input`**
 
-  Everything passed through `--input key=value` reaches Typst as a string. `utils.get-input` parses each value as Typst first, so `accent=red` is a colour, `count=3` an integer and `flag=true` a boolean, while a bare word Typst does not know comes back as a string. That last part is what makes `--input export-mode=handout` work without shell quoting. Rn we only depend on it for export-mode, but we might support more commandline customizability later. Pass no key to get the whole parsed dictionary. See [touying-exporter](https://touying-typ.github.io/docs/external/touying-exporter).
+  `--input key=value` で渡された値はTypstでは文字列になります。`utils.get-input` は各値をTypstとして解析するため、`accent=red` は色、`count=3` は整数、`flag=true` は真偽値になります。Typstが認識しない単独の単語は文字列として返されるため、`--input export-mode=handout` をシェルで引用符なしに指定できます。現時点では主に出力モードで利用していますが、今後ほかのコマンドライン設定にも利用する可能性があります。キーを省略すると解析済みの辞書全体を取得できます。詳しくは[touying-exporter](https://touying-typ.github.io/docs/external/touying-exporter)を参照してください。
 
-- **feat/fix: `touying-get-config` exposes `common` as a real category**
+- **機能・修正：`touying-get-config` が `common` を正式なカテゴリーとして公開**
 
-  `touying-get-config("common.handout")` resolves now, and `touying-get-config().common` returns the flat top-level keys as a subtree, which is what the docstring always claimed. Naming a category under it, such as `common.store`, panics with a clear message instead of silently missing.
+  `touying-get-config("common.handout")` が解決されるようになり、`touying-get-config().common` は以前からドキュメントに記載されていたとおり、トップレベルのキーを部分木として返します。`common.store` のようにその配下でカテゴリーを指定すると、黙って失敗するのではなく明確なエラーが出ます。
 
-- **feat: waypoints now emit a globally linkable anchor `<slide.waypoint>`** for a slide labelled `<slide>` and a waypoint named `<waypoint>`. You can use this to create links that refer to the last subslide of a waypoint. The anchor is placed best possible: If the last waypoint subslide is rendered, it is emitted there (the default in presentation mode), otherwise as close after as possible, otherwise as late inside it as possible. If all rendered subslides are before the waypoint's range it is not emitted into the document.
+- **機能：ウェイポイントがグローバルにリンク可能なアンカー `<slide.waypoint>` を生成します。** `<slide>` ラベルのあるスライド内の `<waypoint>` に対し、最後のサブスライドへのリンクを作成できます。アンカーは可能な限り適切な位置に置かれ、ウェイポイントの最後のサブスライドが描画されるならそこに配置されます（プレゼンテーションモードの既定動作）。そうでなければ直後のできるだけ近い位置、それも不可能ならウェイポイント内のできるだけ後ろに配置されます。描画されるサブスライドがすべて対象範囲より前ならアンカーは生成されません。
 
-- feat: new utilities. `tree.is-math-symbol` and `tree.sequence-to-array` in the new `core/tree.typ`, `subslides.resolve-negative-subslides` (negative subslide indices resolved against a repeat count and an optional non-1 base) in `core/subslides.typ`, and `utils.rescale-image`.
+- **機能：新しいユーティリティを追加しました。** `core/tree.typ` の `tree.is-math-symbol` と `tree.sequence-to-array`、`core/subslides.typ` の `subslides.resolve-negative-subslides`（反復回数と任意の1以外の基準から負の番号を解決）、`utils.rescale-image` です。
 
-- **fix: a labelled `#place`, `#rotate`, `#columns` or `#terms.item` in a slide**
+- **修正：スライド内のラベル付き `#place`、`#rotate`、`#columns`、`#terms.item`**
 
-  The parser rebuilt those four by hand and passed the label straight into the constructor, so a labelled `#place(top + right)[..] <lbl>` was a hard compile error and a labelled `#columns(2)[..] <lbl>` silently lost its label. They go through the shared reconstruction now and keep it.
+  従来はパーサーがこの4種類を手動で再構築してラベルをコンストラクターへ直接渡していたため、`#place(top + right)[..] <lbl>` はコンパイルエラーになり、`#columns(2)[..] <lbl>` はラベルが失われていました。共通の再構築処理を通すようになり、ラベルが維持されます。
 
-- **fix: `#item-by-item` no longer collapses when its body starts with a `#set`**
+- **修正：本文が `#set` で始まる場合に `#item-by-item` がまとめられなくなりました**
 
-  Three separate copies of "count the items" could not see through the `styled` node a `#set` or `#show` creates, so `#item-by-item[#set text(..) \ - one \ - two]` rendered one subslide instead of three.
+  項目数を数える3つの処理が `#set` や `#show` の生成する `styled` ノードの内部を参照できず、`#item-by-item[#set text(..) \ - one \ - two]` が3つではなく1つのサブスライドとして描画されていました。
 
-- **fix: `magic.nontight` on a labelled list**
+- **修正：ラベル付きリストに対する `magic.nontight`**
 
-  It splatted the element's `label` into the constructor, which rejects it, so `#list([a], [b]) <lbl>` was a hard error under `nontight-list-enum-and-terms`.
+  要素の `label` を受け付けないコンストラクターへ展開していたため、`nontight-list-enum-and-terms` の設定下では `#list([a], [b]) <lbl>` がエラーになっていました。
 
-- **fix: speaker notes no longer lose styled content**
+- **修正：発表者ノートで装飾された内容が失われなくなりました**
 
-  `utils.markup-text` dropped every `styled` subtree, so `[a #text(red)[b] c]` reached the `.pdfpc` file as "a c". It feeds the pdfpc export, so notes were silently incomplete.
+  `utils.markup-text` が `styled` 部分木をすべて捨てていたため、`[a #text(red)[b] c]` は `.pdfpc` ファイルに `"a c"` として渡されていました。pdfpcへの出力に使われるため、ノートの内容が黙って欠落していました。
 
-- **fix: waypoints inside a `terms.item` or a figure caption**
+- **修正：`terms.item` や図のキャプション内のウェイポイント**
 
-  The waypoint pre-pass walked neither, while the main parse walked both, so every waypoint after one landed on the wrong subslide.
+  ウェイポイントの前処理ではどちらの内部も走査しませんでしたが、メインの解析では走査していたため、その後のウェイポイントが誤ったサブスライドに配置されていました。
 
-- **fix: special slides announce their title as a hidden heading**
+- **修正：特殊なスライドが不可視の見出しとしてタイトルを公開**
 
-  An outline slide's title never became a heading, so nothing reading the current heading could see it. The slide header worked only because the title was passed in explicitly, and the notes panel showed nothing at all. The affected slides now emit `place(hide(heading(level: self.slide-level, ..)))`. `place` keeps it out of the flow, since a plain `hide` still pushed the outline's contents down by about 16pt, and `level: self.slide-level` keeps `custom-progressive-outline` from mistaking "Outline" for the current section and dimming every entry. Applied to `outline-slide` in aqua, dewdrop, metropolis and stargazer, plus stargazer's `ending-slide`. Title slides are left alone for now.
+  アウトラインスライドのタイトルは見出しにならないため、現在の見出しを参照する関数では取得できませんでした。ヘッダーは明示的に渡されたタイトルで動作していましたが、ノートパネルは何も表示できませんでした。現在は `place(hide(heading(level: self.slide-level, ..)))` を生成します。`hide` だけではアウトラインの内容が約16pt下がるため、`place` で文書の流れから除外します。`level: self.slide-level` は `custom-progressive-outline` が「Outline」を現在のセクションと誤認してすべての項目を薄くする問題を防ぎます。aqua、dewdrop、metropolis、stargazerの `outline-slide` とstargazerの `ending-slide` に適用され、タイトルスライドは現状維持です。
 
-- **fix: a citation covered by a visual-only method stays a real citation**
+- **修正：見た目だけを変えるカバーで隠された引用は引き続き実際の引用として扱われます**
 
-  `color-changing-cover` sent citations to the `hide` fallback, so the marker vanished while the bibliography entry it queues stayed behind. `@key` is a `ref` in the content tree and only becomes a `cite` during layout, so neither func was in the recolourable set. Both are now, and a citation is recoloured like `raw` rather than hidden. Separately, `magic.bibliography-as-footnote` decided whether to draw a width-reserving placeholder by looking for a `hide` element instead of asking `utils.cover-hides-footnote`. It asks the config now, so it agrees with the parser's own footnote branch.
+  `color-changing-cover` は引用を `hide` の代替処理へ渡していたため、引用マーカーだけが消え、対応する参考文献の項目は残っていました。`@key` は内容の木構造では `ref` であり、レイアウト時に `cite` となるため、どちらも色変更の対象に含まれていませんでした。現在は両方に対応し、引用は `raw` と同様に色変更されます。また、`magic.bibliography-as-footnote` は `utils.cover-hides-footnote` を調べず `hide` 要素の有無で仮の脚注マーカーを描画していました。現在は設定を参照し、パーサーの脚注処理と一致します。
 
-  Still open: an opaque cover that is not `hide`, such as `cover-with-rect`, together with `cover-hides-footnote: true` leaks the entry.
+  未解決：`cover-with-rect` のような `hide` 以外の不透明なカバーを `cover-hides-footnote: true` と組み合わせると、脚注の項目が漏れ出します。
 
-- **fix: a note-style citation after a `#pause` no longer leaks its footnote onto the earlier subslides** ([#414](https://github.com/touying-typ/touying/pull/414), thanks @SchrodingerBlume)
+- **修正：`#pause` の後にある注釈形式の引用が前のサブスライドに脚注を表示しなくなりました** ([#414](https://github.com/touying-typ/touying/pull/414), thanks @SchrodingerBlume)
 
-  [#399](https://github.com/touying-typ/touying/pull/399) fixed a literal `#footnote` shown before its `#pause`, but a citation in a CSL note style such as `chicago-notes` still leaked. Such a citation only becomes a footnote during the layout pass, after the body scan `cover-hides-footnote` relies on, so `hide()` suppressed the marker while the entry it had queued still rendered at the bottom of the page. `cite` and `ref` now follow the same three-way branch as `footnote`: under a genuinely hiding cover the citation is not rendered at all, so no entry is created, and it appears normally once revealed. This also fixes packages that emit footnotes through a `show std.cite` rule.
+  [#399](https://github.com/touying-typ/touying/pull/399) では `#pause` の前に文字どおりの `#footnote` が表示される問題を修正しましたが、`chicago-notes` のようなCSL注釈形式の引用では脚注が漏れ出ていました。こうした引用が脚注になるのは、`cover-hides-footnote` が参照する本文走査より後のレイアウト段階だからです。`hide()` はマーカーを隠しても、予約された項目はページ下部に表示されていました。現在は `cite` と `ref` も `footnote` と同じ3種類の分岐に従い、実際に隠すカバーの下では引用自体を生成せず、表示された時点で通常どおり描画します。`show std.cite` ルールから脚注を生成するパッケージにも効果があります。
 
-- **fix: a footnote bibliography no longer prevents convergence** ([#395](https://github.com/touying-typ/touying/issues/395)) — fixed by the bibliography rework above. Verified across 30 size × breakable/detect-overflow combinations that previously warned *document did not converge within five attempts*. A CI step runs the regression with `--warnings promote`.
+- **修正：脚注形式の参考文献が文書の収束を妨げなくなりました** ([#395](https://github.com/touying-typ/touying/issues/395)) — fixed by the bibliography rework above. Verified across 30 size × breakable/detect-overflow combinations that previously warned *document did not converge within five attempts*. A CI step runs the regression with `--warnings promote`.
 
-- fix: `#uncover`, `#only` and the other fn-wrappers stay visible inside a `grid` or `table` that sits behind a `#pause`. A fn-wrapper decides its own visibility, so it escapes the surrounding pause zone, but a table-like container worked out whether it would be hidden *before* re-parsing its cells and then reused that stale answer, covering a wrapper that had already revealed itself. Nesting made no difference: a `grid` inside a `block` was affected too
+- **修正：`#pause` で隠された `grid` や `table` 内でも `#uncover`、`#only` などのラッパーが表示されます。** ラッパーは自分自身の表示状態を決めるため外側のpause領域から独立しますが、表形式のコンテナーはセルを再解析する前に非表示かどうかを判定し、その古い結果を使い回していました。`block` 内の `grid` のような入れ子でも発生していました。
 
-- fix: a bibliography no longer needs a preceding `pagebreak()` to render. `---` slide breaks inside mode-only content are handled as slide breaks, while `pagebreak()` stays a page break
+- **修正：参考文献の描画に先行する `pagebreak()` が不要になりました。** モード専用の内容内の `---` はスライド区切りとして処理され、`pagebreak()` は引き続き改ページとして扱われます。
 
-- fix: `touying-get-config`'s `default:` sentinel is a private marker instead of the `type` builtin, so `default: type` is no longer a magic value, and passing a key both positionally and by name is rejected rather than silently ignored
+- **修正：`touying-get-config` の `default:` の番兵値が組み込みの `type` ではなく専用マーカーになりました。** `default: type` は特別な値ではなくなり、キーを位置引数と名前付き引数の両方で渡すと、黙って無視される代わりにエラーになります。
 
-- fix: footnotes are no longer shown before the `#pause` that reveals them ([#399](https://github.com/touying-typ/touying/pull/399), thanks @RivinHD for the initial contribution)
+- **修正：脚注が表示開始の `#pause` より前に現れなくなりました** ([#399](https://github.com/touying-typ/touying/pull/399), thanks @RivinHD for the initial contribution)
 
-- fix: `hidden-parts` are flushed in the right order when a `touying-fn-wrapper` follows paused content, so a fn-wrapper no longer renders ahead of content written before it ([#400](https://github.com/touying-typ/touying/pull/400))
+- **修正：pauseされた内容の後に `touying-fn-wrapper` が続く場合、`hidden-parts` を正しい順序で出力します。** ラッパーが先行する内容より前に描画されることはなくなりました。 ([#400](https://github.com/touying-typ/touying/pull/400))
 
-- fix: cover spacing ([#387](https://github.com/touying-typ/touying/issues/387), [#405](https://github.com/touying-typ/touying/pull/405))
+- **修正：カバーの間隔** ([#387](https://github.com/touying-typ/touying/issues/387), [#405](https://github.com/touying-typ/touying/pull/405))
 
-- fix: reducer elements are covered individually rather than as one block ([#371](https://github.com/touying-typ/touying/issues/371), [#381](https://github.com/touying-typ/touying/pull/381))
+- **修正：reducerの要素を1つのブロックとしてではなく個別にカバー** ([#371](https://github.com/touying-typ/touying/issues/371), [#381](https://github.com/touying-typ/touying/pull/381))
 
-- **fix: `touying-reducer` hands `reduce` and `cover` the element shape the package itself uses**, so a package whose drawing function takes `..args` rather than one array now binds without any adapter.
+- **修正：`touying-reducer` が `reduce` と `cover` にパッケージ自身の要素形式を渡します**, so a package whose drawing function takes `..args` rather than one array now binds without any adapter.
 
   A package's element is whatever its element constructor returns, and that differs: a CeTZ `rect(..)` and an alchemist `molecule(..)` are each a one-element array, while a fletcher `node(..)` is content and a lilaq `plot(..)` is a dictionary. Writing the body as a code block (`#cetz-canvas({ rect(..); circle(..) })`) makes Typst join those arrays into one, so the reducer received the elements already unpacked and had to guess how to put one back together when covering it. It always wrapped, which is right for CeTZ and alchemist and wrong for everything else.
 
@@ -425,21 +425,21 @@ sidebar_position: 8
   )
   ```
 
-- fix: callback-style usage works again ([#374](https://github.com/touying-typ/touying/issues/374), [#380](https://github.com/touying-typ/touying/pull/380))
+- **修正：コールバック形式の呼び出しが再び動作** ([#374](https://github.com/touying-typ/touying/issues/374), [#380](https://github.com/touying-typ/touying/pull/380))
 
-- fix: empty output slides are no longer indexed when adding last-page metadata ([#382](https://github.com/touying-typ/touying/pull/382))
+- **修正：最終ページのメタデータ追加時に空の出力スライドを番号付けしない** ([#382](https://github.com/touying-typ/touying/pull/382))
 
-- fix: wrong type in pdfpc commands ([#407](https://github.com/touying-typ/touying/pull/407), thanks @vilaureu)
+- **修正：pdfpcコマンドの型の誤り** ([#407](https://github.com/touying-typ/touying/pull/407), thanks @vilaureu)
 
-- fix: `touying-diagram` binding and the CeTZ docs example repaired ([#389](https://github.com/touying-typ/touying/pull/389))
+- **修正：`touying-diagram` のバインディングとCeTZのドキュメント例** ([#389](https://github.com/touying-typ/touying/pull/389))
 
-- i18n: French translation for the outline ([#396](https://github.com/touying-typ/touying/pull/396), thanks @tarikgraba)
+- **多言語対応：アウトラインのフランス語訳** ([#396](https://github.com/touying-typ/touying/pull/396), thanks @tarikgraba)
 
-- theme(dewdrop): `outline-title` is gone from the theme's documented parameter list. It was never an actual parameter of `dewdrop-theme`; the outline slide's title is its `title` argument
+- **dewdropテーマ：文書化されたパラメーター一覧から `outline-title` を削除しました。** これは実際には `dewdrop-theme` のパラメーターではなく、アウトラインスライドのタイトルには `title` 引数を使います。
 
-- theme(stargazer): list markers are positioned correctly ([#393](https://github.com/touying-typ/touying/pull/393), thanks @joseph-tao)
+- **stargazerテーマ：リストのマーカー位置を修正** ([#393](https://github.com/touying-typ/touying/pull/393), thanks @joseph-tao)
 
-- theme(stargazer): it also documented `footer` and `footer-right` when never using those.
+- **stargazerテーマ：使用していない `footer` と `footer-right` がドキュメントに掲載されていた問題を修正**
 
 ### ドキュメント
 
