@@ -133,9 +133,9 @@ sidebar_position: 8
 
 ### 軽微な破壊的変更
 
-- **feat!: `utils.semi-transparent-cover` is deprecated** — use `utils.alpha-changing-cover` or `utils.color-changing-cover`
+- **機能・破壊的変更：`utils.semi-transparent-cover` は非推奨になりました** — 代わりに `utils.alpha-changing-cover` または `utils.color-changing-cover` を使用してください
 
-  It worked by overlaying a semi-transparent rectangle on the covered content, which does not hold up in general: the overlay dims the slide background along with the content, and it stacks where covered regions overlap. It still renders, (slightly worse than the last iterations) so presentations keep compiling. Builds that use `--warnings promote` will however fail.
+  従来は隠す内容の上に半透明の矩形を重ねていましたが、背景まで薄くなり、隠した領域が重なると効果が蓄積するため、一般には適切に動作しません。表示自体は引き続き可能で、プレゼンテーションもコンパイルできますが、以前より見た目が悪くなる場合があります。`--warnings promote` を指定したビルドでは失敗します。
 
   ```typst
   // Before
@@ -146,15 +146,15 @@ sidebar_position: 8
   config-methods(cover: utils.color-changing-cover.with(color: gray))
   ```
 
-  Passing it as another cover method's `fallback-hide` function is still fine and does not warn. `utils.cover-with-rect` does also not warn.
+  ほかのカバーメソッドの `fallback-hide` として渡す場合は引き続き使用でき、警告も出ません。`utils.cover-with-rect` も警告の対象外です。
 
-- **fix!: `utils.handout-only` is removed** — use the top-level `#handout-only[..]`. It is a parser mark rather than a callback, so it can contain slide-breaking content. See [Handout Mode](https://touying-typ.github.io/docs/tutorials/dynamic/handout).
+- **修正・破壊的変更：`utils.handout-only` が削除されました** — 代わりにトップレベルの `#handout-only[..]` を使ってください。これはコールバックではなくパーサー用のマークなので、スライドを区切る内容を含められます。 See [Handout Mode](https://touying-typ.github.io/docs/tutorials/dynamic/handout).
 
-- **fix!: negative subslide indices now panic on the animation functions** instead of silently doing the wrong thing.
+- **修正・破壊的変更：アニメーション関数に負のサブスライド番号を渡すと、誤動作を黙って続ける代わりにエラーになります。**
 
-  A negative index means "counted back from the last subslide", which only has a stable meaning once the subslide count is fixed. `config-common(handout-subslides: -1)`, `#touying-recall(.., subslides: -1)` and `#touying-render(.., subslides: -1)` resolve their spec after parsing has settled the count, so they accept negatives.
+  負の番号は最後のサブスライドから逆算する指定であり、サブスライド数が確定して初めて意味が定まります。`config-common(handout-subslides: -1)`、`#touying-recall(.., subslides: -1)`、`#touying-render(.., subslides: -1)` は解析後に指定値を解決するため、負の番号を使用できます。
 
-  `#only`, `#uncover`, `#effect`, `#alternatives`, `#alternatives-match`, `#alternatives-cases`, `#animate` and `#item-by-item` are parsed as part of the flow they sit in, and now a negative index is panicked on, not ignored. Use waypoints if you need such behaviour.
+  `#only`、`#uncover`、`#effect`、`#alternatives`、`#alternatives-match`、`#alternatives-cases`、`#animate`、`#item-by-item` は内容の流れの中で解析されるため、負の番号は無視されずエラーになります。必要な場合はウェイポイントを使用してください。
 
   ```typst
   // Before: rendered nothing, silently
@@ -164,19 +164,19 @@ sidebar_position: 8
   #only(get-last(<end>))[Last]
   ```
 
-  `#waypoint(start:)` is restricted the same way and now requires a position `>= 1`. Reference another waypoint by label to position one relative to another.
+  `#waypoint(start:)` も同様に制限され、開始位置は1以上が必要です。別のウェイポイントとの相対位置を指定する場合はラベルで参照してください。
 
-  Note: Negative numbers in a *string* spec are a different notation and are unaffected: `"-2"` is the open range "up to subslide 2", not "second from last".
+  注意：文字列に含まれる負の数は別の記法なので影響を受けません。`"-2"` は「最後から2番目」ではなく「サブスライド2まで」という開いた範囲です。
 
-- **fix: overflow detection also checks width.** It only ever compared height, so an element too wide to fit, a fixed-width block level element did not trigger an overflow warning.
+- **修正：はみ出し検出が幅も確認するようになりました。** 以前は高さしか比較していなかったため、幅が大きすぎる固定幅のブロックなどでは警告が出ませんでした。
 
-- **feat!: `touying-equation` is finally deprecated**. All its uses are superseded through other means and the normal equation animations are even more capable now allowing you to write animation functions all math layout function like `mat` or `frac`.
+- **機能・破壊的変更：`touying-equation` が非推奨になりました。** その用途はほかの機能で代替でき、通常の数式アニメーションも強化されました。現在は `mat` や `frac` などの数式レイアウト関数内にもアニメーション関数を記述できます。
 
-- **feat!: `config-common(detect-overflow:)` defaults to `auto`** (was `true`). This is the opposite of what is set for `breakable` and in case both are `true` a warning is emitted that no overflow can be detected.
+- **機能・破壊的変更：`config-common(detect-overflow:)` の既定値が `true` から `auto` に変更されました。** `breakable` と逆の設定になるため、両方が `true` の場合には、はみ出しを検出できない旨の警告が出ます。
 
-- **feat!: `#measure` shadows `std.measure` and also measures animated content properly** It still works as expected, needing a surrounding `layout` or `context`, and in addition to a `width` and `height` optionally supports an integer `subslide` and an integer `base` which set the subslide and subslide base to render the content at before it is measured.
+- **機能・破壊的変更：`#measure` が `std.measure` を隠蔽し、アニメーション化された内容も正しく測定するようになりました。** 従来どおり周囲に `layout` または `context` が必要です。`width` と `height` に加え、測定前に描画するサブスライドとその基準を整数の `subslide` と `base` で指定できます。
 
-- **feat!: reducer bindings are lambdas taking the package module**, instead of a path spelled as an array of strings with optional trailing `arguments(..)`.
+- **機能・破壊的変更：reducerのバインディングがパッケージモジュールを受け取るラムダ式になりました。** 従来の文字列の配列と末尾の `arguments(..)` によるパス指定は使われません。
 
   ```typst
   // Before
@@ -191,17 +191,17 @@ sidebar_position: 8
   )
   ```
 
-  The old no longer works and this is also the shape `touying-reduce` now expects.
+  従来の形式は動作しません。`touying-reduce` も新しい形式を要求します。
 
 ### 移行ガイド
 
-1. **Bump your compiler** to Typst 0.15.0 or newer.
-2. **Bibliography:** replace `config-common(show-bibliography-as-footnote: bibliography("ref.bib"))` with `config-common(show-bibliography-as-footnote: true)` and put a real `#bibliography("ref.bib")` in the presentation. Delete any `#magic.bibliography(..)` call. If the bibliography sits on a slide with more than one subslide, wrap it as `only("h", bibliography("ref.bib"))` so it is instantiated once. Otherwise each subslide creates a fresh instance and the citation numbering restarts ([#415](https://github.com/touying-typ/touying/issues/415)).
-3. **Speaker notes:** if you overrode the `config-methods(show-only-notes: ..)` *renderer*, rewrite it as `config-common(notes-fn: ..)` built on top of `touying-notes`. `config-common(show-only-notes: true)` needs no change.
-4. **Second screen:** if a theme painted behind the notes half through `config-page(background: ..)`, move that styling into its `notes-fn` (`fill` / `header-fill` on `touying-notes`).
-5. **`touying-recall`:** rename `subslide:` to `subslides:`. If you passed `none` or `auto` explicitly, swap it for the other one. If you relied on the default, nothing changes.
-6. **Covers:** replace `config-methods(cover: utils.semi-transparent-cover)` with `utils.alpha-changing-cover` or `utils.color-changing-cover`. Leaving it is a warning rather than an error, unless you build with `--warnings promote`.
-7. **Pause flow:** see the first breaking entry. Add an explicit `#pause` or `#jump`, or use waypoints, where you relied on a fn-wrapper snapping the counter forward.
+1. **コンパイラーを更新：** Typst 0.15.0以降へ更新してください。
+2. **参考文献：** `config-common(show-bibliography-as-footnote: bibliography("ref.bib"))` を `config-common(show-bibliography-as-footnote: true)` に変更し、プレゼンテーション内で実際の `#bibliography("ref.bib")` を呼び出してください。`#magic.bibliography(..)` は削除します。複数のサブスライドを持つスライドに参考文献がある場合は、`only("h", bibliography("ref.bib"))` で囲み、一度だけ生成されるようにしてください。そうしないとサブスライドごとに新しいインスタンスが生成され、引用番号が再び最初から始まります ([#415](https://github.com/touying-typ/touying/issues/415)).
+3. **発表者ノート：** `config-methods(show-only-notes: ..)` の*描画関数*を上書きしていた場合は、`touying-notes` を基にした `config-common(notes-fn: ..)` に書き換えてください。`config-common(show-only-notes: true)` は変更不要です。
+4. **セカンドスクリーン：** テーマが `config-page(background: ..)` でノート側の背景を描画していた場合は、その設定を `notes-fn` の `touying-notes` にある `fill` または `header-fill` へ移動してください。
+5. **`touying-recall`：** `subslide:` を `subslides:` に変更してください。`none` または `auto` を明示していた場合は、その値も入れ替えてください。既定値を利用していた場合は変更不要です。
+6. **カバー関数：** `config-methods(cover: utils.semi-transparent-cover)` を `utils.alpha-changing-cover` または `utils.color-changing-cover` に変更してください。そのまま残しても通常は警告だけですが、`--warnings promote` ではエラーになります。
+7. **pauseの進行：** 最初の破壊的変更を参照してください。関数ラッパーによるカウンターの自動ジャンプに依存していた部分には、`#pause` や `#jump` を明示するか、ウェイポイントを使ってください。
 
 ### 機能追加
 
