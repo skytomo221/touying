@@ -107,11 +107,11 @@ CeTZとFletcherでは `only`、`uncover`、`alternatives` も同様の構文で�
   )
 ]
 ```
-Note that commands like `effect` and `item-by-item` might not work as expected.
+`effect` や `item-by-item` などの命令は、想定どおりに動作しない場合がある点に注意してください。
 
-## Callback-Style Bindings
+## コールバック形式のバインディング
 
-If you don't want to have to write the array syntax `(anim-cmd(), )` for CeTZ, you can redefine the commands you need via utils locally in the canvas. This way they output the format CeTZ understands natively. However, then you need to manually count your subslides via `repeat`! 
+CeTZで `(anim-cmd(), )` のような配列構文を書きたくない場合は、キャンバス内で `utils` を使い、必要な命令をローカルに再定義できます。CeTZが直接理解できる形式で出力できますが、サブスライド数は `repeat` で手動指定する必要があります。 
 
 ```example
 #import "@preview/touying:0.8.0": *
@@ -140,4 +140,4 @@ If you don't want to have to write the array syntax `(anim-cmd(), )` for CeTZ, y
   })
 ])
 ```
-(This also works for Fletcher, but there should be no reason to use it really.)
+（Fletcherでも利用できますが、通常はその必要はありません。）

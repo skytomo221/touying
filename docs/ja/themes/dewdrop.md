@@ -37,35 +37,35 @@ Dewdropテーマの特徴は洗練されたナビゲーションです。`sideba
 #outline-slide()
 ```
 
-The `dewdrop-theme` function accepts the following parameters:
+`dewdrop-theme` 関数は次のパラメーターを受け取ります。
 
-- `aspect-ratio`: The aspect ratio of the slides, which can be "16-9" or "4-3", with a default of "16-9".
-- `navigation`: The style of the navigation bar, which can be `"sidebar"`, `"mini-slides"`, or `none`, with a default of `"sidebar"`.
-- `sidebar`: Settings for the sidebar navigation, with default values of `(width: 10em, filled: false, numbered: false, indent: .5em, short-heading: true)`.
-  - `width`: The width of the sidebar.
-  - `filled`: Whether the outline in the sidebar is filled.
-  - `numbered`: Whether the outline in the sidebar is numbered.
-  - `indent`: The indent of the outline in the sidebar.
-  - `short-heading`: Whether the sidebar uses the short version of the headings.
-- `mini-slides`: Settings for the mini-slides navigation, with default values of `(height: 4em, x: 2em, display-section: false, display-subsection: true, linebreaks: true, short-heading: true)`.
-  - `height`: The height of the mini-slides, with a default of `4em`.
-  - `x`: The x-axis padding for the mini-slides, with a default of `2em`.
-  - `display-section`: Whether to display slides after the section and before the subsection, with a default of `false`.
-  - `display-subsection`: Whether to display slides in subsections, with a default of `true`.
-  - `linebreaks`: Whether to break the line between the section links and the subsection links, with a default of `true`.
-  - `short-heading`: Whether to use the short version of the headings, with a default of `true`.
-  - `inline`: Whether the dots sit on the same line as the section/subsection label, with a default of `false`.
-- `footer`: The content displayed in the footer of the slides, with a default of `none`. You can customize it with a function, such as `self => self.info.author`.
-- `footer-right`: The content displayed on the right side of the footer, with a default of `context utils.slide-counter.display() + " / " + utils.last-slide-number`.
-- `primary`: The primary color of the theme, with a default of `rgb("#0c4842")`.
-- `alpha`: The transparency of the covered (not-yet-reached) headings in the outlines, with a default of `60%`.
-- `subslide-preamble`: The content inserted before the body of every slide, with a default of `self => block(text(1.2em, weight: "bold", fill: self.colors.primary, utils.display-current-heading(depth: self.slide-level, style: auto)))`, i.e. the heading of the current slide level. Pass `none` to remove it.
+- `aspect-ratio`：スライドの縦横比。`"16-9"` または `"4-3"` を指定でき、既定値は `"16-9"` です。
+- `navigation`：ナビゲーションバーの形式。`"sidebar"`、`"mini-slides"`、`none` を指定でき、既定値は `"sidebar"` です。
+- `sidebar`：サイドバーの設定。既定値は `(width: 10em, filled: false, numbered: false, indent: .5em, short-heading: true)` です。
+  - `width`：サイドバーの幅。
+  - `filled`：サイドバーの目次を塗りつぶすかどうか。
+  - `numbered`：サイドバーの目次に番号を付けるかどうか。
+  - `indent`：サイドバーの目次のインデント。
+  - `short-heading`：サイドバーで短い形式の見出しを使用するかどうか。
+- `mini-slides`：ミニスライドのナビゲーション設定。既定値は `(height: 4em, x: 2em, display-section: false, display-subsection: true, linebreaks: true, short-heading: true)` です。
+  - `height`：ミニスライドの高さ。既定値は `4em` です。
+  - `x`：ミニスライドの水平方向のパディング。既定値は `2em` です。
+  - `display-section`：セクションとサブセクションの間のスライドを表示するかどうか。既定値は `false` です。
+  - `display-subsection`：サブセクション内のスライドを表示するかどうか。既定値は `true` です。
+  - `linebreaks`：セクションとサブセクションへのリンクの間で改行するかどうか。既定値は `true` です。
+  - `short-heading`：短い見出しを使うかどうか。既定値は `true` です。
+  - `inline`：点をセクション・サブセクションのラベルと同じ行に置くかどうか。既定値は `false` です。
+- `footer`：フッターに表示する内容。既定値は `none` で、`self => self.info.author` のような関数で変更できます。
+- `footer-right`：フッター右側の内容。既定値は `context utils.slide-counter.display() + " / " + utils.last-slide-number` です。
+- `primary`：テーマの基本色。既定値は `rgb("#0c4842")` です。
+- `alpha`：目次でまだ到達していない見出しを薄く表示する際の透明度。既定値は `60%` です。
+- `subslide-preamble`：各サブスライドの本文の前に挿入する内容。既定値は `self => block(text(1.2em, weight: "bold", fill: self.colors.primary, utils.display-current-heading(depth: self.slide-level, style: auto)))` で、現在のスライドレベルの見出しを表示します。除去するには `none` を指定します。
 
-Additionally, the Dewdrop theme provides a `#alert[..]` function, which you can use with the `#show strong: alert` syntax to create emphasized alert text.
+さらにDewdropテーマは強調用の `#alert[..]` 関数を提供します。`#show strong: alert` と組み合わせて使用できます。
 
 ## 配色
 
-The Dewdrop theme uses the following color scheme by default:
+Dewdropテーマの既定の配色は次のとおりです。
 
 ```typc
 config-colors(
@@ -77,18 +77,18 @@ config-colors(
 )
 ```
 
-You can modify this color scheme using the `config-colors()` function. This allows you to tailor the color palette of your slides to match the aesthetic you're aiming for or to conform to a specific branding guideline.
+`config-colors()` 関数で配色を変更できます。スライドの雰囲気やブランドのガイドラインに合わせて調整できます。
 
 
 ## スライド関数群
 
-The Dewdrop theme provides a variety of custom slide functions:
+Dewdropテーマはさまざまな独自スライド関数を提供します。
 
 ```typst
 #title-slide(config: (:), extra: none, ..args)
 ```
 
-`title-slide` reads information from `self.info` for display, and you can also pass in an `extra` parameter to display additional information.
+`title-slide` は `self.info` から表示情報を取得します。`extra` パラメーターで追加情報も指定できます。
 
 ---
 
@@ -103,7 +103,7 @@ The Dewdrop theme provides a variety of custom slide functions:
 ]
 ```
 
-A default slide with navigation and footer, where the footer is what you set.
+ナビゲーションとフッターのある通常のスライドです。フッターには設定した内容が表示されます。
 
 ---
 
@@ -111,9 +111,9 @@ A default slide with navigation and footer, where the footer is what you set.
 #outline-slide(config: (:), title: utils.i18n-outline-title, ..args)
 ```
 
-Display an outline slide. The `..args` are forwarded to the built-in `outline`.
+目次スライドを表示します。`..args` は組み込みの `outline` に渡されます。
 
-The outline slide places an invisible heading with `place(hide(heading(..)))`, so that both the slide header and the speaker-note panel can pick the title up through `utils.display-current-heading`.
+目次スライドでは `place(hide(heading(..)))` により不可視の見出しを置くため、スライドヘッダーと発表者ノートのパネルの両方で `utils.display-current-heading` からタイトルを取得できます。
 
 ---
 
@@ -121,7 +121,7 @@ The outline slide places an invisible heading with `place(hide(heading(..)))`, s
 #new-section-slide(config: (:), title: utils.i18n-outline-title, ..args, body)
 ```
 
-Start a new section with the given title, showing a progressive outline that highlights the current section. It is already registered through `config-common(new-section-slide-fn: ..)`, so it is normally triggered by writing `= Title` and does not need to be called by hand.
+指定したタイトルで新しいセクションを開始し、現在のセクションを強調する進捗付き目次を表示します。`config-common(new-section-slide-fn: ..)` に登録されているため、通常は `= Title` のような見出しによって自動で呼び出されます。
 
 ---
 
@@ -131,11 +131,11 @@ Start a new section with the given title, showing a progressive outline that hig
 ]
 ```
 
-Used to draw attention, with the background color set to `self.colors.primary`.
+注意を引くためのスライドです。背景色は `self.colors.primary` です。
 
 ## 発表者ノート
 
-Dewdrop defines its own `notes` function and registers it with `config-common(notes-fn: notes)`, so the notes panel on a second screen and in the only-notes view follows the theme's colors. It is built on top of `touying-notes`, and you can override it with your own implementation:
+Dewdropは独自の `notes` 関数を `config-common(notes-fn: notes)` に登録し、セカンドスクリーンやノート専用表示のパネルにもテーマの配色を適用します。`touying-notes` を基にしており、独自の実装で上書きできます。
 
 ```typst
 #show: dewdrop-theme.with(
@@ -181,7 +181,7 @@ $ x_(n+1) = (x_n + a/x_n) / 2 $
 
 == サブセクションA.2
 
-A slide without a title but with *important* infos
+タイトルはありませんが、*重要な*情報を含むスライドです。
 
 = セクションB
 
@@ -190,7 +190,7 @@ A slide without a title but with *important* infos
 #lorem(80)
 
 #focus-slide[
-  Wake up!
+  注目してください！
 ]
 
 == サブセクションB.2
