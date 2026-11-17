@@ -443,26 +443,26 @@ sidebar_position: 8
 
 ### ドキュメント
 
-Almost every page was touched. The largest items:
+ほぼすべてのページを更新しました。主な変更は以下のとおりです。
 
-- **docs: new [Article Mode](https://touying-typ.github.io/docs/integration/article-mode) tutorial** under Integration, since its main use is pairing an article theme with a slide theme.
+- **ドキュメント：[記事モード](https://touying-typ.github.io/docs/integration/article-mode)のチュートリアルを追加。** 記事テーマとスライドテーマの連携が主な用途なので、連携セクションに配置しました。
 
-- **docs: new [Speaker Notes](https://touying-typ.github.io/docs/tutorials/speaker-notes) tutorial** (English and Chinese), covering where notes attach, the second screen, presenter view, per-subslide notes, markdown notes for pdfpc, exporting, and styling the panel.
-- docs: [Custom Themes](https://touying-typ.github.io/docs/themes/custom) gains sections on customizing the speaker-note panel, making a special slide's title discoverable with a hidden heading, and why helper components should use `touying-fn-wrapper-raw`. [Build Your Own Theme](https://touying-typ.github.io/docs/tutorials/build-your-own-theme) gains a matching "Customizing the Notes" section.
-- docs: [Cover Function](https://touying-typ.github.io/docs/tutorials/dynamic/cover) rewritten around `alpha-changing-cover` and `color-changing-cover`, with a new section on `cover-hides-footnote` explaining why `auto` recognises a hiding cover by identity, so a hand-written `(self: none, body) => hide(body)` is classified visual-only and its footnotes appear before the reveal.
-- docs: [Sections and Headings](https://touying-typ.github.io/docs/tutorials/sections) now separates the labels that change how a heading is presented from the labels that filter by output mode, and warns that `<touying:hidden>` does not suppress the slide or its number, which `config-common(freeze-slide-counter: true)` does.
-- docs: [Counters](https://touying-typ.github.io/docs/tutorials/progress/counters) and the sections page corrected on `appendix`, which freezes only the denominator (`utils.last-slide-number`) while `utils.slide-counter` keeps advancing, so an appendix footer reads `4 / 2`.
-- docs: [Complex Animations](https://touying-typ.github.io/docs/tutorials/dynamic/complex) explains what can be nested inside `touying-fn-wrapper-raw` versus `touying-fn-wrapper`, including the `.with(..)` trap for theme authors.
-- docs: [Waypoints](https://touying-typ.github.io/docs/tutorials/dynamic/waypoints) documents hierarchical labels, where `<part:intro>` and `<part:main>` combine under `<part>`, and corrects `start`, which belongs on `#waypoint` rather than on `#uncover`.
-- docs: [Fit To](https://touying-typ.github.io/docs/tutorials/utilities/fit-to) brought in line with the real signatures of `fit-to-height` and `fit-to-width`, where `height`/`width` are named with a `1fr` default, positional is still accepted, and `reflow` and `force-height` exist.
-- docs: [Layout](https://touying-typ.github.io/docs/tutorials/layout) and the FAQ corrected. `detect-overflow` emits a warning and compilation continues; it does not `panic()`.
-- docs: [pdfpc](https://touying-typ.github.io/docs/external/pdfpc) documents `end-slide`, `save-slide` and `hidden-slide` alongside speaker notes, plus bundle export. [touying-exporter](https://touying-typ.github.io/docs/external/touying-exporter) documents `utils.get-input`.
-- docs: [CeTZ integration](https://touying-typ.github.io/docs/integration/cetz) drops the stale `(uncover(..),)` array syntax from the callback-style example, and the FAQ's fletcher example likewise.
-- docs: the [FAQ](https://touying-typ.github.io/docs/faq) was substantially reworked, covering the bibliography, section-slide bodies, `touying-fn-wrapper-raw`, the cover methods, `"h"` and `"!"` subslide specs, second-screen alignments, and Tinymist in place of the discontinued Typst Preview extension.
-- docs: new [Article Mode](https://touying-typ.github.io/docs/integration/article-mode) page covering the export modes, article themes and `available-fields`, writing for both outputs, recalling animated content, and floating images.
-- docs: new [Output Modes](https://touying-typ.github.io/docs/tutorials/output-modes) page gathering the four export modes, the four mode markers and the `<touying:..>` section labels in one place. The handout page keeps handout mode itself and links to it.
-- docs: [Complex Animations](https://touying-typ.github.io/docs/tutorials/dynamic/complex) documents `animate` (placement versus styling, priority, and that the last effect written wins), `swap` and its `stretch`, `animate-hidden` / `animate-removed`, `touying-render`, `touying-recall`, and the callback-style variants.
-- docs: large Chinese translation pass covering the theme pages, FAQ, settings, sections, navigation, and the new speaker-notes page. The Chinese `settings` and `custom` pages document article mode.
+- **ドキュメント：[発表者ノート](https://touying-typ.github.io/docs/tutorials/speaker-notes)のチュートリアルを追加**（英語・中国語）。ノートの配置、セカンドスクリーン、発表者ビュー、サブスライドごとのノート、pdfpc向けMarkdown、出力、パネルの装飾を解説します。
+- **ドキュメント：** [独自テーマ](https://touying-typ.github.io/docs/themes/custom) に発表者ノートのパネルの装飾、不可視の見出しによる特殊スライドのタイトル取得、ヘルパーで `touying-fn-wrapper-raw` を使う理由を追加しました。[独自テーマを作成する](https://touying-typ.github.io/docs/tutorials/build-your-own-theme) にもノートのカスタマイズの節を追加しました。
+- **ドキュメント：** [カバー関数](https://touying-typ.github.io/docs/tutorials/dynamic/cover) を `alpha-changing-cover` と `color-changing-cover` に合わせて書き直し、`cover-hides-footnote` の節を追加しました。`auto` は非表示用カバーを同一性によって認識するため、手書きの `(self: none, body) => hide(body)` は見た目だけのカバーと分類され、脚注が表示開始より前に現れることを説明しています。
+- **ドキュメント：** [セクションと見出し](https://touying-typ.github.io/docs/tutorials/sections) で見出しの表示を変えるラベルと出力モードで内容を絞るラベルを区別しました。`<touying:hidden>` はスライドや番号を消さず、その用途には `config-common(freeze-slide-counter: true)` が必要であると注意を追加しました。
+- **ドキュメント：** [カウンター](https://touying-typ.github.io/docs/tutorials/progress/counters) とセクションの説明で `appendix` の挙動を修正しました。これは分母（`utils.last-slide-number`）だけを固定し、`utils.slide-counter` は進むため、付録では `4 / 2` のようになります。
+- **ドキュメント：** [複雑なアニメーション](https://touying-typ.github.io/docs/tutorials/dynamic/complex) で `touying-fn-wrapper-raw` と `touying-fn-wrapper` に何を入れ子にできるかを説明し、テーマ作者が注意すべき `.with(..)` の落とし穴も記載しました。
+- **ドキュメント：** [ウェイポイント](https://touying-typ.github.io/docs/tutorials/dynamic/waypoints) で `<part:intro>` と `<part:main>` が `<part>` にまとめられる階層的ラベルを説明しました。また、`start` は `#uncover` ではなく `#waypoint` の引数であると修正しました。
+- **ドキュメント：** [Fit To](https://touying-typ.github.io/docs/tutorials/utilities/fit-to) を `fit-to-height` と `fit-to-width` の実際のシグネチャに合わせました。`height` と `width` は既定値 `1fr` の名前付き引数で、位置引数も引き続き受け付け、`reflow` と `force-height` もあります。
+- **ドキュメント：** [レイアウト](https://touying-typ.github.io/docs/tutorials/layout) とFAQの記述を修正しました。`detect-overflow` は警告を出してコンパイルを続行し、`panic()` は発生しません。
+- **ドキュメント：** [pdfpc](https://touying-typ.github.io/docs/external/pdfpc) で発表者ノートに加え `end-slide`、`save-slide`、`hidden-slide` とバンドル出力を説明しました。[touying-exporter](https://touying-typ.github.io/docs/external/touying-exporter) では `utils.get-input` を説明しました。
+- **ドキュメント：** [CeTZ連携](https://touying-typ.github.io/docs/integration/cetz) のコールバック形式の例から不要になった `(uncover(..),)` 配列構文を削除しました。FAQのFletcherの例も同様です。
+- **ドキュメント：** [FAQ](https://touying-typ.github.io/docs/faq) を大幅に改訂しました。参考文献、セクションスライドの本文、`touying-fn-wrapper-raw`、カバーメソッド、サブスライド指定の `"h"` と `"!"`、セカンドスクリーンの配置、終了したTypst Preview拡張機能に代わるTinymistなどを取り上げています。
+- **ドキュメント：** [記事モード](https://touying-typ.github.io/docs/integration/article-mode) の新しいページで出力モード、記事テーマと `available-fields`、両方の出力向けの記述、アニメーション内容の再利用、画像の回り込みを説明します。
+- **ドキュメント：** [出力モード](https://touying-typ.github.io/docs/tutorials/output-modes) の新しいページに4つの出力モード、4つのモードマーカー、`<touying:..>` のセクションラベルをまとめました。配布資料モードのページはそのまま残し、新しいページへのリンクを追加しました。
+- **ドキュメント：** [複雑なアニメーション](https://touying-typ.github.io/docs/tutorials/dynamic/complex) に `animate`（配置とスタイルの違い、優先度、最後に指定した効果の優先）、`swap` と `stretch`、`animate-hidden`、`animate-removed`、`touying-render`、`touying-recall`、コールバック形式の関数を追加しました。
+- **ドキュメント：** テーマ、FAQ、設定、セクション、ナビゲーション、新しい発表者ノートのページを含む大規模な中国語翻訳を行いました。中国語版の `settings` と `custom` では記事モードも説明します。
 
 ### その他
 
@@ -473,7 +473,7 @@ Almost every page was touched. The largest items:
 
 ### テーマの移行ガイド
 
-**For theme developers upgrading to v0.8.0:**
+**v0.8.0へ移行するテーマ作者向け：**
 
 1. **Style the body through `setting:`, not by wrapping it.** All bundled themes now pass their alignment and decoration as `touying-slide(setting: ..)` rather than wrapping the body in `align(..)` or a block. Wrapping hides the body from the parser, which breaks animation counting and article-mode linearization:
    ```typst
