@@ -82,10 +82,10 @@ sidebar_position: 8
 - **修正・破壊的変更：`uncover`・`only`・`alternatives` の後の `#pause` が確保済みサブスライドを飛ばさなくなりました**
 
   ```typst
-  #uncover("2")[Only on subslide 2]
-  On subslide one
+  #uncover("2")[サブスライド2だけに表示]
+  サブスライド1で表示
   #pause
-  On subslide two    // v0.7.0-v0.7.4: on subslide *three*
+  サブスライド2で表示    // v0.7.0-v0.7.4: サブスライド*3*で表示
   ```
 
   v0.6.xまでは相対ジャンプでカウンターが1つ進みました。v0.7.0では、先行する関数ラッパーが確保した最大のサブスライドの次まで進むよう変更されました。これは一連のpauseの代わりとなる `item-by-item` を想定したものですが、ほかのラッパーと同じ経路で範囲を通知するため、`uncover`、`only`、`alternatives` にも影響しました。検証するテストがなく見逃されていました。今回、サブスライドの確保と消費が再び独立した操作になりました。
@@ -138,11 +138,11 @@ sidebar_position: 8
   従来は隠す内容の上に半透明の矩形を重ねていましたが、背景まで薄くなり、隠した領域が重なると効果が蓄積するため、一般には適切に動作しません。表示自体は引き続き可能で、プレゼンテーションもコンパイルできますが、以前より見た目が悪くなる場合があります。`--warnings promote` を指定したビルドでは失敗します。
 
   ```typst
-  // Before
+  // 変更前
   config-methods(cover: utils.semi-transparent-cover)
-  // After: a real alpha cover, with an automatic fallback for content it cannot recolour
+  // 変更後：実際にアルファ値を変更し、色を変更できない内容には自動で代替処理を適用
   config-methods(cover: utils.alpha-changing-cover)
-  // Or, cheaper to compile, flattening everything to one colour
+  // または、すべてを単一色に変更するコンパイル負荷の小さい方法
   config-methods(cover: utils.color-changing-cover.with(color: gray))
   ```
 
@@ -157,9 +157,9 @@ sidebar_position: 8
   `#only`、`#uncover`、`#effect`、`#alternatives`、`#alternatives-match`、`#alternatives-cases`、`#animate`、`#item-by-item` は内容の流れの中で解析されるため、負の番号は無視されずエラーになります。必要な場合はウェイポイントを使用してください。
 
   ```typst
-  // Before: rendered nothing, silently
+  // 変更前：何も表示されず、エラーも出ない
   #only(-1)[Last]
-  // After: a waypoint names the position and keeps naming it
+  // 変更後：ウェイポイントで位置を指定して参照する
   A #pause B #waypoint(<end>) C
   #only(get-last(<end>))[Last]
   ```
@@ -179,12 +179,12 @@ sidebar_position: 8
 - **機能・破壊的変更：reducerのバインディングがパッケージモジュールを受け取るラムダ式になりました。** 従来の文字列の配列と末尾の `arguments(..)` によるパス指定は使われません。
 
   ```typst
-  // Before
+  // 変更前
   #let touying-reducer-bindings = (
     reduce: ("canvas",),
     cover: ("draw", "hide", arguments(bounds: true)),
   )
-  // After
+  // 変更後
   #let touying-reducer-bindings = (
     reduce: module => module.canvas,
     cover: module => module.draw.hide.with(bounds: true),
@@ -256,9 +256,9 @@ sidebar_position: 8
   `#touying-recall(<lbl>)` はスライド全体だけでなく、ラベル付きのreducer、図、任意のアニメーション内容を受け取り、指定した段階で再表示できます。
 
   ```typst
-  #touying-recall(<my-slide>, subslides: "waypoints")  // one subslide per waypoint
-  #touying-recall(<my-diagram>, subslides: 1)          // a reducer at stage 1
-  #touying-recall(<my-table>)                          // plain labelled content
+  #touying-recall(<my-slide>, subslides: "waypoints")  // 各ウェイポイントから1つのサブスライドを選択
+  #touying-recall(<my-diagram>, subslides: 1)          // reducerの第1段階
+  #touying-recall(<my-table>)                          // 通常のラベル付き内容
   ```
 
   サブスライドの選択には整数、最後から逆算する負の番号、ウェイポイントのラベルやマーカー（`get-first`、`get-last`、`prev-wp`、`next-wp`）が使えます。これらは再利用対象自身のウェイポイントを基準に解決されます。要素の再利用はインラインで配置され、スライド全体を再利用するときだけ新しいページが始まります。呼び出しは `#only`、`#uncover`、`#alternatives` の本文内の任意の場所に配置でき、`base:` で対象内容の反復番号の起点を指定できます。
@@ -268,9 +268,9 @@ sidebar_position: 8
   `touying-recall` がラベルから既存の内容を探すのに対し、`touying-render` は内容の値を直接受け取ります。小さなプレビュー、記事出力で図の途中の状態を示す場合などに便利で、スライド全体の内容も描画できます。
 
   ```typst
-  #touying-render(body, subslides: "2-4")   // steps through 2, 3 and 4
-  #touying-render(body, subslides: "!2-3")  // skips 2-3, collapsing the gap
-  #touying-render(body, subslides: <wp>)    // the waypoint's whole range
+  #touying-render(body, subslides: "2-4")   // 2、3、4の順に表示
+  #touying-render(body, subslides: "!2-3")  // 2〜3を除外し、空いた部分を詰める
+  #touying-render(body, subslides: <wp>)    // ウェイポイントの範囲全体
   ```
 
   整数や `get-first`、`get-last` のように1点を指定すると、その段階に固定されます。`subslides: auto` は外側のスライドの進行に従います。`base:` は内容内部のpause番号をずらし、`start:` は最初に描画されるサブスライドの開始位置を指定します。`repeat-last:` は最終状態を保持するか（既定）、再び非表示にするかを制御します。
@@ -282,7 +282,7 @@ sidebar_position: 8
     [The original],
     effects: (
       (effect: "cover", subslides: "-2"),
-      (effect: swap[Something else], subslides: 3),
+      (effect: swap[別の内容], subslides: 3),
       (effect: (body, ..) => text(red, body), subslides: "4-", priority: 2),
     ),
   )
@@ -298,7 +298,7 @@ sidebar_position: 8
   #let reveal-lines(body) = touying-fn-wrapper(
     (self: none, body) => /* ... */ body,
     last-subslide: repetitions => (repetitions + count-lines(body) - 1, (:)),
-    advances-flow: true,   // a following #pause continues after the last line
+    advances-flow: true,   // 後続の #pause は最後の行の次から進む
     body,
   )
   ```
@@ -418,7 +418,7 @@ sidebar_position: 8
   2種類の呼び出し方法は、引数が渡されてから平坦化されるまでの段階で区別できます。コードブロックは配列型の位置引数1つですが、要素を直接渡した場合は別々の引数になります。reducerはこの情報を要素ごとに記録し、元の形式で渡すようになりました。`cover` は要素全体を受け取り、`reduce` はブロック本文の場合は1つの配列、`lq.diagram(..plots)` のような可変長引数の場合は展開した引数を受け取ります。
 
   ```typst
-  // lilaq, whose plots are dictionaries and whose diagram takes `..plots`
+  // plotが辞書で、diagramが `..plots` を受け取るlilaq
   #let lq-diagram = touying-reducer.with(
     reduce: lq.diagram,
     cover: plot => plot + (x: (), y: (), label: none),
@@ -477,10 +477,10 @@ sidebar_position: 8
 
 1. **本文を囲むのではなく `setting:` で装飾します。** 組み込みテーマは本文を `align(..)` やブロックで囲むのではなく、`touying-slide(setting: ..)` で配置と装飾を渡すようになりました。本文を囲むとパーサーから見えなくなり、アニメーションの段階数計算と記事モードの線形化が壊れます。
    ```typst
-   // Before
+   // 変更前
    touying-slide(self: self, config: config, align(center + horizon, body))
 
-   // After
+   // 変更後
    touying-slide(self: self, config: config, setting: align.with(center + horizon), body)
    ```
 2. **`notes-fn` を登録します。** `config-methods(show-only-notes: ..)` の描画関数の上書きを、`touying-notes` を基にした `config-common(notes-fn: ..)` に置き換えてください。テーマごとに約10行で色などを指定できます。別のオプションである `config-common(show-only-notes: ..)` フラグは変更ありません。
@@ -632,19 +632,19 @@ sidebar_position: 8
 
 1. **利用者側で上書きできるよう `utils.merge-dicts` の最後に `config` を移動します。**
    ```typst
-   // Before
+   // 変更前
    self = utils.merge-dicts(self, config, config-page(...))
    
-   // After
+   // 変更後
    self = utils.merge-dicts(self, config-page(...), config)
    ```
 
 2. **任意の縦横比に対応するため `paper` を `utils.page-args-from-aspect-ratio` に置き換えます。**
    ```typst
-   // Before
+   // 変更前
    config-page(paper: "presentation-" + aspect-ratio, ...)
    
-   // After
+   // 変更後
    config-page(..utils.page-args-from-aspect-ratio(aspect-ratio), ...)
    ```
 
@@ -786,11 +786,11 @@ sidebar_position: 8
 #show: university-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     logo: emoji.school,
   ),
 )
@@ -799,9 +799,9 @@ sidebar_position: 8
 
 #title-slide()
 
-= The Section
+= セクション
 
-== Slide Title
+== スライドタイトル
 
 #lorem(40)
 ```
