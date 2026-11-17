@@ -586,51 +586,51 @@ sidebar_position: 8
 
 ### 機能追加
 
-- **feat: add `#jump(n, relative: bool)` as unified animation control; redefine `#pause`/`#meanwhile` as sugar**
-- feat: add `#handout-only` for inline content and `<touying:handout>` label for handout-exclusive slides ([#286](https://github.com/touying-typ/touying/pull/286))
-- feat: add `handout-subslides` to control which subslides appear in handout mode ([#288](https://github.com/touying-typ/touying/pull/288))
-- feat: add `#touying-raw` for animated code block reveals ([#283](https://github.com/touying-typ/touying/pull/283))
-- feat: add full-screen speaker notes mode with slide thumbnail (`show-only-notes`) ([#281](https://github.com/touying-typ/touying/pull/281))
-- feat: support arbitrary aspect ratios (e.g. 16-10) across all themes and speaker-note second screen ([#280](https://github.com/touying-typ/touying/pull/280))
-- feat: add `#item-by-item` animation for list, enum, and terms ([#278](https://github.com/touying-typ/touying/pull/278))
-- feat(recall): add subslide parameter to `#touying-recall` ([#285](https://github.com/touying-typ/touying/pull/285))
-- feat: add `default-composer` to config-common for global slide layout configuration ([#284](https://github.com/touying-typ/touying/pull/284))
-- feat: add `cover-fn` parameter to `uncover` for external package integration (e.g. Fletcher) ([#267](https://github.com/touying-typ/touying/pull/267))
-- feat: minislides can be displayed inline ([#228](https://github.com/touying-typ/touying/pull/228))
-- theme: improve appearance of long author lists in university and stargazer theme ([#242](https://github.com/touying-typ/touying/pull/242))
-- theme(simple): make simple-theme respect color configuration for deco-format ([#252](https://github.com/touying-typ/touying/pull/252))
-- theme(aqua,stargazer): add extra parameter to title-slide ([#291](https://github.com/touying-typ/touying/pull/291))
+- **機能：統一的なアニメーション制御として `#jump(n, relative: bool)` を追加し、`#pause` と `#meanwhile` をその簡略構文として再定義**
+- **機能：インライン内容向けの `#handout-only` と配布資料専用スライド向けの `<touying:handout>` ラベルを追加** ([#286](https://github.com/touying-typ/touying/pull/286))
+- **機能：配布資料モードに出力するサブスライドを指定する `handout-subslides` を追加** ([#288](https://github.com/touying-typ/touying/pull/288))
+- **機能：コードブロックを段階的に表示する `#touying-raw` を追加** ([#283](https://github.com/touying-typ/touying/pull/283))
+- **機能：スライドのサムネイル付きの全画面発表者ノートモード（`show-only-notes`）を追加** ([#281](https://github.com/touying-typ/touying/pull/281))
+- **機能：すべてのテーマと発表者ノートのセカンドスクリーンで16:10など任意の縦横比に対応** ([#280](https://github.com/touying-typ/touying/pull/280))
+- **機能：list、enum、terms向けの `#item-by-item` アニメーションを追加** ([#278](https://github.com/touying-typ/touying/pull/278))
+- **機能（再利用）：`#touying-recall` にサブスライド指定のパラメーターを追加** ([#285](https://github.com/touying-typ/touying/pull/285))
+- **機能：スライド全体のレイアウトを設定する `default-composer` をconfig-commonに追加** ([#284](https://github.com/touying-typ/touying/pull/284))
+- **機能：Fletcherなどの外部パッケージ連携向けに `uncover` へ `cover-fn` を追加** ([#267](https://github.com/touying-typ/touying/pull/267))
+- **機能：ミニスライドをインライン表示可能に** ([#228](https://github.com/touying-typ/touying/pull/228))
+- **テーマ：universityとstargazerで長い著者一覧の表示を改善** ([#242](https://github.com/touying-typ/touying/pull/242))
+- **simpleテーマ：装飾形式で配色設定を反映するよう修正** ([#252](https://github.com/touying-typ/touying/pull/252))
+- **aqua・stargazerテーマ：title-slideにextraパラメーターを追加** ([#291](https://github.com/touying-typ/touying/pull/291))
 
 ### 修正
 
-- fix: prevent ghost-slide blank pages from `touying-set-config` anchor regression ([#289](https://github.com/touying-typ/touying/pull/289))
-- fix: styled content on first slide no longer creates extra slides ([#287](https://github.com/touying-typ/touying/pull/287))
-- fix: remove unoutlined headings from navigation
-- fix: fix `#meanwhile` being ignored inside grid cells, boxes, and other containers ([#274](https://github.com/touying-typ/touying/pull/274))
-- fix: fix `config: parameter` silently ignored across all themes ([#273](https://github.com/touying-typ/touying/pull/273))
-- fix: fix slides after `#show`/`#set` rules not rendering subsequent slides ([#268](https://github.com/touying-typ/touying/pull/268))
-- fix: fix title page PDF page label causing pdfpc presenter notes mismatch ([#277](https://github.com/touying-typ/touying/pull/277))
-- fix: fix duplicate label error for labeled footnotes with `#pause` animations ([#275](https://github.com/touying-typ/touying/pull/275))
-- fix: fix `#pause` inside `#speaker-note` body (nested list items) ([#282](https://github.com/touying-typ/touying/pull/282))
-- theme(dewdrop): fix body content under level-1 heading was silently dropped ([#279](https://github.com/touying-typ/touying/pull/279))
-- theme(stargazer): update stargazer theme margins and fix [#259](https://github.com/touying-typ/touying/pull/259)
+- **修正：`touying-set-config` のアンカーの回帰によってゴーストスライドが生成される問題を防止** ([#289](https://github.com/touying-typ/touying/pull/289))
+- **修正：最初のスライドの装飾付き内容によって余分なスライドが生成される問題** ([#287](https://github.com/touying-typ/touying/pull/287))
+- **修正：目次から除外した見出しをナビゲーションからも除外**
+- **修正：グリッドのセル、ボックスなどのコンテナー内で `#meanwhile` が無視される問題** ([#274](https://github.com/touying-typ/touying/pull/274))
+- **修正：全テーマで `config:` パラメーターが黙って無視される問題** ([#273](https://github.com/touying-typ/touying/pull/273))
+- **修正：`#show`・`#set` ルールの後のスライドが描画されない問題** ([#268](https://github.com/touying-typ/touying/pull/268))
+- **修正：タイトルページのPDFページラベルによってpdfpcの発表者ノートがずれる問題** ([#277](https://github.com/touying-typ/touying/pull/277))
+- **修正：`#pause` によるアニメーション中のラベル付き脚注でラベル重複エラーが発生する問題** ([#275](https://github.com/touying-typ/touying/pull/275))
+- **修正：`#speaker-note` の本文内（入れ子のリスト項目）にある `#pause` の動作** ([#282](https://github.com/touying-typ/touying/pull/282))
+- **dewdropテーマ：第1レベルの見出しの下の本文が黙って削除される問題を修正** ([#279](https://github.com/touying-typ/touying/pull/279))
+- **stargazerテーマ：マージンを更新し、問題を修正** [#259](https://github.com/touying-typ/touying/pull/259)
 
 ### ドキュメント
 
-- **docs(BIG CHANGE): refactor docs website and add references page**
-- docs: reduce README noise, improve first impression ([#297](https://github.com/touying-typ/touying/pull/297))
-- docs: restructure docs + add docs-preview CI for PRs ([#296](https://github.com/touying-typ/touying/pull/296))
-- docs: comprehensive docstring improvements across all source files ([#294](https://github.com/touying-typ/touying/pull/294))
+- **ドキュメント（大きな変更）：ドキュメントサイトを再構成し、リファレンスページを追加**
+- **ドキュメント：READMEの冗長な部分を減らし、第一印象を改善** ([#297](https://github.com/touying-typ/touying/pull/297))
+- **ドキュメント：構成を整理し、PR向けのプレビューCIを追加** ([#296](https://github.com/touying-typ/touying/pull/296))
+- **ドキュメント：すべてのソースファイルでdocstringを包括的に改善** ([#294](https://github.com/touying-typ/touying/pull/294))
 
 ### その他
 
-- chore: add `copilot-setup-steps.yml` and improve `copilot-instructions.md` ([#292](https://github.com/touying-typ/touying/pull/292))
+- **保守：`copilot-setup-steps.yml` を追加し、`copilot-instructions.md` を改善** ([#292](https://github.com/touying-typ/touying/pull/292))
 
 ### テーマの移行ガイド
 
-**For theme developers upgrading to v0.6.3:**
+**v0.6.3へ移行するテーマ作者向け：**
 
-1. **Move `config` to the last position in `utils.merge-dicts`** to allow user overrides:
+1. **利用者側で上書きできるよう `utils.merge-dicts` の最後に `config` を移動します。**
    ```typst
    // Before
    self = utils.merge-dicts(self, config, config-page(...))
@@ -639,7 +639,7 @@ sidebar_position: 8
    self = utils.merge-dicts(self, config-page(...), config)
    ```
 
-2. **Replace `paper` with `utils.page-args-from-aspect-ratio`** to support arbitrary aspect ratios:
+2. **任意の縦横比に対応するため `paper` を `utils.page-args-from-aspect-ratio` に置き換えます。**
    ```typst
    // Before
    config-page(paper: "presentation-" + aspect-ratio, ...)
@@ -652,49 +652,49 @@ sidebar_position: 8
 
 ### 機能追加
 
-- feat: allow customisation of `components.checkerboard` ([#161](https://github.com/touying-typ/touying/pull/161))
+- **機能：`components.checkerboard` のカスタマイズに対応** ([#161](https://github.com/touying-typ/touying/pull/161))
 
 ### 修正
 
-- fix: support ratio and relative margins for full-width headers ([#256](https://github.com/touying-typ/touying/pull/256))
-- fix: fix `magic.bibliography-as-footnote` in Typst 0.14 ([#249](https://github.com/touying-typ/touying/pull/249))
-- fix: theorion package is broken with Typst 0.14.0 ([#237](https://github.com/touying-typ/touying/pull/237))
-- fix: update `components.typ` and pass named arguments to grid ([#207](https://github.com/touying-typ/touying/pull/207))
-- fix: fix `#meanwhile` in cetz ([#205](https://github.com/touying-typ/touying/pull/205))
-- fix: documentation contains unclosed raw text error ([#187](https://github.com/touying-typ/touying/pull/187))
-- fix: use correct circle symbol ([#171](https://github.com/touying-typ/touying/pull/171))
-- fix: use regex to override colors of equations ([#167](https://github.com/touying-typ/touying/pull/167))
-- fix: `show-hide-set-list-marker-none` with full enum ([#157](https://github.com/touying-typ/touying/pull/157))
-- fix: remove dump and label-it function for better cache
+- **修正：ページ幅全体を使うヘッダーで比率や相対マージンをサポート** ([#256](https://github.com/touying-typ/touying/pull/256))
+- **修正：Typst 0.14での `magic.bibliography-as-footnote` の動作** ([#249](https://github.com/touying-typ/touying/pull/249))
+- **修正：Typst 0.14.0でTheorionパッケージが動作しない問題** ([#237](https://github.com/touying-typ/touying/pull/237))
+- **修正：`components.typ` を更新し、gridに名前付き引数を渡すよう変更** ([#207](https://github.com/touying-typ/touying/pull/207))
+- **修正：CeTZ内の `#meanwhile` の動作** ([#205](https://github.com/touying-typ/touying/pull/205))
+- **修正：ドキュメント内のrawテキストが閉じられていないエラー** ([#187](https://github.com/touying-typ/touying/pull/187))
+- **修正：正しい円の記号を使用** ([#171](https://github.com/touying-typ/touying/pull/171))
+- **修正：正規表現を使って数式の色を上書き** ([#167](https://github.com/touying-typ/touying/pull/167))
+- **修正：完全なenumでの `show-hide-set-list-marker-none` の動作** ([#157](https://github.com/touying-typ/touying/pull/157))
+- **修正：キャッシュの改善のためdumpとlabel-it関数を削除**
 
 ### その他
 
-- docs: update README, bump versions of deps, and fix comment docs
-- ci: add more tests, bump versions of `tytanic`, and update typstyle workflow ([#221](https://github.com/touying-typ/touying/pull/221), [#261](https://github.com/touying-typ/touying/pull/261))
+- **ドキュメント：READMEの更新、依存関係の更新、コメントの説明の修正**
+- **CI：テストを追加し、`tytanic` のバージョンとtypstyleワークフローを更新** ([#221](https://github.com/touying-typ/touying/pull/221), [#261](https://github.com/touying-typ/touying/pull/261))
 
 
 ## v0.6.1
 
-Added support for the [theorion](https://github.com/OrangeX4/typst-theorion) package, and used it as the default math theorem environment.
+[Theorion](https://github.com/OrangeX4/typst-theorion) パッケージに対応し、数式の定理環境の既定値として採用しました。
 
 ## v0.6.0
 
-It's not a big update, but it's the first touying release since typst 0.13 was released.
+大きな更新ではありませんが、Typst 0.13の公開後、最初のTouyingのリリースです。
 
 ### 機能追加
 
-- feat: add auto style for display-current-heading.
-  - For users, you can use `show heading: set text(blue)` to change color for heading in some themes like `dewdrop`.
-  - For theme creator, you can use syntax like `utils.display-current-heading(level: 1, style: auto)` to achieve the same result.
-- feat: apply config-info information to `set document`.
-- feat: set `stretch: false` by default for `alternatives` functions. This is **a minor breaking change**, but I think it would be more intuitive: no auto empty space.
+- **機能：display-current-headingに自動スタイルを追加**
+  - 利用者は `show heading: set text(blue)` でdewdropなどのテーマの見出し色を変更できます。
+  - テーマ作者は `utils.display-current-heading(level: 1, style: auto)` のようにして同じ効果を実現できます。
+- **機能：config-infoの情報を `set document` に適用**
+- **機能：`alternatives` の `stretch` の既定値を `false` に変更しました。** 軽微な破壊的変更ですが、自動的に空白を作らない動作の方が直感的です。
 
 ### 修正
 
-- fix: fix error with uncover using semi-transparent-cover
-- fix: fix type string comparison https://github.com/touying-typ/touying/pull/153
-- fix: fix horizontal-line bug in typst 0.13.0
-- refactor: fix display-current-short-heading
+- **修正：semi-transparent-coverを使うuncoverでのエラー**
+- **修正：型を表す文字列の比較** https://github.com/touying-typ/touying/pull/153
+- **修正：Typst 0.13.0での水平線の不具合**
+- **リファクタリング：display-current-short-headingの動作を修正**
 
 
 ## v0.5.4 & v0.5.5
