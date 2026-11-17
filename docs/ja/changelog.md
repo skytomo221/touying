@@ -205,11 +205,11 @@ sidebar_position: 8
 
 ### 機能追加
 
-- **feat: article mode, one source file for slides or a flowing article**
+- **機能：記事モード — 1つのソースからスライドと連続した文章を生成**
 
-  Compiling with `config-common(export-mode: "article")`, or with `typst compile slides.typ --input export-mode=article`, renders the whole deck as a continuous document instead of pages: no slide breaks, animations collapsed to their final state, images optionally floated to the side. `export-mode` accepts `"slides"` (the default, where the `handout` flag decides), `"presentation"`, `"handout"` and `"article"`. `config-common(article-mode: true)` is the raw switch behind it.
+  `config-common(export-mode: "article")` または `typst compile slides.typ --input export-mode=article` を指定すると、スライドをページごとに区切らず、連続した文書として描画します。アニメーションは最終状態にまとめられ、画像は必要に応じて横へ回り込ませられます。`export-mode` は `"slides"`（`handout` フラグで切り替わる既定値）、`"presentation"`、`"handout"`、`"article"` に対応します。内部的な切り替えには `config-common(article-mode: true)` が使われます。
 
-  Article mode linearizes a deck rather than carrying its layout over, so a composer's columns become flowing text and a floated element takes `config-article(wrap: (width: ..))` of the text width, 50% by default, whatever width it was written at for the slide. See [Article Mode](https://touying-typ.github.io/docs/integration/article-mode).
+  記事モードはスライドのレイアウトを引き継がず、文章の流れに線形化します。composerの列は連続した文章になり、回り込み要素の幅は元のスライドで指定された値に関係なく、`config-article(wrap: (width: ..))` に従って本文幅の既定50%となります。詳しくは[記事モード](https://touying-typ.github.io/docs/integration/article-mode)を参照してください。
 
   ```typst
   #show: simple-theme.with(
@@ -224,16 +224,16 @@ sidebar_position: 8
   )
   ```
 
-  Two markers let you write for the article target. `#article-text[..]` replaces the content of the slide it is written in, wherever in that slide you write it, so you can give a prose paragraph instead of bullet points. `#article-only[..]` adds content that appears only in the article (for more see mode-only content below). The new `config-article(..)` group covers article-side layout: `wrap` for side-floating (done with `meander`) of certain elements; `linearize` for how much of the deck's layout comes apart (by default a `#columns(..)`, a composer and a `side-by-side` do; a `table` or `grid` only until it declares a header or footer), `#article-linearize[..]` / `#article-keep-layout[..]` mark this per element; plus an optional `title-block-fn`, and lastly `available-fields`: a mapping that hands configuration values such as `info.title` through to the article theme's own parameters. See [Docs/Article Mode](./integration/article-mode.md) for more details.
+  記事用には2つのマーカーがあります。`#article-text[..]` はスライド内のどこに記述しても、そのスライドの内容を置き換えるため、箇条書きの代わりに文章を指定できます。`#article-only[..]` は記事にだけ内容を追加します（詳細は後述）。新しい `config-article(..)` は記事側のレイアウトを設定します。`wrap` はmeanderによる要素の回り込み、`linearize` はスライドのレイアウトをどこまで分解するかの指定です。既定では `#columns(..)`、composer、`side-by-side` が分解され、`table` や `grid` はヘッダーやフッターを宣言していない場合に分解されます。要素単位の指定には `#article-linearize[..]` と `#article-keep-layout[..]` を使います。さらに `title-block-fn` や、`info.title` のような設定を記事テーマの引数へ対応付ける `available-fields` もあります。詳しくは[記事モード](./integration/article-mode.md)を参照してください。
 
-- **feat: `themes.article`, a plain A4 article theme**
+- **機能：シンプルなA4記事テーマ `themes.article`**
 
-  The default target of `article-theme: auto`. It does not depend on the presentation framework, so it also works standalone for papers and reports. It is meant as an example; any article-like theme can be used instead.
+  これは `article-theme: auto` の既定のテーマです。プレゼンテーションの仕組みに依存しないため、論文やレポートにも単独で利用できます。あくまで実装例であり、ほかの記事用テーマも使用できます。
 
 
-- **feat: animations work inside math elements** — `frac`, `mat`, `vec`, `cases`, `binom`, `root`, `attach`, `accent`, `cancel`, `lr` and the brace family.
+- **機能：数式要素内のアニメーションに対応** — `frac`、`mat`、`vec`、`cases`、`binom`、`root`、`attach`、`accent`、`cancel`、`lr`、各種括弧関数に対応します。
 
-  `#pause`, `#uncover`, `#only` and `#alternatives` inside one of these used to abort the compile with `Unsupported mark`, claiming the mark was somewhere the walk could not enter. It was reachable all along: these elements keep their sub-content in named fields of their own (`frac`'s `num`/`denom`, `mat`'s `rows`, `attach`'s scripts) rather than in `body` or `children`, and the content walk only knew the latter two, so it treated them as leaves.
+  以前はこうした数式要素内に `#pause`、`#uncover`、`#only`、`#alternatives` を記述すると、`Unsupported mark` でコンパイルが失敗していました。実際には内容にアクセス可能でしたが、これらの要素は部分的な内容を `body` や `children` ではなく、`frac` の `num`・`denom`、`mat` の `rows`、`attach` のスクリプトなど独自の名前付きフィールドに保持します。従来の走査処理は `body` と `children` しか認識せず、要素を葉として扱っていました。
 
   ```typst
   $ frac(a #pause + b, c) $
@@ -241,19 +241,19 @@ sidebar_position: 8
   $ a^(2 #pause + 1) $
   ```
 
-  Styling fields are untouched by this: an animated `mat` keeps its `delim` and `row-gap`, an `accent` its `size` and `dotless`. The one thing that cannot animate is an accent's *accent* argument, which Typst stores as a single symbol rather than as content — swap the whole element with `#alternatives` instead.
+  装飾用フィールドには影響しません。アニメーション化した `mat` では `delim` と `row-gap`、`accent` では `size` と `dotless` が維持されます。ただしアクセントの*accent*引数だけは内容ではなく単一記号として保持されるため、直接アニメーション化できません。`#alternatives` で要素全体を切り替えてください。
 
-- **feat: mode-only content and mode labels**
+- **機能：出力モード専用の内容とラベル**
 
-  Four inline markers select content by output target: `#article-only[..]`, `#handout-only[..]`, `#presentation-only[..]` and `#slides-only[..]`, the last meaning both slide modes but not the article. Hidden content is removed entirely and reserves no space, and the body can contain slide-breaking elements, so a heading inside `#handout-only[..]` really does start a new slide in handout mode.
+  4種類のインラインマーカー `#article-only[..]`、`#handout-only[..]`、`#presentation-only[..]`、`#slides-only[..]` で出力先に応じた内容を指定できます。最後のものは2つのスライドモードを対象とし、記事では表示されません。非表示の内容は領域を残さず削除されます。本文に改ページ要素を含められるため、`#handout-only[..]` 内の見出しは配布資料モードで新しいスライドを開始します。
 
-  A marker works inside a slide's body as well as around the call, and which one you write decides what it covers: `#slide[a #slides-only[b] c]` keeps `b` out of the article and leaves the rest, while `#slides-only(slide[a b c])` keeps the whole slide out. `#article-text[..]` inside a slide stands in for that slide, matching what it does at document level. See [Output Modes](https://touying-typ.github.io/docs/tutorials/output-modes).
+  マーカーはスライドの本文内にも呼び出し全体の外側にも配置でき、その位置によって適用範囲が決まります。`#slide[a #slides-only[b] c]` は記事から `b` だけを除外し、`#slides-only(slide[a b c])` はスライド全体を除外します。スライド内の `#article-text[..]` も文書レベルと同様に、そのスライドを置き換えます。詳しくは[出力モード](https://touying-typ.github.io/docs/tutorials/output-modes)を参照してください。
 
-  The same choice exists per slide as heading and slide labels: `<touying:presentation>`, `<touying:handout>`, `<touying:slides>` and `<touying:article>`, combinable with hyphens, where `<touying:presentation-article>` means "or". The new `<touying:never>` is the Typst equivalent of `\iffalse`. It parks a slide out of every render without you having to comment out markup. See [Handout Mode](https://touying-typ.github.io/docs/tutorials/dynamic/handout) and [Sections and Headings](https://touying-typ.github.io/docs/tutorials/sections).
+  同じ選択をスライドごとの見出しやラベルでも指定できます。`<touying:presentation>`、`<touying:handout>`、`<touying:slides>`、`<touying:article>` はハイフンで組み合わせられ、`<touying:presentation-article>` は論理和を意味します。新しい `<touying:never>` はTypstにおける `\iffalse` に相当し、マークアップをコメントアウトせずにスライドをすべての出力から除外できます。詳しくは[配布資料モード](https://touying-typ.github.io/docs/tutorials/dynamic/handout)と[セクションと見出し](https://touying-typ.github.io/docs/tutorials/sections)を参照してください。
 
-- **feat: `touying-recall` recalls any labelled element, not just whole slides**
+- **機能：`touying-recall` がスライド全体以外のラベル付き要素にも対応**
 
-  Besides a whole slide, `#touying-recall(<lbl>)` now takes a labelled reducer, a labelled diagram, or any labelled animated content as well, and replays it at a chosen stage:
+  `#touying-recall(<lbl>)` はスライド全体だけでなく、ラベル付きのreducer、図、任意のアニメーション内容を受け取り、指定した段階で再表示できます。
 
   ```typst
   #touying-recall(<my-slide>, subslides: "waypoints")  // one subslide per waypoint
@@ -261,11 +261,11 @@ sidebar_position: 8
   #touying-recall(<my-table>)                          // plain labelled content
   ```
 
-  Subslide selection accepts ints, including negative indices counted back from the last subslide, waypoint labels, and waypoint markers (`get-first`, `get-last`, `prev-wp`, `next-wp`), resolved against the recalled content's own waypoints. Recalling an element places it inline; only recalling a whole slide starts a new page. And a recall can sit inside `#only`/`#uncover`/`#alternatives` anywhere in their body, not just as the whole body, and `base:` sets the starting repetition counter for content with its own numbered steps.
+  サブスライドの選択には整数、最後から逆算する負の番号、ウェイポイントのラベルやマーカー（`get-first`、`get-last`、`prev-wp`、`next-wp`）が使えます。これらは再利用対象自身のウェイポイントを基準に解決されます。要素の再利用はインラインで配置され、スライド全体を再利用するときだけ新しいページが始まります。呼び出しは `#only`、`#uncover`、`#alternatives` の本文内の任意の場所に配置でき、`base:` で対象内容の反復番号の起点を指定できます。
 
-- **feat: `touying-render` renders content at a chosen animation stage, or steps through a range**
+- **機能：`touying-render` が指定したアニメーション段階または範囲の内容を描画**
 
-  Where `touying-recall` looks up previous content by label, `touying-render` takes the content value directly. It is useful for miniature previews or for showing a diagram's intermediate state in the article output and probably much more. You can even render entire slide contents with it.
+  `touying-recall` がラベルから既存の内容を探すのに対し、`touying-render` は内容の値を直接受け取ります。小さなプレビュー、記事出力で図の途中の状態を示す場合などに便利で、スライド全体の内容も描画できます。
 
   ```typst
   #touying-render(body, subslides: "2-4")   // steps through 2, 3 and 4
@@ -273,9 +273,9 @@ sidebar_position: 8
   #touying-render(body, subslides: <wp>)    // the waypoint's whole range
   ```
 
-  A single-point spec, such as a plain int, `get-first` or `get-last`, freezes one stage. `subslides: auto` follows the enclosing slide's own progression. `base:` offsets the content's internal pause numbering, `start:` sets where in the enclosing slide the first subslide rendered begins, and `repeat-last:` controls whether the content holds at its final stage (the default) or disappears again.
+  整数や `get-first`、`get-last` のように1点を指定すると、その段階に固定されます。`subslides: auto` は外側のスライドの進行に従います。`base:` は内容内部のpause番号をずらし、`start:` は最初に描画されるサブスライドの開始位置を指定します。`repeat-last:` は最終状態を保持するか（既定）、再び非表示にするかを制御します。
 
-- **feat: `animate`, for combining visibility and styling on one piece of content**
+- **機能：`animate` により1つの内容に表示状態と装飾を組み合わせる**
 
   ```typst
   #animate(
@@ -288,11 +288,11 @@ sidebar_position: 8
   )
   ```
 
-  Placements (`"show"`, `"cover"`, `"remove"`, `swap(..)`) resolve to a single winner per subslide. They cannot be composed: the only cover method is `hide`, which is not a style node, and `"remove"` drops the content outright, so neither can be undone from inside. If you need alpha-changed covered content use styling effect functions instead. Styling functions do compose and nest. Priority picks the winning placement and orders the nesting, and ties break consistently in both classes: the last effect you wrote wins. For a placement that means it is the one used; for a style it means it ends up innermost, so it wins any property both of them set. `swap` takes `stretch`, like `alternatives` does: without it the layout reflows while the swap is shown, with it the swap joins the reserved space and the block keeps one size. Measuring only happens if some swap sets `stretch`, and each distinct combination of placement and styles is measured once. `animate-hidden` and `animate-removed` are the same function starting from `"cover"` and `"remove"`, respectively, instead of `"show"`, so effects by default say when the `body` appears rather than when it disappears. You can of course override this in any case, these are just shorthands.
+  配置効果（`"show"`、`"cover"`、`"remove"`、`swap(..)`）はサブスライドごとに1つだけ選ばれ、合成できません。`hide` はスタイルノードではなく、`"remove"` は内容を削除するため、内部から元に戻せません。隠す内容のアルファ値を変更したい場合はスタイル効果を使ってください。スタイル関数は合成・入れ子が可能です。優先度は配置効果の採用と入れ子の順序を決め、同順位ではどちらも最後に書いた効果が優先されます。配置効果では最後の効果が選択され、スタイルでは最後の効果が最も内側となり、共通するプロパティを優先します。`swap` は `alternatives` と同じ `stretch` を持ち、無効なら置き換え中にレイアウトが変わり、有効なら確保済みの領域に合わせてサイズを維持します。測定が行われるのは `stretch` を有効にしたswapがある場合だけで、配置効果とスタイルの組み合わせごとに一度測定します。`animate-hidden` と `animate-removed` は、初期状態を `"show"` の代わりに `"cover"` または `"remove"` とする短縮形であり、効果は既定で内容を表示するタイミングを示します。いずれも上書き可能です。
 
-- **feat: `advances-flow` on `touying-fn-wrapper`, for wrappers that stand in for a run of pauses**
+- **機能：連続したpauseの代わりとなるラッパー向けの `touying-fn-wrapper` の `advances-flow`**
 
-  The flag that keeps `item-by-item` pushing later pauses past its last item is an ordinary parameter, so your own wrappers can opt in:
+  `item-by-item` が後続のpauseを最後の項目より後へ進める仕組みは通常のパラメーターになったため、独自のラッパーでも有効にできます。
 
   ```typst
   #let reveal-lines(body) = touying-fn-wrapper(
@@ -303,28 +303,28 @@ sidebar_position: 8
   )
   ```
 
-  It defaults to `false`, which is what you want for anything that only animates its own body. Such a wrapper reserves the subslides it needs without moving the pause cursor.
+  既定値は `false` で、自分自身の内容だけをアニメーション化する場合に適しています。このようなラッパーは、pauseの位置を動かさずに必要なサブスライドを確保します。
 
-- **feat: `touying-fn-wrapper-raw` parses its body nests recursively, while `touying-fn-wrapper` allows raw variants inside itself**
+- **機能：`touying-fn-wrapper-raw` が本文を再帰的に解析し、`touying-fn-wrapper` の内部にもraw版を配置可能に**
 
-  `#alert[This is important, #only("2-")[easter egg] don't miss it!]` used to panic with *Unsupported mark*. A raw wrapper handed its positional arguments straight to the wrapped function, so any animation marker inside survived as unresolved metadata. Those arguments now go through the parser like ordinary slide content, so `#pause`, `#meanwhile` and every fn-wrapper behave inside a raw wrapper as they do anywhere else, and the wrapper's content counts towards the slide's subslide total. Nested raw wrappers resolve recursively, so `#uncover[#alert[a #alert[b #alert[c]]]]` works all the way down.
+  以前は `#alert[This is important, #only("2-")[easter egg] don't miss it!]` が *Unsupported mark* で失敗していました。rawラッパーは位置引数をラップ先へ直接渡していたため、内部のアニメーションマーカーが未解決のメタデータとして残っていたためです。現在は通常のスライド内容と同様に解析されるため、`#pause`、`#meanwhile`、すべての関数ラッパーが内部でも動作し、内容はスライドのサブスライド総数にも反映されます。入れ子になったrawラッパーは再帰的に解決され、`#uncover[#alert[a #alert[b #alert[c]]]]` も動作します。
 
-  This makes `touying-fn-wrapper-raw` the better default for reaching `self` from markup, and the docs and themes now say so. Stargazer's `tblock` was switched over so it can be used with the normal animation functions. The body has to be a positional argument for any of this to apply; baking it in with `.with(..)` hides it from the parser. See [Complex Animations](https://touying-typ.github.io/docs/tutorials/dynamic/complex).
+  これにより、マークアップから `self` を参照するには `touying-fn-wrapper-raw` が適した既定の選択肢となりました。ドキュメントとテーマもこれに合わせて更新され、Stargazerの `tblock` も通常のアニメーション関数と併用できるよう変更されました。ただし本文は位置引数として渡す必要があり、`.with(..)` で事前に渡すとパーサーから見えなくなります。詳しくは[複雑なアニメーション](https://touying-typ.github.io/docs/tutorials/dynamic/complex)を参照してください。
 
-- **feat: export `.pdfpc` files as bundle assets, one per document** ([#408](https://github.com/touying-typ/touying/issues/408))
+- **機能：文書ごとに `.pdfpc` ファイルをバンドルのアセットとして出力** ([#408](https://github.com/touying-typ/touying/issues/408))
 
-  Typst 0.15's bundle export can emit arbitrary files, so the separate `typst query .. > example.pdfpc` step is no longer needed (you can still use it and the docs have transitioned to `typst eval` now). Put `#pdfpc.bundle-assets()` at the top level, outside every `#document(..)`:
+  Typst 0.15のバンドル出力は任意のファイルを生成できるため、別途 `typst query .. > example.pdfpc` を実行する必要がなくなりました（従来の方法も利用でき、ドキュメントでは現在 `typst eval` を使用しています）。`#pdfpc.bundle-assets()` を各 `#document(..)` の外側、トップレベルに記述します。
 
   ```sh
   typst compile --features bundle --format bundle --root . ./example.typ ./out
   # => ./out/deck.pdf and ./out/deck.pdfpc
   ```
 
-  Every PDF document in the bundle that carries pdfpc metadata gets its own `.pdfpc` next to it, with slide labels numbered from that document's own first slide and only that document's notes, markers and configuration in it. The call is inert in every other target, so it can stay in a file you also compile to a plain PDF. See [pdfpc](https://touying-typ.github.io/docs/external/pdfpc).
+  バンドル内でpdfpcのメタデータを持つ各PDFには、対応する `.pdfpc` ファイルが隣に生成されます。ラベル番号は文書ごとの最初のスライドから付けられ、ノート、マーカー、設定もその文書のものだけを含みます。他の出力先では呼び出しは何もしないため、通常のPDFにもコンパイルするファイルに記述したままにできます。詳しくは[pdfpc](https://touying-typ.github.io/docs/external/pdfpc)を参照してください。
 
-- **feat: several documents in one source file** ([#406](https://github.com/touying-typ/touying/issues/406), thanks @mxmerz)
+- **機能：1つのソースファイルから複数の文書を生成** ([#406](https://github.com/touying-typ/touying/issues/406), thanks @mxmerz)
 
-  Typst 0.15's bundle export lets a single file emit more than one PDF through `#document("name.pdf", [..])`, and a deck can now live in each of them. Heading lookups are scoped to the document they are in, so `utils.current-heading` and everything built on it (slide headers, the notes panel, progressive outlines) no longer pick up headings from a neighbouring deck. pdfpc metadata is scoped the same way, see the bundle-asset entry above.
+  Typst 0.15のバンドル出力では、`#document("name.pdf", [..])` を使って1つのファイルから複数のPDFを生成でき、それぞれにスライドを含められます。見出しの検索範囲はその文書内に限定されるため、`utils.current-heading` と、それに基づくヘッダー、ノートパネル、進捗付きアウトラインが隣の文書の見出しを取得することはなくなりました。pdfpcのメタデータも同様に文書ごとに分離されます。
 
   ```typst
   #document("deck-a.pdf", [
