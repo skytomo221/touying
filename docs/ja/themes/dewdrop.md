@@ -23,11 +23,11 @@ Dewdropテーマの特徴は洗練されたナビゲーションです。`sideba
   footer: self => self.info.institution,
   navigation: "mini-slides",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
   ),
 )
@@ -158,11 +158,11 @@ Dewdrop defines its own `notes` function and registers it with `config-common(no
   footer: self => self.info.institution,
   navigation: "mini-slides",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
   ),
 )
@@ -173,7 +173,7 @@ Dewdrop defines its own `notes` function and registers it with `config-common(no
 
 #outline-slide()
 
-= Section A
+= セクションA
 
 == Subsection A.1
 
@@ -183,7 +183,7 @@ $ x_(n+1) = (x_n + a/x_n) / 2 $
 
 A slide without a title but with *important* infos
 
-= Section B
+= セクションB
 
 == Subsection B.1
 
@@ -195,7 +195,7 @@ A slide without a title but with *important* infos
 
 == Subsection B.2
 
-We can use `#pause` to #pause display something later.
+`#pause` を使うと、#pause 内容を後から表示できます。
 
 #pause
 
@@ -207,9 +207,9 @@ Meanwhile, #pause we can also use `#meanwhile` to #pause display other content s
 
 #show: appendix
 
-= Appendix
+= 付録
 
-== Appendix
+== 付録
 
 Please pay attention to the current slide number.
 ```

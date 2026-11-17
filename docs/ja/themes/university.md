@@ -19,11 +19,11 @@ sidebar_position: 4
 #show: university-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.school,
   ),
@@ -151,11 +151,11 @@ Universityは独自の `notes` 関数を `config-common(notes-fn: notes)` に登
 #show: university-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.school,
   ),
@@ -163,16 +163,16 @@ Universityは独自の `notes` 関数を `config-common(notes-fn: notes)` に登
 
 #set heading(numbering: numbly("{1}.", default: "1.1"))
 
-#title-slide(authors: ([Author A], [Author B]))
+#title-slide(authors: ([著者A], [著者B]))
 
-= The Section
+= セクション
 
-== Slide Title
+== Slide タイトル
 
 #lorem(40)
 
 #focus-slide[
-  Another variant with primary color in background...
+  背景に基本色を使う別の方法です。
 ]
 
 #matrix-slide[

@@ -18,7 +18,7 @@ sidebar_position: 1
 
 #show: simple-theme.with(
   aspect-ratio: "16-9",
-  footer: [Simple slides],
+  footer: [シンプルなスライド],
 )
 ```
 
@@ -109,16 +109,16 @@ Simpleテーマは独自の `notes` 関数を `config-common(notes-fn: notes)` �
 
 #show: simple-theme.with(
   aspect-ratio: "16-9",
-  footer: [Simple slides],
+  footer: [シンプルなスライド],
 )
 
 #title-slide[
-  = Keep it simple!
+  = シンプルに作ろう！
   #v(2em)
 
-  Alpha #footnote[Uni Augsburg] #h(1em)
-  Bravo #footnote[Uni Bayreuth] #h(1em)
-  Charlie #footnote[Uni Chemnitz] #h(1em)
+  Alpha #footnote[アウクスブルク大学] #h(1em)
+  Bravo #footnote[バイロイト大学] #h(1em)
+  Charlie #footnote[ケムニッツ工科大学] #h(1em)
 
   July 23
 ]
@@ -130,10 +130,10 @@ Simpleテーマは独自の `notes` 関数を `config-common(notes-fn: notes)` �
 #focus-slide[
   _Focus!_
 
-  This is very important.
+  これはとても重要です。
 ]
 
-= Let's start a new section!
+= 新しいセクションを始めましょう！
 
 == Dynamic slide
 

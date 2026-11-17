@@ -21,13 +21,13 @@ sidebar_position: 7
 
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
-  // Override the primary color
+  // 基本色を上書きする
   config-colors(primary: rgb("#1a6b8a")),
-  // Change the footer content
+  // フッターの内容を変更する
   footer: self => self.info.author,
   config-info(
-    title: [My Presentation],
-    author: [Author Name],
+    title: [私のプレゼンテーション],
+    author: [著者名],
     date: datetime.today(),
   ),
 )
@@ -38,7 +38,7 @@ sidebar_position: 7
 
 == Slide
 
-Content with the custom color.
+独自の配色を使った内容です。
 ```
 
 ## テーマをローカルにコピーする
@@ -51,11 +51,11 @@ Content with the custom color.
 
 ```typst
 #import "@preview/touying:0.8.0": *
-#import "metropolis.typ": *   // your local copy
+#import "metropolis.typ": *   // ローカルにコピーしたファイル
 
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
-  config-info(title: [Title]),
+  config-info(title: [タイトル]),
 )
 ```
 
@@ -97,7 +97,7 @@ Content with the custom color.
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
   config-common(notes-fn: my-notes, show-notes-on-second-screen: right),
-  config-info(title: [My Presentation]),
+  config-info(title: [私のプレゼンテーション]),
 )
 
 == Slide

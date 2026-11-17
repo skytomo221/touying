@@ -17,11 +17,11 @@ sidebar_position: 5
 #show: aqua-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
   ),
 )
 
@@ -129,11 +129,11 @@ Aquaは独自の `notes` 関数を `config-common(notes-fn: notes)` に登録し
 #show: aqua-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
   ),
 )
 
@@ -141,14 +141,14 @@ Aquaは独自の `notes` 関数を `config-common(notes-fn: notes)` に登録し
 
 #outline-slide()
 
-= The Section
+= セクション
 
-== Slide Title
+== Slide タイトル
 
 #lorem(40)
 
 #focus-slide[
-  Another variant with primary color in background...
+  背景に基本色を使う別の方法です。
 ]
 
 == Summary

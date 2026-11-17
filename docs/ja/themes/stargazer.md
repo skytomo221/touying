@@ -19,11 +19,11 @@ Stargazerテーマは、[Coekjan](https://github.com/Coekjan/) が [touying-buaa
 #show: stargazer-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Stargazer in Touying: Customize Your Slide Title Here],
-    subtitle: [Customize Your Slide Subtitle Here],
-    author: [Authors],
+    title: [Stargazer in Touying: Customize Your Slide タイトル Here],
+    subtitle: [ここにスライドのサブタイトルを入力],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.school,
   ),
@@ -176,11 +176,11 @@ Stargazerは独自の `notes` 関数を `config-common(notes-fn: notes)` に登�
 #show: stargazer-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Stargazer in Touying: Customize Your Slide Title Here],
-    subtitle: [Customize Your Slide Subtitle Here],
-    author: [Authors],
+    title: [Stargazer in Touying: Customize Your Slide タイトル Here],
+    subtitle: [ここにスライドのサブタイトルを入力],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.school,
   ),
@@ -192,11 +192,11 @@ Stargazerは独自の `notes` 関数を `config-common(notes-fn: notes)` に登�
 
 #outline-slide()
 
-= Section A
+= セクションA
 
 == Subsection A.1
 
-#tblock(title: [Theorem])[
+#tblock(title: [定理])[
   A simple theorem.
 
   $ x_(n+1) = (x_n + a / x_n) / 2 $
@@ -206,7 +206,7 @@ Stargazerは独自の `notes` 関数を `config-common(notes-fn: notes)` に登�
 
 A slide without a title but with *important* information.
 
-= Section B
+= セクションB
 
 == Subsection B.1
 
@@ -218,7 +218,7 @@ A slide without a title but with *important* information.
 
 == Subsection B.2
 
-We can use `#pause` to #pause display something later.
+`#pause` を使うと、#pause 内容を後から表示できます。
 
 #pause
 
@@ -230,9 +230,9 @@ Meanwhile, #pause we can also use `#meanwhile` to #pause display other content s
 
 #show: appendix
 
-= Appendix
+= 付録
 
-== Appendix
+== 付録
 
 Please pay attention to the current slide number.
 ```

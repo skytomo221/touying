@@ -22,11 +22,11 @@ Metropolisは洗練された、日常的に使いやすいテーマです。最�
   aspect-ratio: "16-9",
   footer: self => self.info.institution,
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.city,
   ),
@@ -100,7 +100,7 @@ Metropolisテーマには次の独自スライド関数があります。
 #outline-slide(
   config: (:),
   level: auto,
-  title: [Outline],
+  title: [目次],
   spacing: 2em,
   ..args,
 )
@@ -152,11 +152,11 @@ Metropolisは独自の `notes` 関数を `config-common(notes-fn: notes)` に登
   aspect-ratio: "16-9",
   footer: self => self.info.institution,
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.city,
   ),
@@ -166,17 +166,17 @@ Metropolisは独自の `notes` 関数を `config-common(notes-fn: notes)` に登
 
 #title-slide()
 
-= Outline <touying:hidden>
+= 目次 <touying:hidden>
 
 #outline(title: none, indent: 1em, depth: 1)
 
-= First Section
+= 最初のセクション
 
 ---
 
 A slide without a title but with some *important* information.
 
-== A long long long long long long long long long long long long long long long long long long long long long long long long Title
+== A long long long long long long long long long long long long long long long long long long long long long long long long タイトル
 
 === sdfsdf
 
@@ -186,7 +186,7 @@ $ x_(n+1) = (x_n + a/x_n) / 2 $
 
 #lorem(200)
 
-= Second Section
+= 2番目のセクション
 
 #focus-slide[
   Wake up!
@@ -194,20 +194,20 @@ $ x_(n+1) = (x_n + a/x_n) / 2 $
 
 == Simple Animation
 
-We can use `#pause` to #pause display something later.
+`#pause` を使うと、#pause 内容を後から表示できます。
 
 #meanwhile
 
 Meanwhile, #pause we can also use `#meanwhile` to display other content synchronously.
 
 #speaker-note[
-  + This is a speaker note.
-  + You won't see it unless you use `config-common(show-notes-on-second-screen: right)`
+  + これは発表者ノートです。
+  + `config-common(show-notes-on-second-screen: right)` を使わない限り表示されません。
 ]
 
 #show: appendix
 
-= Appendix
+= 付録
 
 ---
 
