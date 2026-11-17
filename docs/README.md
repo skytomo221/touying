@@ -7,6 +7,7 @@ The docs are written in Markdown and are consumed by the website repository.
 
 - `docs/en/`: English source docs.
 - `docs/zh/`: Chinese source docs.
+- `docs/ja/`: Japanese source docs (translation in progress; older changelog entries remain in English).
 - `docs/README.md`: This guide for contributors.
 
 ## Key Writing Conventions
@@ -60,8 +61,9 @@ Content from this repository is published in `touying-typ/touying-typ.github.io`
 
 - English docs (`docs/en/**`) are placed under `docs/**`.
 - Chinese docs (`docs/zh/**`) are placed under `i18n/zh/docusaurus-plugin-content-docs/current/**`.
+- Japanese docs (`docs/ja/**`) are prepared as a locale source, but publishing them requires configuring the `ja` locale and the corresponding import path in `touying-typ/touying-typ.github.io`.
 
-When updating docs, keep `en` and `zh` aligned in structure and topic coverage whenever possible.
+When updating docs, keep `en`, `zh`, and `ja` aligned in structure and topic coverage whenever possible.
 
 ## Contributor Checklist
 
