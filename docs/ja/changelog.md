@@ -841,149 +841,149 @@ sidebar_position: 8
 - **機能：** `nontight-list-enum-and-terms` を実装しました。既定値は `true` で、`list`、`enum`、`terms` の `tight` を `false` にします。間隔は `#set list(spacing: 1em)` で設定できます。
 - **機能：** `align-list-marker-with-baseline` を実現するためlistをtermsによる実装に置き換えました。既定では無効です。
 - **機能：** リスト項目を倍率で拡大縮小する `scale-list-items` を実装しました。`scale-list-items: 0.8` なら0.8倍になります。
-- feat: supported direct use of `#pause` and `#meanwhile` in math expressions, such as `$x + pause y$`.
-- feat: provided `#pause` and `#meanwhile` support for most layout functions, such as `grid` and `table`.
-- feat: added `#show: appendix` support, essentially equivalent to `#show: touying-set-config.with((appendix: true))`.
-- feat: Introduced special labels `<touying:hidden>`, `<touying:unnumbered>`, `<touying:unoutlined>`, `<touying:unbookmarked>` to simplify control over heading behavior.
-- feat: added basic `utils.short-heading` support to display short headings using labels, such as displaying `<sec:my-section>` as "My Section".
-- feat: added `#components.adaptive-columns()` to achieve adaptive columns that span a page, typically used with the `outline()` function.
-- feat: added `#show: magic.bibliography-as-footnote.with(bibliography("ref.bib"))` to display the bibliography in footnotes.
-- feat: added components like `custom-progressive-outline`, `mini-slides`.
-- feat: removed `touying-outline()`, which can be directly replaced with `outline()`.
-- fix: replaced potentially incompatible code, such as `type(s) == "string"` and `locate(loc => { .. })`.
-- fix: Fixed some bugs.
+- **機能：** `$x + pause y$` のように数式内で `#pause` と `#meanwhile` を直接使用できるようになりました。
+- **機能：** `grid` や `table` など多くのレイアウト関数で `#pause` と `#meanwhile` に対応しました。
+- **機能：** `#show: appendix` に対応しました。`#show: touying-set-config.with((appendix: true))` とほぼ同じです。
+- **機能：** 見出しの動作を制御する `<touying:hidden>`、`<touying:unnumbered>`、`<touying:unoutlined>`、`<touying:unbookmarked>` を導入しました。
+- **機能：** `utils.short-heading` の基本的な対応を追加しました。たとえば `<sec:my-section>` を「My Section」という短い見出しとして表示できます。
+- **機能：** ページ幅に合わせて段組みを調整する `#components.adaptive-columns()` を追加しました。通常は `outline()` と組み合わせます。
+- **機能：** 参考文献を脚注に表示する `#show: magic.bibliography-as-footnote.with(bibliography("ref.bib"))` を追加しました。
+- **機能：** `custom-progressive-outline` や `mini-slides` などのコンポーネントを追加しました。
+- **機能：** `outline()` で代替できる `touying-outline()` を削除しました。
+- **修正：** `type(s) == "string"` や `locate(loc => { .. })` など、互換性の問題があるコードを置き換えました。
+- **修正：** いくつかの不具合を修正しました。
 
 
 ## v0.4.2
 
-- theme(metropolis): decoupled text color with `neutral-dark` (Breaking change)
-- feat: add mark-style uncover, only and alternatives
-- feat: add warning for styled block for slides
-- feat: add warning for touying-temporary-mark
-- feat: add markup-text for speaker-note
-- fix: fix bug of slides
+- **metropolisテーマ：** 文字色を `neutral-dark` に分離しました（破壊的変更）。
+- **機能：** マーク形式のuncover、only、alternativesを追加しました。
+- **機能：** スライド内の装飾付きブロックに対する警告を追加しました。
+- **機能：** touying-temporary-markの警告を追加しました。
+- **機能：** 発表者ノート用のmarkup-textを追加しました。
+- **修正：** スライドの不具合を修正しました。
 
 
 ## v0.4.1
 
 ### 機能追加
 
-- feat: support builtin outline and bookmark
-- feat: support speaker note for dual-screen
-- feat: add touying-mitex function
+- **機能：** 標準の目次とブックマークに対応しました。
+- **機能：** デュアルスクリーン向けの発表者ノートに対応しました。
+- **機能：** touying-mitex関数を追加しました。
 
 ### 修正
 
-- fix: add outline-slide for dewdrop theme
-- fix: fix regression of default value "auto" for repeat
+- **修正：** dewdropテーマにoutline-slideを追加しました。
+- **修正：** repeatの既定値 `"auto"` に関する回帰を修正しました。
 
 ### その他の改善
 
-- feat: add list support for `touying-outline` function
-- feat: add auto-reset-footnote
-- feat: add `freeze-in-empty-page` for better page counter
-- feat: add `..args` for register method to capture unused arguments
+- **機能：** `touying-outline` 関数でリストに対応しました。
+- **機能：** auto-reset-footnoteを追加しました。
+- **機能：** ページカウンターを改善する `freeze-in-empty-page` を追加しました。
+- **機能：** 未使用の引数を取得するため、registerメソッドに `..args` を追加しました。
 
 
 ## v0.4.0
 
 ### 機能追加
 
-- **feat:** support `#footnote[]` for all themes.
-- **feat:** access subslide and repeat in footer and header by `self => self.subslide`.
-- **feat:** support numbered theorem environments by [ctheorems](https://typst.app/universe/package/ctheorems).
-- **feat:** support numbering for sections and subsections.
+- **機能：** すべてのテーマで `#footnote[]` に対応しました。
+- **機能：** `self => self.subslide` を使ってヘッダーとフッターからサブスライドや反復回数を参照できます。
+- **機能：** [ctheorems](https://typst.app/universe/package/ctheorems) の番号付き定理環境に対応しました。
+- **機能：** セクションとサブセクションの番号付けに対応しました。
 
 ### 修正
 
-- **fix:** make nested includes work correctly.
-- **fix:** disable multi-page slides from creating the same section multiple times.
+- **修正：** 入れ子になったincludeを正しく処理します。
+- **修正：** 複数ページにまたがるスライドで同じセクションを繰り返し生成しないようにしました。
 
 ## 破壊的変更
 
-- **refactor:** remove `self.padding` and add `self.full-header` `self.full-footer` config.
+- **リファクタリング：** `self.padding` を削除し、`self.full-header` と `self.full-footer` の設定を追加しました。
 
 
 ## v0.3.3
 
-- **template:** move template to `touying-aqua` package, make Touying searchable in [Typst Universe Packages](https://typst.app/universe/search?kind=packages)
-- **themes:** fix bugs in university and dewdrop theme
-- **feat:** make set-show rule work without `setting` parameter
-- **feat:** make `composer` parameter more simpler
-- **feat:** add `empty-slide` function
+- **テンプレート：** `touying-aqua` パッケージへ移動し、[Typst Universe Packages](https://typst.app/universe/search?kind=packages) からTouyingを検索できるようにしました。
+- **テーマ：** universityとdewdropの不具合を修正しました。
+- **機能：** `setting` パラメーターなしでset・showルールが動作するようにしました。
+- **機能：** `composer` パラメーターを簡略化しました。
+- **機能：** `empty-slide` 関数を追加しました。
 
 ## v0.3.2
 
-- **fix critical bug:** fix `is-sequence` function, make `grid` and `table` work correctly in touying
-- **theme:** add aqua theme, thanks for pride7
-- **theme:** make university theme more configurable
-- **refactor:** don't export variable `s` by default anymore, it will be extracted by `register` function (**Breaking Change**)
-- **meta:** add `categories` and `template` config to `typst.toml` for Typst 0.11
+- **重大な不具合の修正：** `is-sequence` を修正し、Touyingで `grid` と `table` が正しく動作するようにしました。
+- **テーマ：** pride7氏の貢献によりaquaテーマを追加しました。
+- **テーマ：** universityテーマの設定を柔軟にしました。
+- **リファクタリング：** 変数 `s` を既定ではエクスポートせず、`register` 関数から取得するように変更しました（**破壊的変更**）。
+- **メタデータ：** Typst 0.11向けに `typst.toml` へ `categories` と `template` を追加しました。
 
 
 ## v0.3.1
 
-- fix some typos
-- fix slide-level bug
-- fix bug of pdfpc label
+- いくつかの誤字を修正しました。
+- slide-levelの不具合を修正しました。
+- pdfpcのラベルの不具合を修正しました。
 
 
 ## v0.3.0
 
 ### 機能追加
 
-- better show-slides mode.
-- support align and pad.
+- show-slidesモードを改善しました。
+- alignとpadに対応しました。
 
 ### ドキュメント
 
-- Add more detailed documentation.
+- より詳しいドキュメントを追加しました。
 
 ### リファクタリング
 
-- simplify theme.
+- テーマを簡略化しました。
 
 ### 修正
 
-- fix many bugs.
+- 多数の不具合を修正しました。
 
 ## v0.2.1
 
 ### 機能追加
 
-- **Touying-reducer**: support cetz and fletcher animation
-- **university theme**: add university theme
+- **Touying-reducer：** CeTZとFletcherのアニメーションに対応しました。
+- **universityテーマ：** universityテーマを追加しました。
 
 ### 修正
 
-- fix footer progress in metropolis theme
-- fix some bugs in simple and dewdrop themes
-- fix bug that outline does not display more than 4 sections
+- metropolisテーマのフッターの進捗表示を修正しました。
+- simpleとdewdropの不具合を修正しました。
+- 目次に5つ以上のセクションを表示できない問題を修正しました。
 
 
 ## v0.2.0
 
-- **Object-oriented programming:** Singleton `s`, binding methods `utils.methods(s)` and `(self: obj, ..) => {..}` methods.
-- **Page arguments management:** Instead of using `#set page(..)`, you should use `self.page-args` to retrieve or set page parameters, thereby avoiding unnecessary creation of new pages.
-- **`#pause` for sequence content:** You can use #pause at the outermost level of a slide, including inline and list.
-- **`#pause` for layout functions:** You can use the `composer` parameter to add yourself layout function like `utils.side-by-side`, and simply use multiple pos parameters like `#slide[..][..]`.
-- **`#meanwhile` for synchronous display:** Provide a `#meanwhile` for resetting subslides counter.
-- **`#pause` and `#meanwhile` for math equation:** Provide a `#touying-equation("x + y pause + z")` for math equation animations.
-- **Slides:** Create simple slides using standard headings.
-- **Callback-style `uncover`, `only` and `alternatives`:** Based on the concise syntax provided by Polylux, allow precise control of the timing for displaying content.
-  - You should manually control the number of subslides using the `repeat` parameter.
-- **Transparent cover:** Enable transparent cover using oop syntax like `#let s = (s.methods.enable-transparent-cover)(self: s)`.
-- **Handout mode:** enable handout mode by `#let s = (s.methods.enable-handout-mode)(self: s)`.
-- **Fit-to-width and fit-to-height:** Fit-to-width for title in header and fit-to-height for image.
+- **オブジェクト指向プログラミング：** シングルトン `s`、バインディングメソッド `utils.methods(s)`、`(self: obj, ..) => {..}` 形式のメソッド。
+- **ページ引数の管理：** `#set page(..)` の代わりに `self.page-args` でページ設定を取得・変更し、不要なページの生成を避けます。
+- **連続した内容の `#pause`：** インラインやリストを含む、スライドの最外層で `#pause` を使えます。
+- **レイアウト関数の `#pause`：** `composer` に `utils.side-by-side` などの独自レイアウト関数を指定し、`#slide[..][..]` のような複数の位置引数を使えます。
+- **同時表示の `#meanwhile`：** サブスライドカウンターをリセットする `#meanwhile` を提供します。
+- **数式の `#pause` と `#meanwhile`：** 数式アニメーション向けの `#touying-equation("x + y pause + z")` を提供します。
+- **スライド：** 標準の見出しで簡単にスライドを作成できます。
+- **コールバック形式の `uncover`・`only`・`alternatives`：** Polyluxの簡潔な構文を基に、表示タイミングを細かく制御できます。
+  - `repeat` パラメーターでサブスライド数を手動指定する必要があります。
+- **透明なカバー：** `#let s = (s.methods.enable-transparent-cover)(self: s)` のようなオブジェクト指向構文で有効化できます。
+- **配布資料モード：** `#let s = (s.methods.enable-handout-mode)(self: s)` で有効化します。
+- **Fit-to-widthとfit-to-height：** ヘッダーのタイトルを幅に合わせ、画像を高さに合わせます。
   - `utils.fit-to-width(grow: true, shrink: true, width, body)`
   - `utils.fit-to-height(width: none, prescale-width: none, grow: true, shrink: true, height, body)`
-- **Slides counter:** `states.slide-counter.display() + " / " + states.last-slide-number` and `states.touying-progress(ratio => ..)`.
-- **Appendix:** Freeze the `last-slide-number` to prevent the slide number from increasing further.
-- **Sections:** Touying's built-in section support can be used to display the current section title and show progress.
-  - `section` and `subsection` parameter in `#slide` to register a new section or subsection.
-  - `states.current-section-title` to get the current section.
-  - `states.touying-outline` or `s.methods.touying-outline` to display a outline of sections.
-  - `states.touying-final-sections(sections => ..)` for custom outline display.
-  - `states.touying-progress-with-sections((current-sections: .., final-sections: .., current-slide-number: .., last-slide-number: ..) => ..)` for powerful progress display.
-- **Navigation bar**: Navigation bar like [here](https://github.com/zbowang/BeamerTheme) by `states.touying-progress-with-sections(..)`, in `dewdrop` theme.
-- **Pdfpc:** pdfpc support and export `.pdfpc` file without external tool by `typst query` command simply.
+- **スライドカウンター：** `states.slide-counter.display() + " / " + states.last-slide-number` と `states.touying-progress(ratio => ..)`。
+- **付録：** `last-slide-number` を固定し、総スライド数が増えないようにします。
+- **セクション：** Touyingの組み込み機能で現在のセクション名と進捗を表示できます。
+  - `#slide` の `section` と `subsection` で新しいセクションやサブセクションを登録します。
+  - `states.current-section-title` で現在のセクションを取得します。
+  - `states.touying-outline` または `s.methods.touying-outline` でセクションの目次を表示します。
+  - `states.touying-final-sections(sections => ..)` で独自の目次を表示します。
+  - `states.touying-progress-with-sections((current-sections: .., final-sections: .., current-slide-number: .., last-slide-number: ..) => ..)` で高度な進捗表示が可能です。
+- **ナビゲーションバー：** dewdropテーマでは `states.touying-progress-with-sections(..)` を使い、[この例](https://github.com/zbowang/BeamerTheme)のようなナビゲーションバーを表示します。
+- **Pdfpc：** pdfpcに対応し、外部ツールを使わず `typst query` で `.pdfpc` ファイルを出力できます。
