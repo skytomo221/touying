@@ -67,19 +67,19 @@ sidebar_position: 8
 
 ## v0.8.0
 
-A big release, and the first that requires **Typst 0.15**.
+大規模なリリースであり、**Typst 0.15** を必須とする最初のバージョンです。
 
-The main new feature is **article mode**: the same source file compiles either to slides or to a flowing prose document, with animations collapsed to their final state and images optionally floated to the side. **Two new animation** entry points come with it. `touying-render` renders a piece of content at chosen animation stages, and `animate` combines visibility and styling on one piece of content. `touying-recall` was extended from whole slides to any labelled element. `touying-fn-wrapper-raw` now parses and nests its body, so `#alert[.. #pause ..]` works, and much more besides. `.pdfpc` files can be written directly as bundle assets instead of through a separate `typst query` step. The footnote bibliography was rebuilt on real Typst bibliographies, and the speaker-note panel is now a theme-supplied function with documentation to match. Internally, `src/core.typ` (6288 lines) was split into modules and the content handling was unified and several functions (mainly out of utils) moved places.
+主な新機能は**記事モード**です。1つのソースからスライドまたは連続した文章を生成でき、アニメーションは最終状態にまとめられ、画像を横に回り込ませることもできます。新しいアニメーション機能として、選択した段階の内容を描画する `touying-render` と、表示状態と装飾を組み合わせる `animate` が追加されました。`touying-recall` はスライド全体だけでなくラベル付き要素にも対応します。`touying-fn-wrapper-raw` は本文を解析して入れ子にできるようになり、`#alert[.. #pause ..]` なども動作します。`.pdfpc` ファイルは別途 `typst query` を実行せず、バンドルのアセットとして直接出力できます。脚注形式の参考文献はTypst標準の参考文献機能に基づいて再設計され、発表者ノートのパネルはテーマが提供する関数で構築されます。内部では6288行あった `src/core.typ` をモジュールに分割し、内容の処理を統一するとともに、主にutilsにあった関数の配置を変更しました。
 
-Things to watch when upgrading: a `#pause` after `uncover`/`only`/`alternatives` no longer skips the subslides they reserve (they wrongfully did so with v0.7.0), the footnote-bibliography config changed shape, `semi-transparent-cover` is deprecated, and on a second screen the page background is confined to the slide half. There is a migration guide below, and a separate one for theme authors at the end. Most documentation pages were rewritten or corrected.
+アップグレード時の注意点として、`uncover`・`only`・`alternatives` の後の `#pause` が、これらの関数が確保するサブスライドを飛ばさなくなりました（v0.7.0で誤って導入された動作です）。脚注形式の参考文献の設定形式が変更され、`semi-transparent-cover` は非推奨となり、セカンドスクリーンでの背景はスライド側だけに適用されます。以下に移行ガイドがあり、末尾にはテーマ作者向けの別のガイドもあります。ドキュメントの多くも書き直し・修正されています。
 
 ### 破壊的変更
 
-- **feat!: Touying now requires Typst 0.15.0**
+- **機能・破壊的変更：TouyingはTypst 0.15.0以降を必須とします**
 
-  `typst.toml`'s `compiler` field goes from `0.12.0` to `0.15.0`. Bundle export for `.pdfpc` assets and the reworked cover methods both need it. All reference renders were regenerated against Typst 0.15 / tytanic 0.4.
+  `typst.toml` の `compiler` が `0.12.0` から `0.15.0` に変更されました。`.pdfpc` のバンドル出力と新しいカバーメソッドに必要です。リファレンス画像はTypst 0.15とtytanic 0.4で再生成されました。
 
-- **fix!: a `#pause` after `uncover`/`only`/`alternatives` no longer skips the subslides they reserve**
+- **修正・破壊的変更：`uncover`・`only`・`alternatives` の後の `#pause` が確保済みサブスライドを飛ばさなくなりました**
 
   ```typst
   #uncover("2")[Only on subslide 2]
@@ -88,15 +88,15 @@ Things to watch when upgrading: a `#pause` after `uncover`/`only`/`alternatives`
   On subslide two    // v0.7.0-v0.7.4: on subslide *three*
   ```
 
-  Up to v0.6.x a relative jump advanced the counter by one. v0.7.0 changed it to snap past the highest subslide any preceding fn-wrapper had reserved. That was meant for `item-by-item`, which stands in for a run of pauses and should push a later `#pause` past its whole animation. But `item-by-item` reports its extent through the same channel as every other wrapper, so the change caught `uncover`, `only` and `alternatives` as well. No test asserted it and it slipped past. Reserving subslides and consuming them are separate things again.
+  v0.6.xまでは相対ジャンプでカウンターが1つ進みました。v0.7.0では、先行する関数ラッパーが確保した最大のサブスライドの次まで進むよう変更されました。これは一連のpauseの代わりとなる `item-by-item` を想定したものですが、ほかのラッパーと同じ経路で範囲を通知するため、`uncover`、`only`、`alternatives` にも影響しました。検証するテストがなく見逃されていました。今回、サブスライドの確保と消費が再び独立した操作になりました。
 
-  Waypoint placement gets the same correction. `#waypoint(<w>)` after an `#uncover("5")` now lands one past the current flow position, not one past subslide 5.
+  ウェイポイントの配置も修正されました。`#uncover("5")` の後の `#waypoint(<w>)` はサブスライド5の次ではなく、現在の内容の流れにおける次の位置を指します。
 
-  **Migration:** if you relied on the snap, add the extra `#pause` (or `#jump(n, relative: true)` or waypoints) yourself. `item-by-item` and `item-by-item-fn` are unaffected. They still push later pauses past their last item, and they now match the hand-written `#pause` sequence they abbreviate, including for content that follows them without any `#pause`.
+  **移行方法：** 以前の自動ジャンプに依存していた場合は、必要な `#pause`、`#jump(n, relative: true)`、ウェイポイントを明示してください。`item-by-item` と `item-by-item-fn` には影響がなく、後続のpauseは引き続き最後の項目より後へ進みます。`#pause` のない後続内容も含め、手動で記述したpause列と一致します。
 
-- **feat!: `show-bibliography-as-footnote` is a boolean, and `magic.bibliography()` is gone**
+- **機能・破壊的変更：`show-bibliography-as-footnote` が真偽値になり、`magic.bibliography()` が削除されました**
 
-  The old mechanism took the bibliography element itself, as `config-common(show-bibliography-as-footnote: bibliography("ref.bib"))`, hid it in the preamble, collected the entries into a state, and re-rendered them through `magic.bibliography()`. That state is gone. Set the flag and call a real `#bibliography(..)` in the presentation:
+  以前は `config-common(show-bibliography-as-footnote: bibliography("ref.bib"))` で参考文献要素を受け取り、preamble内で非表示にして項目を状態へ収集し、`magic.bibliography()` で再描画していました。この状態管理は削除されました。代わりにフラグを設定し、プレゼンテーション内で実際の `#bibliography(..)` を呼び出します。
 
   ```typst
   #show: simple-theme.with(
@@ -107,29 +107,29 @@ Things to watch when upgrading: a `#pause` after `uncover`/`only`/`alternatives`
   #bibliography("ref.bib")
   ```
 
-  The bibliography has to be part of the document for the footnote citations to resolve. Use `hide(bibliography(..))` if you do not want the reference list shown. Multiple bibliographies work now, and [#395](https://github.com/touying-typ/touying/issues/395), where a footnote bibliography that overflowed its slide stopped the document converging, is fixed as a result. If your citation style already produces notes, such as `"chicago-notes"`, leave the flag at `false`. See the [FAQ](https://touying-typ.github.io/docs/faq).
+  脚注形式の引用を解決するには参考文献を文書に含める必要があります。文献一覧を表示したくない場合は `hide(bibliography(..))` を使用します。複数の参考文献に対応し、脚注がスライドからはみ出すと文書の収束が止まる問題 [#395](https://github.com/touying-typ/touying/issues/395) も解決されました。`"chicago-notes"` のように引用形式自体が脚注を生成する場合は、このフラグを `false` のままにしてください。詳しくは [FAQ](https://touying-typ.github.io/docs/faq) を参照してください。
 
-  `magic.bibliography-as-footnote` loses its `bibliography` parameter and gains `footnote-style`, a dictionary of `super` properties for the citation markers. The default `(typographic: false, baseline: 0em, size: 1em)` makes them read as normal text.
+  `magic.bibliography-as-footnote` から `bibliography` パラメーターが削除され、引用マーカーの `super` のプロパティを指定する辞書 `footnote-style` が追加されました。既定の `(typographic: false, baseline: 0em, size: 1em)` では通常のテキストとして表示されます。
 
-- **feat!: the speaker-note panel is customizable through `config-common(notes-fn: ..)`; the `config-methods(show-only-notes: ..)` *renderer* is removed** ([#353](https://github.com/touying-typ/touying/issues/353))
+- **機能・破壊的変更：発表者ノートのパネルを `config-common(notes-fn: ..)` でカスタマイズ可能になり、`config-methods(show-only-notes: ..)` の*描画関数*が削除されました** ([#353](https://github.com/touying-typ/touying/issues/353))
 
-  `show-only-notes` was two separate options in v0.7.4 and only one of them changes. `config-common(show-only-notes: true)`, the flag that turns on presenter view, works as before, and is documented for the first time in [Speaker Notes](https://touying-typ.github.io/docs/tutorials/speaker-notes). What is gone is `config-methods(show-only-notes: ..)`, the function that drew the panel. Only theme authors ever overrode it.
+  v0.7.4では `show-only-notes` に2種類のオプションがあり、変更されたのはその一方だけです。発表者ビューを有効にする `config-common(show-only-notes: true)` は従来どおり動作し、[発表者ノート](https://touying-typ.github.io/docs/tutorials/speaker-notes)で初めて説明されました。削除されたのはパネルの描画関数 `config-methods(show-only-notes: ..)` であり、主にテーマ作者が上書きしていました。
 
-  The panel is now produced by a theme-supplied function, the way slides are produced by `slide-fn`. `notes-fn(self: none, note: none, slide-preview: none) -> content` mirrors `slide-fn`, and `touying-notes` is the counterpart of `touying-slide`: it owns the rough layout, the theme passes colours and arranges the content. All six bundled themes register their own, so the notes panel matches the deck in spirit. Some alignment bugs will be fixed later.
+  パネルは `slide-fn` がスライドを作るのと同様に、テーマが提供する関数で生成されます。`notes-fn(self: none, note: none, slide-preview: none) -> content` は `slide-fn` に対応し、`touying-notes` は `touying-slide` に対応します。レイアウトの基本を担い、テーマ側が色や配置を指定します。組み込みの6テーマはすべて独自の関数を登録しているため、ノートの見た目もスライドと統一されます。一部の配置の不具合は今後修正予定です。
 
-  `show-only-notes` mode was restructured along with it. The slide's parts, previously shown on the top right, are reassembled into one page-sized box and handed to the theme as `slide-preview` content to place where and scale how it likes. The old `cutout` / `cutout-height` / `(background, foreground)` return protocol is gone, and `slide-preview: none` tells a theme it is on a second screen. This also fixes [#281](https://github.com/touying-typ/touying/issues/281): the panel background was placed from the page header and nearly all of it fell off-page, so the declared `#CCCCCC`/`#E6E6E6` colours never rendered.
+  `show-only-notes` モードも再構成されました。以前は右上にあったスライドの各部分がページサイズの1つのボックスにまとめられ、`slide-preview` としてテーマに渡されます。テーマ側で自由に配置と縮尺を指定できます。従来の `cutout`、`cutout-height`、`(background, foreground)` を返す方式は削除され、`slide-preview: none` はセカンドスクリーンであることを示します。また、パネルの背景がページヘッダーから配置され、ほぼ全体がページ外に出て `#CCCCCC` と `#E6E6E6` が描画されなかった問題 [#281](https://github.com/touying-typ/touying/issues/281) も修正されました。
 
-  See [Customizing the Speaker-Note Panel](https://touying-typ.github.io/docs/themes/custom) and [Build Your Own Theme](https://touying-typ.github.io/docs/tutorials/build-your-own-theme).
+  詳しくは[発表者ノートのパネルのカスタマイズ](https://touying-typ.github.io/docs/themes/custom)と[独自テーマを作成する](https://touying-typ.github.io/docs/tutorials/build-your-own-theme)を参照してください。
 
-- **fix!: the page background and foreground are confined to the slide half on a second screen** ([#219](https://github.com/touying-typ/touying/issues/219))
+- **修正・破壊的変更：セカンドスクリーンで背景と前景がスライド側の半分に限定されました** ([#219](https://github.com/touying-typ/touying/issues/219))
 
-  With `show-notes-on-second-screen`, Touying doubles the page along one axis and pushes the extra half into the margin (Now all four alignments are supported). `page(background: ..)` covers the whole page, so a background sized `100%`, or an image with `fit: "cover"`, was stretched across the slide and the notes half together. `background` and `foreground` are now each placed in a box the size of one slide, on the slide's own half, so percentage sizes and `fit: "cover"` behave as they do without a second screen.
+  `show-notes-on-second-screen` ではページを1方向に2倍へ拡張し、追加した半分をマージンへ配置します（現在は4方向に対応します）。以前は `page(background: ..)` がページ全体を覆い、`100%` の背景や `fit: "cover"` の画像がノート側まで引き伸ばされていました。現在は `background` と `foreground` をそれぞれスライド側の1ページ分のボックスに配置するため、割合指定や `fit: "cover"` はセカンドスクリーンなしの場合と同様に動作します。
 
-- **feat!: `touying-recall`'s `subslide:` parameter becomes `subslides:`, and its `none`/`auto` values swap**
+- **機能・破壊的変更：`touying-recall` の `subslide:` が `subslides:` に変更され、`none` と `auto` の意味が入れ替わりました**
 
-  The parameter is now plural because it takes ranges (since v0.6.3) rather than a single subslide, matching `visible-subslides` on `uncover`/`only`/`effect`. It accepts a superset of the old values.
+  このパラメーターはv0.6.3から単一のサブスライドではなく範囲を指定でき、`uncover`、`only`、`effect` の `visible-subslides` に合わせて複数形になりました。従来の値を包含する指定方法に対応します。
 
-  `subslides: auto` is the new default. It recalls all subslides of a whole-slide target, or the final animation state of a labelled element. `subslides: none` recalls only the last subslide. v0.7.4 had these the other way round, with `none` as the default, so the default behaviour is unchanged. Only code that passed either value explicitly needs the value swapped as well as the key renamed.
+  新しい既定値は `subslides: auto` です。スライド全体が対象ならすべてのサブスライドを、ラベル付き要素ならアニメーションの最終状態を再利用します。`subslides: none` は最後のサブスライドだけを再利用します。v0.7.4では逆で `none` が既定値だったため、既定動作自体は変わりません。明示的に指定していたコードだけがキー名と値の入れ替えを必要とします。
 
 ### 軽微な破壊的変更
 
