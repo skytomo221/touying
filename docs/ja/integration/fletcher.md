@@ -14,13 +14,13 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
 #import "@preview/cetz:0.5.2"
 #import "@preview/fletcher:0.5.8" as fletcher: node, edge
 
-// cetz and fletcher bindings for touying
-#let cetz-canvas = touying-reduce.with(cetz) // new syntax for packages that expose their name
+// Touying向けCeTZ・Fletcherのバインディング
+#let cetz-canvas = touying-reduce.with(cetz) // 名前を公開するパッケージ向けの新しい構文
 #let fletcher-diagram = touying-reduce.with(fletcher)
 
 #show: metropolis-theme.with(aspect-ratio: "16-9")
 
-// cetz animation
+// CeTZのアニメーション
 #slide[
   Cetz in Touying:
 
@@ -41,7 +41,7 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
   })
 ]
 
-// fletcher animation
+// Fletcherのアニメーション
 #slide[
   Fletcher in Touying:
 

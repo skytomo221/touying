@@ -7,8 +7,8 @@ sidebar_position: 7
 記事モードでは、同じソースファイルをスライドではなく連続した文章の文書として出力します。
 
 ```bash
-typst compile talk.typ talk.pdf                            # slides
-typst compile --input export-mode=article talk.typ talk.pdf   # article
+typst compile talk.typ talk.pdf                            # スライド出力
+typst compile --input export-mode=article talk.typ talk.pdf   # 記事出力
 ```
 
 `--input export-mode=article` はファイル内の指定より優先されるため、ソースを書き換えずに両方の出力を生成できます。ファイル内でモードを固定したい場合は、設定に指定します。
@@ -22,7 +22,7 @@ typst compile --input export-mode=article talk.typ talk.pdf   # article
 
 == A Section
 
-The page belongs to the article theme now, not to the slide theme.
+このページにはスライド用ではなく記事用のテーマが適用されます。
 ```
 
 `export-mode` には `"slides"`、`"presentation"`、`"handout"`、`"article"` を指定できます。各モードの関係は[出力モード](../tutorials/output-modes)を参照してください。
@@ -78,7 +78,7 @@ Rendered by arkheion rather than by touying's own article theme.
   ),
 )
 
-= A Part
+= あるパート
 
 == A Section
 
@@ -95,14 +95,14 @@ Numbered by the article theme.
 #import "@preview/arkheion:0.1.0": arkheion
 
 #show: simple-theme.with(
-  config-info(title: [Projection], author: [A. Author]),
+  config-info(title: [投影], author: [A. 著者]),
   config-common(export-mode: "article", article-theme: arkheion),
   config-article(available-fields: (title: "info.title")),
 )
 
 == A Section
 
-The title above came from `config-info`.
+上のタイトルは `config-info` から取得されました。
 ```
 
 キーにはテーマのパラメーター名、値にはTouyingの設定へのパスを指定します。テーマが受け付け、型も一致するフィールドだけを指定してください。たとえばarkheionの `authors` は辞書の配列を要求するため、`config-info` の `author` を直接渡すと `element text has no method map` で失敗します。先にテーマの関数シグネチャを確認してください。
@@ -165,7 +165,7 @@ The title above came from `config-info`.
 }, length: 20pt)
 
 #article-text[
-  First the frame is fixed:
+  最初に枠を固定します：
   #touying-recall(<fig>, subslides: 1)
 
   Then the inscribed circle follows:
@@ -192,7 +192,7 @@ The title above came from `config-info`.
 
 #table(
   columns: 2,
-  table.header([Element], [Kept]),
+  table.header([要素], [維持]),
   [with a header], [yes],
   [without one], [no],
 )
@@ -227,9 +227,9 @@ The title above came from `config-info`.
 #show: simple-theme.with(
   config-common(export-mode: "article"),
   config-article(wrap: (
-    width: 50%,     // how much of the text width a float takes
-    align: right,   // which side it goes to
-    image: true,    // raw images, on by default
+    width: 50%,     // 回り込み要素が占める本文の幅
+    align: right,   // 配置する側
+    image: true,    // 通常の画像。既定で有効
     table: false,
   )),
 )
@@ -254,7 +254,7 @@ config-article(wrap: (
 config-article(wrap: (
   image: true,
   overrides: (
-    // a figure holding an image floats; one holding a table does not
+    // 画像を含む図は回り込み、表を含む図は回り込まない
     (target: el => el.func() == figure and el.body.func() == image,
      align: left, width: 35%),
   ),

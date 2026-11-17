@@ -18,13 +18,13 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
 #import "@preview/cetz:0.5.2"
 #import "@preview/fletcher:0.5.8" as fletcher: node, edge
 
-// cetz and fletcher bindings for touying
-#let cetz-canvas = touying-reduce.with(cetz) // new syntax for packages that expose their name
+// Touying向けCeTZ・Fletcherのバインディング
+#let cetz-canvas = touying-reduce.with(cetz) // 名前を公開するパッケージ向けの新しい構文
 #let fletcher-diagram = touying-reduce.with(fletcher)
 
 #show: metropolis-theme.with(aspect-ratio: "16-9")
 
-// cetz animation
+// CeTZのアニメーション
 #slide[
   Cetz in Touying:
 
@@ -45,7 +45,7 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
   })
 ]
 
-// fletcher animation
+// Fletcherのアニメーション
 #slide[
   Fletcher in Touying:
 
@@ -78,8 +78,8 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
 #import themes.simple: *
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-// cetz bindings for touying
-#let cetz-canvas = touying-diagram.with(cetz) // new syntax for packages that expose their name
+// Touying向けCeTZのバインディング
+#let cetz-canvas = touying-diagram.with(cetz) // 名前を公開するパッケージ向けの新しい構文
 
 == Only and Uncover in Cetz
 
@@ -119,7 +119,7 @@ Cetz in Touying in subslide #touying-get-config("subslide")
 
   #cetz.canvas({
     import cetz.draw: *
-    let uncover = uncover.with(cover-fn: hide.with(bounds: true)) //use cetz' hide function for covering
+    let uncover = uncover.with(cover-fn: hide.with(bounds: true)) // カバーにはCeTZのhide関数を使用
     
     rect((0,0), (5,5))
 

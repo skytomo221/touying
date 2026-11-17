@@ -39,7 +39,7 @@ Touyingと組み合わせた使用例：
 #show heading: set block(above: 1.4em, below: 1em)
 #show heading.where(level: 1): set text(size: 1.5em)
 
-// Useful functions
+// 便利な関数
 #let crimson = rgb("#c00000")
 #let greybox(..args, body) = rect(fill: luma(95%), stroke: 0.5pt, inset: 0pt, outset: 10pt, ..args, body)
 #let redbold(body) = {
@@ -53,13 +53,13 @@ Touyingと組み合わせた使用例：
 
 #show: default-theme.with(aspect-ratio: "4-3")
 
-// Main body
+// 本文
 #slide[
   #set heading(offset: 0)
 
-  = Asymptotic Notation: $O$
+  = 漸近記法: $O$
 
-  Use #pin("h1")asymptotic notations#pin("h2") to describe asymptotic efficiency of algorithms.
+  アルゴリズムの漸近的な効率を説明するには #pin("h1")漸近記法#pin("h2") を使います。
   (Ignore constant coefficients and lower-order terms.)
 
   #pause
@@ -85,8 +85,8 @@ Touyingと組み合わせた使用例：
 
   #block[Insertion Sort as an #pin("r1")example#pin("r2"):]
 
-  - Best Case: $T(n) approx c n + c' n - c''$ #pin(3)
-  - Worst case: $T(n) approx c n + (c' \/ 2) n^2 - c''$ #pin(4)
+  - 最良の場合: $T(n) approx c n + c' n - c''$ #pin(3)
+  - 最悪の場合: $T(n) approx c n + (c' \/ 2) n^2 - c''$ #pin(4)
 
   #pinit-rect("r1", "r2")
 

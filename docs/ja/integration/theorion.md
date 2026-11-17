@@ -18,12 +18,12 @@ Touyingは [Theorion](https://github.com/OrangeX4/typst-theorion) パッケー�
 
 #show: university-theme.with(
   aspect-ratio: "16-9",
-  config-common(frozen-counters: (theorem-counter,)),  // freeze theorem counter for animation
+  config-common(frozen-counters: (theorem-counter,)),  // アニメーション中は定理カウンターを固定
 )
 
 #set heading(numbering: numbly("{1}.", default: "1.1"))
 
-= Theorems
+= 定理
 
 == Prime numbers
 
@@ -32,7 +32,7 @@ Touyingは [Theorion](https://github.com/OrangeX4/typst-theorion) パッケー�
   than 1 and cannot be written as the product of two smaller natural numbers.
 ]
 #example[
-  The numbers $2$, $3$, and $17$ are prime.
+  $2$、$3$、$17$ は素数です。
   @cor_largest_prime shows that this list is not exhaustive!
 ]
 
