@@ -15,11 +15,11 @@ Touyingには簡単なアニメーションを実現する `#pause` と `#meanwh
 >>> #import themes.simple: *
 >>> #show: simple-theme
 #slide[
-  First #pause Second
+  最初 #pause 2番目
 
   #pause
 
-  Third
+  3番目
 ]
 ```
 
@@ -36,19 +36,19 @@ Touyingには簡単なアニメーションを実現する `#pause` と `#meanwh
 >>> #import themes.simple: *
 >>> #show: simple-theme
 #slide[
-  First
+  最初
   
   #pause
   
-  Second
+  2番目
 
   #meanwhile
 
-  Third
+  3番目
 
   #pause
 
-  Fourth
+  4番目
 ]
 ```
 

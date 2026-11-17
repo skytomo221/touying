@@ -16,13 +16,13 @@ Touyingは `touying-reduce`（別名 `touying-diagram`）を提供しており�
 #import "@preview/cetz:0.5.2"
 #import "@preview/fletcher:0.5.8" as fletcher: node, edge
 
-// cetz and fletcher bindings for touying
+// Touying向けCeTZ・Fletcherのバインディング
 #let cetz-canvas = touying-reduce.with(cetz)
 #let fletcher-diagram = touying-reduce.with(fletcher)
 
 #show: university-theme.with(aspect-ratio: "16-9")
 
-// cetz animation
+// CeTZのアニメーション
 #slide[
   Cetz in Touying:
 
@@ -43,7 +43,7 @@ Touyingは `touying-reduce`（別名 `touying-diagram`）を提供しており�
   })
 ]
 
-// fletcher animation
+// Fletcherのアニメーション
 #slide[
   Fletcher in Touying:
 
@@ -71,7 +71,7 @@ Touyingは `touying-reduce`（別名 `touying-diagram`）を提供しており�
 CeTZとFletcherでは `only`、`uncover`、`alternatives` も同様の構文で使えます。どちらも座標に基づく図なので見た目は同じですが、内部の処理は異なります。`only` は描画命令を除外し、`uncover` は描画を隠します。
 
 ```typst
-//imports, bindings and theme
+// インポート、バインディング、テーマ
 
 #slide[
   Cetz in Touying:

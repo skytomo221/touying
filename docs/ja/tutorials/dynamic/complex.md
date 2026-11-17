@@ -38,11 +38,11 @@ use #only("2-")[`#only` function] for not reserving space,
 >>> #import themes.simple: *
 >>> #show: simple-theme
 #slide[
-  #alert[First #pause Second #uncover("3-")[Third]]
+  #alert[最初 #pause 次 #uncover("3-")[3番目]]
 
   #pause
 
-  Fourth
+  4番目
 ]
 ```
 
@@ -53,10 +53,10 @@ use #only("2-")[`#only` function] for not reserving space,
 この動作を利用するには、本文を `touying-fn-wrapper-raw` の*位置引数*として渡してください。`.with(..)` でラップ先の関数へ事前に組み込むとパーサーから見えなくなり、内部のアニメーション関数が失敗します。
 
 ```typst
-// Body is invisible to the parser — #pause and #uncover inside will panic.
+// パーサーから本文が見えないため、内部の #pause や #uncover は失敗します。
 #let my-block(title: none, it) = touying-fn-wrapper-raw(_my-block.with(title: title, it))
 
-// Body is parsed like ordinary slide content — animations work inside.
+// 本文は通常のスライドとして解析され、内部でもアニメーションが動作します。
 #let my-block(title: none, it) = touying-fn-wrapper-raw(_my-block.with(title: title), it)
 ```
 

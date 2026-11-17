@@ -14,15 +14,15 @@ sidebar_position: 1
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-= Title
+= タイトル
 
-== First Slide
+== 最初のスライド
 
-Hello, Touying!
+こんにちは、Touying！
 
 #pause
 
-Hello, Typst!
+こんにちは、Typst！
 ```
 
 空の見出し `== <touying:hidden>` を使うと新しいページを作れます。前の見出しの適用を解除する場合にも便利です。
@@ -35,15 +35,15 @@ Hello, Typst!
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-= Title
+= タイトル
 
-== First Slide
+== 最初のスライド
 
-Hello, Touying!
+こんにちは、Touying！
 
 ---
 
-Hello, Typst!
+こんにちは、Typst！
 ```
 
 ## ブロックスタイル
@@ -58,16 +58,16 @@ Hello, Typst!
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-= Title
+= タイトル
 
-== First Slide
+== 最初のスライド
 
 #slide[
-  Hello, Touying!
+  こんにちは、Touying！
 
   #pause
 
-  Hello, Typst!
+  こんにちは、Typst！
 ]
 ```
 
@@ -95,15 +95,15 @@ simpleテーマでは第1レベルの見出しを書くと自動的にセクシ�
   config-common(new-section-slide-fn: none),
 )
 
-= Title
+= タイトル
 
-== First Slide
+== 最初のスライド
 
-Hello, Touying!
+こんにちは、Touying！
 
 #pause
 
-Hello, Typst!
+こんにちは、Typst！
 ```
 
 この設定では2ページだけが生成され、既定のセクションスライドはなくなります。
@@ -130,13 +130,13 @@ Hello, Typst!
   }),
 )
 
-= Title
+= タイトル
 
-== First Slide
+== 最初のスライド
 
-Hello, Touying!
+こんにちは、Touying！
 
 #pause
 
-Hello, Typst!
+こんにちは、Typst！
 ```

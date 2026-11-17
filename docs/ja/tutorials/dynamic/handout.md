@@ -23,19 +23,19 @@ config-common(handout: true)
   config-common(handout: true),
 )
 
-= Title
+= タイトル
 
 == Animated Slide
 
-First item.
+最初の項目です。
 
 #pause
 
-Second item (won't generate a separate page in handout mode).
+2番目の項目です（配布資料モードでは別ページになりません）。
 
 #pause
 
-Third item.
+3番目の項目です。
 ```
 
 既定では各スライドの**最後の**サブスライドだけが残ります。
@@ -47,16 +47,16 @@ Third item.
 `handout-subslides` で配布資料に残すサブスライドを個別に指定できます。
 
 ```typst
-// Keep only the first subslide (useful for "before" snapshots)
+// 最初のサブスライドだけを残す（変更前の状態を示す場合など）
 config-common(handout: true, handout-subslides: 1)
 
-// Keep the first and last subslides
+// 最初と最後のサブスライドを残す
 config-common(handout: true, handout-subslides: (1, -1))
 
-// Keep a range expressed as a string (same syntax as `only`/`uncover`)
+// 文字列で指定した範囲を残す（`only`・`uncover` と同じ構文）
 config-common(handout: true, handout-subslides: "1-2")
 
-// Keep the last subslide of every waypoint
+// 各ウェイポイントの最後のサブスライドを残す
 config-common(handout: true, handout-subslides: "waypoints")
 ```
 
@@ -71,7 +71,7 @@ config-common(handout: true, handout-subslides: "waypoints")
 ```typst
 == Extra Notes for Handout <touying:handout>
 
-This slide is included when `handout: true` but invisible otherwise.
+このスライドは `handout: true` の場合だけ表示され、それ以外では非表示です。
 ```
 
 ## 特定のモード専用の内容
@@ -83,10 +83,10 @@ This slide is included when `handout: true` but invisible otherwise.
 通常は `handout: false`（既定値）で発表し、聴衆向けのPDFを出力するときに `handout: true` に切り替えます。
 
 ```typst
-// During presentation
+// プレゼンテーション中
 #show: my-theme.with(config-common(handout: false))
 
-// When building the handout PDF
+// 配布資料のPDFを生成するとき
 #show: my-theme.with(config-common(handout: true))
 ```
 

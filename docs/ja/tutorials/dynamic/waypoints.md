@@ -28,7 +28,7 @@ sidebar_position: 7
 
 ```typst
 #slide[
-  First content.
+  最初の内容です。
   #uncover(<reveal>)[Appears from here.]
   #only(<final>)[Only on the last step.]
 ]
@@ -43,9 +43,9 @@ sidebar_position: 7
 ```typst
 #slide[
   #item-by-item(start: <list>)[
-    - Alpha
-    - Beta
-    - Gamma
+    - アルファ
+    - ベータ
+    - ガンマ
   ]
   #only(<done>)[All items revealed.]
 ]
@@ -62,7 +62,7 @@ sidebar_position: 7
 ```typst
 #slide[
   #waypoint(<here>, advance: false)
-  Content at the current position.
+  現在の位置にある内容です。
 ]
 ```
 
@@ -117,7 +117,7 @@ sidebar_position: 7
   #waypoint(<mid>, advance:false)
   #uncover(<mid>)[Visible during mid.]
   #pause
-  Second mid.
+  2番目の中間段階です。
   #waypoint(<end>)
   End.
 
@@ -131,13 +131,13 @@ sidebar_position: 7
 ```typst
 #slide(composer: (1fr, 1fr))[
   #item-by-item(start: <steps>)[
-    - Step one
-    - Step two
-    - Step three
+    - 手順1
+    - 手順2
+    - 手順3
   ]
   #pause
-  Some remark.
-  #uncover(<done>)[All done!]
+  補足説明です。
+  #uncover(<done>)[すべて完了!]
 ][
   #alternatives(at: (<steps>, <done>))[
     _Working through the steps..._
@@ -154,14 +154,14 @@ sidebar_position: 7
 ```typst
 #slide(composer: (1fr, 1fr))[
   #item-by-item(start: <steps>)[
-    - Step one
-    - Step two
-    - Step three
+    - 手順1
+    - 手順2
+    - 手順3
   ]
   #pause
-  Some remark.
+  補足説明です。
   #waypoint(<done>, start: 4)
-  #uncover(from-wp(<done>))[All done, even before the remark!]
+  #uncover(from-wp(<done>))[すべて完了, even before the remark!]
 ][
   #waypoint(<parallel>, start: <done>)
   Explaining stuff.

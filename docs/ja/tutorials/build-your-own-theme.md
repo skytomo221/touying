@@ -32,11 +32,11 @@ Touyingには多くの概念があるため、独自テーマの作成は少し�
 #show: university-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.school,
   ),
@@ -101,9 +101,9 @@ Touyingの `themes` ディレクトリに入れて組み込みテーマにする
 
 #show: bamboo-theme.with(aspect-ratio: "16-9")
 
-= First Section
+= 最初のセクション
 
-== First Slide
+== 最初のスライド
 
 A slide with a title and an *important* information.
 ```
@@ -205,7 +205,7 @@ config-methods(alert: utils.alert-with-primary-color)
   if title != auto {
     self.store.title = title
   }
-  // set page
+  // ページを設定
   let header(self) = {
     set align(top)
     show: components.cell.with(fill: self.colors.primary, inset: 1em)
@@ -279,9 +279,9 @@ config-methods(alert: utils.alert-with-primary-color)
 
 #show: bamboo-theme.with(aspect-ratio: "16-9")
 
-= First Section
+= 最初のセクション
 
-== First Slide
+== 最初のスライド
 
 A slide with a title and an *important* information.
 ```
@@ -316,7 +316,7 @@ A slide with a title and an *important* information.
   if title != auto {
     self.store.title = title
   }
-  // set page
+  // ページを設定
   let header(self) = {
     set align(top)
     show: components.cell.with(fill: self.colors.primary, inset: 1em)
@@ -393,7 +393,7 @@ A slide with a title and an *important* information.
   )
   set text(fill: self.colors.neutral-lightest, size: 2em)
   touying-slide(self: self, setting: align.with(horizon + center), {
-    place(hide(heading[Focus Slide])) // put an invisible heading on the slide. Useful later
+    place(hide(heading[強調スライド])) // スライドに不可視の見出しを置く。後から参照できる
     body
   })
 })
@@ -440,20 +440,20 @@ A slide with a title and an *important* information.
   aspect-ratio: "16-9",
   footer: self => self.info.institution,
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
   ),
 )
 
 #title-slide()
 
-= First Section
+= 最初のセクション
 
-== First Slide
+== 最初のスライド
 
 A slide with a title and an *important* information.
 
@@ -484,7 +484,7 @@ Touying 0.8.0以降は `notes` 関数を定義し、`config-common(notes-fn: not
   if title != auto {
     self.store.title = title
   }
-  // set page
+  // ページを設定
   let header(self) = {
     set align(top)
     show: components.cell.with(fill: self.colors.primary, inset: 1em)
@@ -561,14 +561,14 @@ Touying 0.8.0以降は `notes` 関数を定義し、`config-common(notes-fn: not
   )
   set text(fill: self.colors.neutral-lightest, size: 2em)
   touying-slide(self: self, setting: align.with(horizon + center), {
-    place(hide(heading[Focus Slide])) // put an invisible heading on the slide. Useful later
+    place(hide(heading[強調スライド])) // スライドに不可視の見出しを置く。後から参照できる
     body
   })
 })
 
 #let notes(self: none, ..args) = touying-notes(
   self: self,
-  // Echo the slide header: same primary band, same light text.
+  // スライドのヘッダーに合わせ、基本色の帯と明るい文字を使う
   header: self => pad(1em, text(
     fill: self.colors.neutral-lightest,
     size: .7em,
@@ -625,20 +625,20 @@ Touying 0.8.0以降は `notes` 関数を定義し、`config-common(notes-fn: not
   footer: self => self.info.institution,
   config-common(show-notes-on-second-screen: right),
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
   ),
 )
 
 #title-slide()
 
-= First Section
+= 最初のセクション
 
-== First Slide
+== 最初のスライド
 
 A slide with a title and an *important* information.
 
