@@ -28,12 +28,12 @@ Touyingは [Theorion](https://github.com/OrangeX4/typst-theorion) パッケー�
 == 素数
 
 #definition[
-  A natural number is called a #highlight[_prime number_] if it is greater
-  than 1 and cannot be written as the product of two smaller natural numbers.
+  1より大きく、より小さい2つの自然数の積として表せない自然数を
+  #highlight[_素数_] と呼びます。
 ]
 #example[
   $2$、$3$、$17$ は素数です。
-  @cor_largest_prime shows that this list is not exhaustive!
+  @cor_largest_prime から、この一覧がすべてではないとわかります。
 ]
 
 #pause
@@ -45,11 +45,10 @@ Touyingは [Theorion](https://github.com/OrangeX4/typst-theorion) パッケー�
 #pagebreak(weak: true)
 
 #proof[
-  Suppose to the contrary that $p_1, p_2, dots, p_n$ is a finite enumeration
-  of all primes. Set $P = p_1 p_2 dots p_n$. Since $P + 1$ is not in our list,
-  it cannot be prime. Thus, some prime factor $p_j$ divides $P + 1$. Since
-  $p_j$ also divides $P$, it must divide the difference $(P + 1) - P = 1$, a
-  contradiction.
+  背理法で、すべての素数が $p_1, p_2, dots, p_n$ の有限個だと仮定します。
+  $P = p_1 p_2 dots p_n$ とおきます。$P + 1$ は一覧にないため素数ではありません。
+  したがって、ある素因数 $p_j$ が $P + 1$ を割ります。しかし $p_j$ は $P$ も割るので、
+  差 $(P + 1) - P = 1$ も割ることになり、矛盾します。
 ]
 
 #corollary[
@@ -64,7 +63,7 @@ Touyingは [Theorion](https://github.com/OrangeX4/typst-theorion) パッケー�
 ]
 
 #proof[
-  For any $n > 2$, consider $
+  任意の $n > 2$ について、次を考えます。$
     n! + 2, quad n! + 3, quad ..., quad n! + n
   $
 ]

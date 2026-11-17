@@ -60,7 +60,7 @@ Touyingと組み合わせた使用例：
   = 漸近記法: $O$
 
   アルゴリズムの漸近的な効率を説明するには #pin("h1")漸近記法#pin("h2") を使います。
-  (Ignore constant coefficients and lower-order terms.)
+  （定数係数と低次の項は無視します。）
 
   #pause
 
@@ -73,17 +73,17 @@ Touyingと組み合わせた使用例：
 
   #pause
 
-  $f(n) = O(g(n))$: #pin(1)$f(n)$ is *asymptotically smaller* than $g(n)$.#pin(2)
+  $f(n) = O(g(n))$：#pin(1)$f(n)$ は $g(n)$ より*漸近的に小さい*関数です。#pin(2)
 
   #pause
 
-  $f(n) redbold(in) O(g(n))$: $f(n)$ is *asymptotically* #redbold[at most] $g(n)$.
+  $f(n) redbold(in) O(g(n))$：$f(n)$ は*漸近的に* $g(n)$ を#redbold[超えません]。
 
   #only("4-", pinit-line(stroke: 3pt + crimson, start-dy: -0.25em, end-dy: -0.25em, 1, 2))
 
   #pause
 
-  #block[Insertion Sort as an #pin("r1")example#pin("r2"):]
+  #block[#pin("r1")例#pin("r2")として挿入ソートを考えます：]
 
   - 最良の場合: $T(n) approx c n + c' n - c''$ #pin(3)
   - 最悪の場合: $T(n) approx c n + (c' \/ 2) n^2 - c''$ #pin(4)
@@ -97,14 +97,14 @@ Touyingと組み合わせた使用例：
 
   #pause
 
-  #blueit[Q: Is $n^(3) = O(n^2)$#pin("que")? How to prove your answer#pin("ans")?]
+  #blueit[問：$n^(3) = O(n^2)$#pin("que") は成り立ちますか？ 答えをどう証明しますか#pin("ans")？]
 
   #pause
 
-  #pinit-point-to("que", fill: crimson, redbold[No.])
+  #pinit-point-to("que", fill: crimson, redbold[いいえ。])
   #pinit-point-from("ans", body-dx: -150pt)[
-    次の不等式 $(3/2)^n >= c$ を示してください \
-    has infinitely many solutions for $n$.
+    不等式 $(3/2)^n >= c$ を満たす $n$ が \
+    無限に存在することを示してください。
   ]
 ]
 ```
