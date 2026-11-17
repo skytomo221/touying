@@ -18,11 +18,11 @@ sidebar_position: 4
   config-common(show-notes-on-second-screen: right),
 )
 
-= Animation
+= アニメーション
 
-== Simple Animation
+== シンプルなアニメーション
 
-We can use `#pause` to #pause display something later.
+`#pause` を使うと、#pause 内容を後から表示できます。
 
 #pause
 
@@ -30,11 +30,11 @@ Just like this.
 
 #meanwhile
 
-Meanwhile, #pause we can also use `#meanwhile` to #pause display other content synchronously.
+また、#pause `#meanwhile` を使うと、#pause 別の内容を同時に切り替えられます。
 
 #speaker-note[
-  + This is a speaker note.
-  + You won't see it unless you use `config-common(show-notes-on-second-screen: right)`
+  + これは発表者ノートです。
+  + `config-common(show-notes-on-second-screen: right)` を使わない限り表示されません。
 ]
 ```
 

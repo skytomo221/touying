@@ -14,11 +14,11 @@ sidebar_position: 4
 #import "@preview/touying:0.8.0": *
 #import themes.simple: *
 #show: simple-theme
-= Section
+= セクション
 
-== Slide
+== スライド
 
-This uses the simple theme.
+これはSimpleテーマを使用しています。
 ```
 
 利用可能なテーマ：`simple`、`default`、`metropolis`、`aqua`、`dewdrop`、`stargazer`、`university`。
@@ -34,14 +34,14 @@ This uses the simple theme.
 #show: simple-theme.with(
   aspect-ratio: "16-9",
   config-colors(primary: rgb("#d94f00")),
-  config-info(title: [Custom Color], author: [Author]),
+  config-info(title: [独自の配色], author: [著者]),
 )
 
-= Section
+= セクション
 
-== Slide
+== スライド
 
-The header now uses the custom primary color.
+ヘッダーに変更後の基本色が適用されました。
 ```
 
 
@@ -55,12 +55,12 @@ The header now uses the custom primary color.
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-= Section
+= セクション
 
-== Slide
+== スライド
 
 #touying-fn-wrapper-raw((self: none) => text(fill: self.colors.primary)[
-  This text uses the current theme's primary color.
+  この文字は現在のテーマの基本色で表示されます。
 ])
 
 #touying-fn-wrapper-raw((self: none) => rect(
@@ -91,11 +91,11 @@ The header now uses the custom primary color.
 #slide(composer: (1fr, 1fr))[
   == Left Column
 
-  Some text on the left side.
+  左側に表示する文章です。
 ][
   == Right Column
 
-  Some text on the right side.
+  右側に表示する文章です。
 ]
 ```
 
@@ -129,10 +129,10 @@ Typstの `place` 関数を使用します。
 #show: simple-theme
 #slide[
   #utils.fit-to-width(1fr)[
-    == This heading fills the slide width
+    == この見出しはスライド幅いっぱいに広がります
   ]
 
-  Some content below.
+  この下に内容を配置します。
 ]
 ```
 
@@ -150,21 +150,21 @@ Typst標準の `outline` を `components.adaptive-columns` で囲みます。
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-== Outline <touying:hidden>
+== 目次 <touying:hidden>
 
 #components.adaptive-columns(outline(title: none, indent: 1em))
 
-= First Section
+= 最初のセクション
 
-== Introduction
+== はじめに
 
-Hello, Touying!
+こんにちは、Touying！
 
-= Second Section
+= 2番目のセクション
 
-== Details
+== 詳細
 
-More content here.
+ここに続きの内容があります。
 ```
 
 `<touying:hidden>` ラベルは、目次スライド自身の見出しを目次から除外します。
@@ -183,17 +183,17 @@ More content here.
   config-common(new-section-slide-fn: none),
 )
 
-== Outline <touying:hidden>
+== 目次 <touying:hidden>
 
 #components.adaptive-columns(outline(title: none, indent: 1em))
 
-= First Section
+= 最初のセクション
 
-== First Slide
+== 最初のスライド
 
-= Second Section
+= 2番目のセクション
 
-== Second Slide
+== 2枚目のスライド
 ```
 
 ### 目次のセクションに番号を付けるには？
@@ -209,17 +209,17 @@ More content here.
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-== Outline <touying:hidden>
+== 目次 <touying:hidden>
 
 #components.adaptive-columns(outline(title: none, indent: 1em))
 
-= First Section
+= 最初のセクション
 
-== First Slide
+== 最初のスライド
 
-= Second Section
+= 2番目のセクション
 
-== Second Slide
+== 2枚目のスライド
 ```
 
 ### 現在位置を強調する目次を表示するには？
@@ -232,15 +232,15 @@ More content here.
 
 #show: dewdrop-theme.with(aspect-ratio: "16-9")
 
-= First Section
+= 最初のセクション
 
-== Outline
+== 目次
 
 #components.progressive-outline()
 
-= Second Section
+= 2番目のセクション
 
-== Slide
+== スライド
 ```
 
 ---
@@ -269,13 +269,13 @@ More content here.
   config-common(show-bibliography-as-footnote: true),
 )
 
-= Citations
+= 引用
 
-== Footnote Example
+== 脚注の例
 
-This is a famous book. @knuth
+これは有名な書籍です。 @knuth
 
-== Bibliography
+== 参考文献
 #bibliography(bib)
 ```
 
@@ -297,7 +297,7 @@ This is a famous book. @knuth
 #import themes.simple: *
 #show: simple-theme
 #slide[
-  == My Slide
+  == 私のスライド
 
   Visible content here.
 
@@ -341,17 +341,17 @@ This is a famous book. @knuth
 #show: simple-theme.with(
   aspect-ratio: "16-9",
   footer-right: context [
-    Slide #utils.slide-counter.display() of #utils.last-slide-number
+    スライド #utils.slide-counter.display() of #utils.last-slide-number
   ],
 )
 
-= Section
+= セクション
 
-== First Slide
+== 最初のスライド
 
-The footer shows the slide number.
+フッターにスライド番号が表示されます。
 
-== Second Slide
+== 2枚目のスライド
 
 Still counting.
 ```
@@ -365,15 +365,15 @@ Still counting.
 >>> #import themes.simple: *
 >>> #set heading(numbering: "1.1")
 >>> #show: simple-theme
-= Section
+= セクション
 
-== Numbered
+== 番号付き
 
-This heading has a number.
+この見出しには番号が付きます。
 
-== Unnumbered <touying:unnumbered>
+== 番号なし <touying:unnumbered>
 
-This heading has no number.
+この見出しには番号が付きません。
 ```
 
 ### スライド総数に影響しない付録を作るには？
@@ -386,23 +386,23 @@ This heading has no number.
 >>>
 >>> #show: simple-theme.with(aspect-ratio: "16-9")
 
-= Main Content
+= 本文
 
-== Introduction
+== はじめに
 
-This is slide 1.
+これはスライド1です。
 
-== Results
+== 結果
 
-This is slide 2.
+これはスライド2です。
 
 #show: appendix
 
-= Appendix
+= 付録
 
-== Extra Material
+== 補足資料
 
-This slide is in the appendix and does not increment the main counter.
+このスライドは付録にあり、本文のスライド総数には含まれません。
 ```
 
 ---
@@ -418,15 +418,15 @@ This slide is in the appendix and does not increment the main counter.
 >>> #import themes.simple: *
 >>> #show: simple-theme
 #slide[
-  First point.
+  最初の項目です。
 
   #pause
 
-  Second point revealed on click.
+  クリックすると2つ目の項目が表示されます。
 
   #pause
 
-  Third point revealed on second click.
+  2回目のクリックで3つ目の項目が表示されます。
 ]
 ```
 
@@ -439,9 +439,9 @@ This slide is in the appendix and does not increment the main counter.
 >>> #import themes.simple: *
 >>> #show: simple-theme
 #slide[
-  #only("1")[Shown on subslide 1 only.]
-  #only("2-")[Shown from subslide 2 onward.]
-  #uncover("3-")[Revealed on subslide 3, space reserved before.]
+  #only("1")[サブスライド1だけに表示します。]
+  #only("2-")[サブスライド2以降に表示します。]
+  #uncover("3-")[サブスライド3で表示します。それまでも領域は確保されます。]
 ]
 ```
 
@@ -458,11 +458,11 @@ This slide is in the appendix and does not increment the main counter.
 >>> #show: simple-theme
 #slide(repeat: 3, self => {
   let (uncover, only) = utils.methods(self)
-  [First content.]
+  [最初の内容です。]
   linebreak()
-  uncover("2-")[Revealed on subslide 2.]
+  uncover("2-")[サブスライド2で表示されます。]
   linebreak()
-  only("3")[Only on subslide 3.]
+  only("3")[サブスライド3だけに表示されます。]
 })
 ```
 
@@ -522,7 +522,7 @@ Fletcherでは配列構文は不要ですが、使用しても構いません。
 >>> #import themes.simple: *
 >>> #show: simple-theme
 #slide[
-  The answer is: #alternatives[42][*forty-two*][_the ultimate answer_].
+  答えは： #alternatives[42][*四十二*][_究極の答え_].
 ]
 ```
 
@@ -553,16 +553,16 @@ Fletcherでは配列構文は不要ですが、使用しても構いません。
 >>>
 >>> #show: metropolis-theme.with(
 >>>  aspect-ratio: "16-9",
->>>  config-info(title: [Custom Font]),
+>>>  config-info(title: [独自のフォント]),
 >>> )
 
 #set text(font: "New Computer Modern", size: 22pt)
 
-= Section
+= セクション
 
-== Slide
+== スライド
 
-Text now uses the custom font.
+文字にカスタムフォントが適用されます。
 ```
 
 数式については数式用フォントも設定します。
@@ -582,7 +582,7 @@ Text now uses the custom font.
 
 #set par(justify: true)
 
-== Justified Text
+== 両端揃えの文章
 
 #lorem(40)
 
@@ -603,14 +603,14 @@ Text now uses the custom font.
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
   config-common(new-section-slide-fn: none),
-  config-info(title: [No Auto Sections]),
+  config-info(title: [No Auto セクションs]),
 )
 
-= Section
+= セクション
 
-== Slide
+== スライド
 
-No automatic section slide was created for the `= Section` heading.
+No automatic section slide was created for the `= セクション` heading.
 ```
 
 ### セクションスライドに内容を記述するには？
@@ -628,13 +628,13 @@ Touyingでは深い階層のサブセクションも含め、既定で `config-c
   config-common(receive-body-for-new-section-slide-fn: true)
 )
 
-= Section
-This goes on the section slide itself.
+= セクション
+これはセクションスライド自体に表示されます。
 ---
-Here is my content for this section.
+これがこのセクションの内容です。
 
-== Slide
-And this works normally.
+== スライド
+これも通常どおり動作します。
 ```
 セクションスライドに発表者ノートを追加できるのは `receive-body-...` が `true` の場合だけです。
 
@@ -648,15 +648,15 @@ And this works normally.
 #import "@preview/touying:0.8.0": *
 #import themes.simple: *
 #show: simple-theme
-== Outline <touying:hidden>
+== 目次 <touying:hidden>
 
 #components.adaptive-columns(outline(title: none, indent: 1em))
 
-= First Section
+= 最初のセクション
 
-== First Slide
+== 最初のスライド
 
-Hello, Touying!
+こんにちは、Touying！
 ```
 
 スライドを一時的に除外したい場合は、その内容を削除またはコメントアウトしてください。
@@ -669,21 +669,21 @@ Hello, Touying!
 #import "@preview/touying:0.8.0": *
 #import themes.simple: *
 #show: simple-theme
-== Outline <touying:hidden>
+== 目次 <touying:hidden>
 
 #components.adaptive-columns(outline(title: none, indent: 1em))
 
-= Section
+= セクション
 
-== Normal Slide
+== 通常のスライド
 
 Appears in the outline.
 
-== Interstitial Slide <touying:unoutlined>
+== 挿入スライド <touying:unoutlined>
 
-This slide shows but is not listed in the outline.
+このスライドは表示されますが、目次には載りません。
 
-== Another Normal Slide
+== Another 通常のスライド
 
 Also appears in the outline.
 ```
@@ -701,11 +701,11 @@ Also appears in the outline.
   config-common(slide-level: 2),
 )
 
-= Section
+= セクション
 
-This text is part of the section slide.
+この文章はセクションスライドの一部です。
 
-== Subsection Slide
+== Subsection スライド
 
 Each `==` heading creates a new slide.
 
@@ -727,16 +727,16 @@ Sub-subheadings do not create new slides.
   config-page(
     header: text(gray)[My Custom Header],
     footer: context align(right, text(gray)[
-      Slide #utils.slide-counter.display()
+      スライド #utils.slide-counter.display()
     ]),
   ),
 )
 
-= Section
+= セクション
 
-== Slide
+== スライド
 
-Slide with a custom header and footer.
+スライド with a custom header and footer.
 ```
 
 ---
@@ -753,17 +753,17 @@ Slide with a custom header and footer.
 - **`detect-overflow`**（既定値 `true`）：レイアウトを測定し、内容が利用可能な高さを超えた場合に警告します。コンパイルは続行されます。追加の測定処理を避けるには `false` にします。
 
 ```typst
-// Prevent overflow, warn on overflow (default behavior when breakable: false)
+// 内容のはみ出しを防ぎ、超過時に警告する（breakable: false の既定動作）
 #show: simple-theme.with(
   config-common(breakable: false),
 )
 
-// Prevent overflow and visually clip overflowing content
+// 内容のはみ出しを防ぎ、超過部分を切り取る
 #show: simple-theme.with(
   config-common(breakable: false, clip: true),
 )
 
-// Prevent overflow, disable overflow detection (performance-first)
+// 内容のはみ出しを防ぎ、検出処理を無効にする（性能優先）
 #show: simple-theme.with(
   config-common(breakable: false, detect-overflow: false),
 )
@@ -775,9 +775,9 @@ Slide with a custom header and footer.
 >>> #import "@preview/touying:0.8.0": *
 >>> #import themes.simple: *
 >>> #show: simple-theme.with(config-common(breakable: false))
-== This slide's overflow will be clipped
+== このスライドのはみ出しは切り取られます
 
-// Enable clipping for a specific slide
+// 特定のスライドに切り取りを適用する
 #show: touying-set-config.with(config-common(clip: true))
 
 #lorem(500)
@@ -796,12 +796,12 @@ Slide with a custom header and footer.
   config-methods(cover: utils.alpha-changing-cover),
 )
 
-= Section
+= セクション
 
-== Slide
+== スライド
 
 #pause
-This content is shown with a low alpha cover.
+この内容は低いアルファ値のカバーで表示されます。
 ```
 
 コンパイルがより高速になると考えられる `utils.color-changing-cover` も使用できます。
@@ -831,13 +831,13 @@ This content is shown with a low alpha cover.
 
 #show: simple-theme.with(
   aspect-ratio: "16-9",
-  config-common(preamble: text(gray)[This appears once, before the first slide's content]),
-  subslide-preamble: [Special prelude for each subslide],
+  config-common(preamble: text(gray)[これは最初のスライドの内容より前に一度表示されます]),
+  subslide-preamble: [各サブスライドの前処理],
 )
 
-= Section
+= セクション
 
-== Slide
+== スライド
 
 Content here.
 
@@ -861,15 +861,15 @@ More content.
   config-common(horizontal-line-to-pagebreak: true),
 )
 
-= First Section
+= 最初のセクション
 
-== Slide One
+== スライド1
 
 Content here.
 
 ---
 
-== Slide Two
+== スライド2
 
 Separated by horizontal rule.
 ```
@@ -926,8 +926,8 @@ Touyingに貢献する手順は次のとおりです。
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [My Presentation],
-    subtitle: [A Subtitle],
+    title: [私のプレゼンテーション],
+    subtitle: [A サブタイトル],
     author: [Jane Doe],
     date: datetime.today(),
     institution: [My University],
@@ -937,9 +937,9 @@ Touyingに貢献する手順は次のとおりです。
 
 #title-slide()
 
-= Introduction
+= はじめに
 
-== First Slide
+== 最初のスライド
 
 Content here.
 ```
@@ -958,7 +958,7 @@ Content here.
 
 #touying-set-config(config-page(fill: rgb("#fff3cd")))[
   #slide[
-    This slide has a yellow background.
+    このスライドの背景は黄色です。
   ]
 ]
 
@@ -1037,9 +1037,9 @@ typst watch slides.typ
   ),
 )
 
-= My Section
+= My セクション
 
-== Slide
+== スライド
 
 The header shows the current section name.
 ```
@@ -1082,9 +1082,9 @@ Touyingは `touying` 名前空間の `uniwarn` で警告を出します。
 ```typst
 #import "@preview/touying:0.8.0": *
 
-//to disable the warnings emitted by touying
+// Touyingの警告を無効にする
 #touying-disable-warnings()
-//to reenable the warnings emitted by touying
+// Touyingの警告を再び有効にする
 #touying-enable-warnings()
 ```
 

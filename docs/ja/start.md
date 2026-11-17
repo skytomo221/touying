@@ -14,15 +14,15 @@ Touyingを使うには、文書に次のコードを書くだけです。
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-= Title
+= タイトル
 
-== First Slide
+== 最初のスライド
 
-Hello, Touying!
+こんにちは、Touying！
 
 #pause
 
-Hello, Typst!
+こんにちは、Typst！
 ```
 
 これで最初のTouyingスライドが完成しました。
@@ -45,10 +45,10 @@ Touyingには美しいスライドを簡単に作成できる組み込みテー�
 #import cosmos.clouds: *
 #show: show-theorion
 
-// fletcher bindings for touying
+// Touying向けFletcherのバインディング
 #let fletcher-diagram = touying-reduce.with(fletcher)
 
-// explicit bindings no longer needed we can just write `touying-(diagram|reduce)(cetz, {...})`
+// 明示的なバインディングは不要で、次のように直接記述できます： `touying-(diagram|reduce)(cetz, {...})`
 //#let cetz-canvas = touying-reducer.with(reduce: cetz.canvas, cover: cetz.draw.hide.with(bounds: true))
 #let cetz-canvas = touying-reduce.with(cetz)
 
@@ -56,13 +56,13 @@ Touyingには美しいスライドを簡単に作成できる組み込みテー�
   aspect-ratio: "16-9",
   // align: horizon,
   // config-common(handout: true),
-  config-common(frozen-counters: (theorem-counter,)),  // freeze theorem counter for animation
+  config-common(frozen-counters: (theorem-counter,)),  // アニメーション中は定理カウンターを固定
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.school,
   ),
@@ -72,15 +72,15 @@ Touyingには美しいスライドを簡単に作成できる組み込みテー�
 
 #title-slide()
 
-== Outline <touying:hidden>
+== 目次 <touying:hidden>
 
 #components.adaptive-columns(outline(title: none, indent: 1em))
 
-= Animation
+= アニメーション
 
-== Simple Animation
+== シンプルなアニメーション
 
-We can use `#pause` to #pause display something later.
+`#pause` を使うと、#pause 内容を後から表示できます。
 
 #pause
 
@@ -88,46 +88,46 @@ Just like this.
 
 #meanwhile
 
-Meanwhile, #pause we can also use `#meanwhile` to #pause display other content synchronously.
+また、#pause `#meanwhile` を使うと、#pause 別の内容を同時に切り替えられます。
 
 #speaker-note[
-  + This is a speaker note.
-  + You won't see it unless you use `config-common(show-notes-on-second-screen: right)`
+  + これは発表者ノートです。
+  + `config-common(show-notes-on-second-screen: right)` を使わない限り表示されません。
 ]
 
 
-== Complex Animation
+== 複雑なアニメーション
 
-At subslide #touying-fn-wrapper-raw((self: none) => str(self.subslide)), we can
+サブスライド #touying-fn-wrapper-raw((self: none) => str(self.subslide)) では、
 
-use #uncover("2-")[`#uncover` function] for reserving space,
+#uncover("2-")[`#uncover` 関数]で表示前の領域を確保でき、
 
-use #only("2-")[`#only` function] for not reserving space,
+#only("2-")[`#only` 関数]で領域を確保せずに切り替えられ、
 
-#alternatives[call `#only` multiple times \u{2717}][use `#alternatives` function #sym.checkmark] for choosing one of the alternatives.
+#alternatives[`#only` を何度も呼ぶ \u{2717}][`#alternatives` を使う #sym.checkmark]ことで候補を切り替えられます。
 
 
-== Callback Style Animation
+== コールバック形式のアニメーション
 
 #slide(
   repeat: 3,
   self => [
     #let (uncover, only, alternatives) = utils.methods(self)
 
-    At subslide #self.subslide, we can
+    サブスライド #self.subslide では、
 
-    use #uncover("2-")[`#uncover` function] for reserving space,
+    #uncover("2-")[`#uncover` 関数]で表示前の領域を確保でき、
 
-    use #only("2-")[`#only` function] for not reserving space,
+    #only("2-")[`#only` 関数]で領域を確保せずに切り替えられ、
 
-    #alternatives[call `#only` multiple times \u{2717}][use `#alternatives` function #sym.checkmark] for choosing one of the alternatives.
+    #alternatives[`#only` を何度も呼ぶ \u{2717}][`#alternatives` を使う #sym.checkmark]ことで候補を切り替えられます。
   ],
 )
 
 
-== Math Equation Animation
+== 数式のアニメーション
 
-Equation with `pause`:
+`pause` を使った数式：
 
 $
   f(x) &= pause x^2 + 2x + 1 \
@@ -136,16 +136,16 @@ $
 
 #meanwhile
 
-Here, #pause we have the expression of $f(x)$.
+ここで #pause $f(x)$ の式が得られます。
 
 #pause
 
-By factorizing, we can obtain this result.
+因数分解すると次の結果が得られます。
 
 
-== CeTZ Animation
+== CeTZのアニメーション
 
-CeTZ Animation in Touying:
+TouyingでのCeTZアニメーション：
 
 #cetz-canvas({
   import cetz.draw: *
@@ -164,9 +164,9 @@ CeTZ Animation in Touying:
 })
 
 
-== Fletcher Animation
+== Fletcherのアニメーション
 
-Fletcher Animation in Touying:
+TouyingでのFletcherアニメーション：
 
 #fletcher-diagram(
   node-stroke: .1em,
@@ -185,16 +185,16 @@ Fletcher Animation in Touying:
 )
 
 
-= Theorems
+= 定理
 
-== Prime numbers
+== 素数
 
 #definition[
   A natural number is called a #highlight[_prime number_] if it is greater
   than 1 and cannot be written as the product of two smaller natural numbers.
 ]
 #example[
-  The numbers $2$, $3$, and $17$ are prime.
+  $2$、$3$、$17$ は素数です。
   @cor_largest_prime shows that this list is not exhaustive!
 ]
 
@@ -230,15 +230,15 @@ Fletcher Animation in Touying:
 
 = Others
 
-== Multiple columns
+== 複数列
 
 #cols[
-  First column.
+  1列目の内容です。
 ][
-  Second column.
+  2列目の内容です。
 ]
 
-== Multiple columns with equal height blocks
+== 高さを揃えた複数列のブロック
 
 #cols(columns: (1fr, 1fr), gutter: 1em, lazy-layout: true)[
   #emph-block[
@@ -253,16 +253,16 @@ Fletcher Animation in Touying:
 ]
 
 
-== Multiple Pages
+== 複数ページ
 
 #lorem(200)
 
 
 #show: appendix
 
-= Appendix
+= 付録
 
-== Appendix
+== 付録
 
 Please pay attention to the current slide number.
 ```

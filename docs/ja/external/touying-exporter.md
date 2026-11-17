@@ -83,14 +83,14 @@ touying compile example.typ
 `--sys-inputs` パラメーターでTypstファイルに変数を渡せます。
 
 ```sh
-touying compile example.typ --sys-inputs '{"title":"My Presentation","author":"John Doe"}'
+touying compile example.typ --sys-inputs '{"title":"私のプレゼンテーション","author":"John Doe"}'
 ```
 
 Typstファイル側では次のように参照します。
 
 ```typst
-#let title = sys.inputs.at("title", default: "Default Title")
-#let author = sys.inputs.at("author", default: "Default Author")
+#let title = sys.inputs.at("title", default: "既定のタイトル")
+#let author = sys.inputs.at("author", default: "既定の著者")
 
 = #title
 By #author
@@ -104,10 +104,10 @@ By #author
 ```typst
 #import "@preview/touying:0.8.0": *
 
-// a single value, or `none` when the key was not passed
+// 1つの値を取得。キーが渡されなければ `none`
 #let accent = utils.get-input(key: "accent")
 
-// or the whole dictionary, with every value parsed
+// または、各値を解析した辞書全体を取得
 #let inputs = utils.get-input()
 ```
 
@@ -132,7 +132,7 @@ Typstが認識できる値はTypstの構文として解析されます。
 `touying compile` でも同様です。`--sys-inputs` のJSON値はそのままTypstに渡される文字列です。
 
 ```sh
-touying compile example.typ --sys-inputs '{"accent":"red","title":"\"My Presentation\""}'
+touying compile example.typ --sys-inputs '{"accent":"red","title":"\"私のプレゼンテーション\""}'
 ```
 
 
