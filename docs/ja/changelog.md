@@ -701,30 +701,30 @@ sidebar_position: 8
 
 ### 機能追加
 
-- docs: improve param documentation and we have better hints for tinymist https://github.com/touying-typ/touying/pull/98
-- feat: fake frozon states support for `heading` https://github.com/touying-typ/touying/pull/124
-- feat: add alpha-changing-cover and color-changing-cover https://github.com/touying-typ/touying/pull/129
-- feat: add effect function https://github.com/touying-typ/touying/issues/111
-  - Example: `#effect(text.with(fill: red), "2-")[Something]` will display `[Something]` if the current slide is 2 or later.
-- feat: add argument `config: (..)` for `xxx-slide` functions
-- feat: add `align` argument for university theme
+- **ドキュメント：パラメーターの説明を改善し、Tinymistの補完ヒントを強化** https://github.com/touying-typ/touying/pull/98
+- **機能：`heading` に疑似的な状態の固定を追加** https://github.com/touying-typ/touying/pull/124
+- **機能：alpha-changing-coverとcolor-changing-coverを追加** https://github.com/touying-typ/touying/pull/129
+- **機能：effect関数を追加** https://github.com/touying-typ/touying/issues/111
+  - 例：`#effect(text.with(fill: red), "2-")[Something]` は、現在のサブスライドが2以降の場合に `[Something]` を表示します。
+- **機能：`xxx-slide` 関数に `config: (..)` 引数を追加**
+- **機能：universityテーマに `align` 引数を追加**
 
 ### 修正
 
-- fix: also hide enum numbers with show-hide-set-list-marker-none https://github.com/touying-typ/touying/pull/114
-- fix: fixed progress bar not to break apart when global figure gutter is set nonzero https://github.com/touying-typ/touying/pull/120
-- fix: fixed frozen-counters bug with multiple #pause commands https://github.com/touying-typ/touying/pull/124
-- fix: fixed incorrect page num when draft is true https://github.com/touying-typ/touying/pull/125
-- fix: fix behaviors of fit-to-height and fit-to-width partially https://github.com/touying-typ/touying/pull/131
-- fix: duplicated footnotes in headings https://github.com/touying-typ/touying/pull/132
-- fix: do not hardcode page sizes https://github.com/touying-typ/touying/pull/134
-- fix: add default numbering for page https://github.com/touying-typ/touying/issues/100
-- refactor: move show-strong-with-alert to per-slide level https://github.com/touying-typ/touying/issues/123
-- refactor: remove unnecessary `config-page(fill: ...)`
-- theme(metropolis): fix color of title page and fix https://github.com/touying-typ/touying/issues/103
-- theme(metropolis): fixed metropolis slide's header to return content if title is specified https://github.com/touying-typ/touying/pull/126
-- theme(metropolis): respect colors dict in metropolis theme https://github.com/touying-typ/touying/pull/133
-- fix: fix bug of `#effect` function
+- **修正：show-hide-set-list-marker-noneでenumの番号も非表示にする** https://github.com/touying-typ/touying/pull/114
+- **修正：図のグローバルなgutterが0以外でもプログレスバーが分割されないように変更** https://github.com/touying-typ/touying/pull/120
+- **修正：複数の #pause を使ったときのfrozen-countersの不具合** https://github.com/touying-typ/touying/pull/124
+- **修正：draftがtrueの場合のページ番号の誤り** https://github.com/touying-typ/touying/pull/125
+- **修正：fit-to-heightとfit-to-widthの動作を一部修正** https://github.com/touying-typ/touying/pull/131
+- **修正：見出し内の脚注の重複** https://github.com/touying-typ/touying/pull/132
+- **修正：ページサイズを固定値で記述しないよう変更** https://github.com/touying-typ/touying/pull/134
+- **修正：ページに既定の番号付けを追加** https://github.com/touying-typ/touying/issues/100
+- **リファクタリング：show-strong-with-alertをスライド単位へ移動** https://github.com/touying-typ/touying/issues/123
+- **リファクタリング：不要な `config-page(fill: ...)` を削除**
+- **metropolisテーマ：タイトルページの色などを修正** https://github.com/touying-typ/touying/issues/103
+- **metropolisテーマ：タイトルを指定した場合、ヘッダーが内容を返すよう修正** https://github.com/touying-typ/touying/pull/126
+- **metropolisテーマ：colors辞書を尊重するよう変更** https://github.com/touying-typ/touying/pull/133
+- **修正：`#effect` 関数の不具合**
 
 以下の方々の貢献に感謝します： [@enklht](https://github.com/enklht).
 
@@ -733,34 +733,34 @@ sidebar_position: 8
 
 ### 機能追加
 
-- feat: add `stretch` parameter for `#alternatives[]` function class. This allows us to handle cases where the internal element is a context expression.
-- feat: add `config-common(align-enum-marker-with-baseline: true)` for aligning the enum marker with the baseline.
-- feat: add `linebreaks` option to `components.mini-slides`. https://github.com/touying-typ/touying/pull/96
-- feat: add `<touying:skip>` label to skip a new-section-slide.
-- feat: add `config-common(show-hide-set-list-marker-none: true)` to make the markers of `list` and `enum` invisible after `#pause`.
-- feat: add `config-common(bibliography-as-footnote: bibliography(title: none, "ref.bib"))` to display the bibliography in footnotes.
-- refactor: add `config-common(show-strong-with-alert: true)` configuration to display strong text with an alert. (small breaking change for some themes)
-- refactor: refactor `display-current-heading` for preserving heading style in title and subtitle. https://github.com/touying-typ/touying/issues/71
-- refactor: make `new-section-slide-fn` function class can receive `body` parameter. We can use `receive-body-for-new-section-slide-fn` to control it. **(Breaking change)**
-  - For example, you can add `#speaker-note[]` for a new section slide, like `= Section Title \ #speaker-note[]`.
-  - If you don't want to append content to the body of the new section slide, you can use `---` after the section title.
+- **機能：`#alternatives[]` 関数群に `stretch` パラメーターを追加。** 内部の要素がコンテキスト式の場合も扱えるようになりました。
+- **機能：番号付きリストのマーカーをベースラインに揃える `config-common(align-enum-marker-with-baseline: true)` を追加**
+- **機能：`components.mini-slides` に `linebreaks` オプションを追加** https://github.com/touying-typ/touying/pull/96
+- **機能：新しいセクションスライドをスキップする `<touying:skip>` ラベルを追加**
+- **機能：`#pause` の後のlistとenumのマーカーを不可視にする `config-common(show-hide-set-list-marker-none: true)` を追加**
+- **機能：参考文献を脚注に表示する `config-common(bibliography-as-footnote: bibliography(title: none, "ref.bib"))` を追加**
+- **リファクタリング：strongで強調した文字をalertとして表示する `config-common(show-strong-with-alert: true)` を追加。** 一部のテーマに軽微な破壊的変更があります。
+- **リファクタリング：タイトルとサブタイトルの見出しスタイルを保持するよう `display-current-heading` を変更** https://github.com/touying-typ/touying/issues/71
+- **リファクタリング：`new-section-slide-fn` 関数群が `body` を受け取れるよう変更。** `receive-body-for-new-section-slide-fn` で制御できます。**破壊的変更です。**
+  - たとえば `= Section Title \ #speaker-note[]` のように新しいセクションスライドへ発表者ノートを追加できます。
+  - 新しいセクションスライドの本文に内容を追加したくない場合は、セクションタイトルの後に `---` を使用できます。
 
 ### 修正
 
-- fix outdated documentation.
-- fix bug of `enable-frozen-states-and-counters` in handout mode.
-- fix unusable `square()` function. https://github.com/touying-typ/touying/issues/73
-- fix hidden footer for `show-notes-on-second-screen: bottom`. https://github.com/touying-typ/touying/issues/89
-- fix metadata element in table cells. https://github.com/touying-typ/touying/issues/77 https://github.com/touying-typ/touying/issues/95
-- fix `auto-offset-for-heading` to `false` by default.
-- fix uncover/only hides more content than it should. https://github.com/touying-typ/touying/issues/85
-- theme(simple): fix wrong title and subtitle. https://github.com/touying-typ/touying/issues/70
+- **修正：古くなったドキュメントを更新**
+- **修正：配布資料モードでの `enable-frozen-states-and-counters` の不具合**
+- **修正：`square()` 関数が使用できない問題** https://github.com/touying-typ/touying/issues/73
+- **修正：`show-notes-on-second-screen: bottom` でフッターが隠れる問題** https://github.com/touying-typ/touying/issues/89
+- **修正：表のセル内のメタデータ要素の扱い** https://github.com/touying-typ/touying/issues/77 https://github.com/touying-typ/touying/issues/95
+- **修正：`auto-offset-for-heading` の既定値を `false` に変更**
+- **修正：uncover・onlyが必要以上の内容を非表示にする問題** https://github.com/touying-typ/touying/issues/85
+- **simpleテーマ：タイトルとサブタイトルの誤りを修正** https://github.com/touying-typ/touying/issues/70
 
 
 ## v0.5.1 & v0.5.2
 
-- Fix somg bugs.
-- `nontight-list-enum-and-terms` now defaults to `false`
+- **修正：いくつかの不具合を修正**
+- **`nontight-list-enum-and-terms` の既定値を `false` に変更**
 
 ## v0.5.0
 
