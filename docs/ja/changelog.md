@@ -466,16 +466,16 @@ sidebar_position: 8
 
 ### その他
 
-- **refactor: `src/core.typ` is split into modules.** The 6288-line file becomes `src/core/parser.typ`, `src/core/animation.typ`, `src/core/slides.typ`, `src/core/blocks.typ`, `src/core/waypoints.typ` and additionally `src/core/article.typ`, with `src/slides.typ` replaced by `src/entrypoint.typ` and the new `src/bundle.typ` holding the bundle-export helpers. `src/exports.typ` is reorganised along the same lines. The public API is unaffected except where noted above, but anything importing `touying/src/core.typ` directly has to be updated.
-- **refactor: content-tree handling is one layer, `src/core/tree.typ`.** Recognising what a piece of content is, taking it apart and putting it back together was written out in about thirty places, which had drifted apart: label handling differed per call site, and several walks could not see through a `styled` node, so a `#set` or `#show` rule in force made them miss what they were looking for. The new module knows nothing about touying and imports nothing, so anything can use it. `shape-of` classifies how a node holds its sub-content, `children-of` and `rebuild` are guaranteed to round-trip it, and `map-tree` walks with an identity short-circuit. Moved out of `utils`: the `is-*` predicates, the `typst-builtin-*` handles, `reconstruct*`, `trim`, `label-it`. `core/subslides.typ` takes visibility-spec resolution (`check-visible`, `resolve-negative-subslides`, `last-required-subslide`, …) and `resolve-waypoints` joins `core/waypoints.typ`. The old names stay in `utils`: the ones returning content forward with a deprecation warning, the rest panic naming the new module.
-- refactor: block rendering, waypoint-to-integer resolution, the equation/mitex/raw paths and the article-mode scanning functions were each unified into one implementation rather than several near-duplicates.
-- test: reference renders regenerated for Typst 0.15.0 / tytanic 0.4.0 layout drift. New suites for article mode (presentation, handout and article variants of one source), `recall-content`, `render-subslides`, `mode-never`, `notes-second-screen`, `pdfpc`, `cover-citation`, and the #395, #408 and #415 regressions.
+- **リファクタリング：`src/core.typ` をモジュールに分割しました。** 6288行のファイルは `src/core/parser.typ`、`src/core/animation.typ`、`src/core/slides.typ`、`src/core/blocks.typ`、`src/core/waypoints.typ`、新しい `src/core/article.typ` に分割されました。`src/slides.typ` は `src/entrypoint.typ` に置き換わり、新しい `src/bundle.typ` がバンドル出力用のヘルパーを保持します。`src/exports.typ` も同様に整理されました。前述の変更以外では公開APIに影響しませんが、`touying/src/core.typ` を直接インポートするコードは更新が必要です。
+- **リファクタリング：内容の木構造の処理を `src/core/tree.typ` に統一しました。** 内容の種類の判定、分解、再構築が約30か所に重複しており、ラベルの扱いが呼び出し箇所によって異なり、`#set` や `#show` が生成する `styled` ノードの内部を走査できない処理もありました。新しいモジュールはTouyingに依存せず、ほかの処理からも利用できます。`shape-of` は部分的な内容の保持形式を分類し、`children-of` と `rebuild` は元の要素への復元を保証し、`map-tree` は同一性による短絡処理を持つ走査を行います。`is-*` 述語、`typst-builtin-*` ハンドル、`reconstruct*`、`trim`、`label-it` は `utils` から移動しました。`core/subslides.typ` は可視範囲指定の解決（`check-visible`、`resolve-negative-subslides`、`last-required-subslide` など）を担当し、`resolve-waypoints` は `core/waypoints.typ` に移りました。旧名称は `utils` に残り、内容を返す関数は非推奨警告付きで転送され、それ以外は新しいモジュール名を示すエラーになります。
+- **リファクタリング：** ブロックの描画、ウェイポイントから整数への変換、数式・MiTeX・rawの処理、記事モードの走査処理を、それぞれ重複した複数の実装から単一の実装に統一しました。
+- **テスト：** Typst 0.15.0とtytanic 0.4.0でレイアウトが変わったためリファレンス画像を再生成しました。記事モード（同一ソースのプレゼンテーション・配布資料・記事出力）、`recall-content`、`render-subslides`、`mode-never`、`notes-second-screen`、`pdfpc`、`cover-citation`、#395・#408・#415の回帰テストを追加しました。
 
 ### テーマの移行ガイド
 
 **v0.8.0へ移行するテーマ作者向け：**
 
-1. **Style the body through `setting:`, not by wrapping it.** All bundled themes now pass their alignment and decoration as `touying-slide(setting: ..)` rather than wrapping the body in `align(..)` or a block. Wrapping hides the body from the parser, which breaks animation counting and article-mode linearization:
+1. **本文を囲むのではなく `setting:` で装飾します。** 組み込みテーマは本文を `align(..)` やブロックで囲むのではなく、`touying-slide(setting: ..)` で配置と装飾を渡すようになりました。本文を囲むとパーサーから見えなくなり、アニメーションの段階数計算と記事モードの線形化が壊れます。
    ```typst
    // Before
    touying-slide(self: self, config: config, align(center + horizon, body))
@@ -483,106 +483,106 @@ sidebar_position: 8
    // After
    touying-slide(self: self, config: config, setting: align.with(center + horizon), body)
    ```
-2. **Register a `notes-fn`.** Replace any `config-methods(show-only-notes: ..)` renderer override with `config-common(notes-fn: ..)` built on `touying-notes`; roughly ten lines of colours per theme. The `config-common(show-only-notes: ..)` flag is a separate option and is unchanged.
-3. **Give special slides a hidden heading** so their title is discoverable by `utils.display-current-heading`. Both the slide header and the notes panel read from it:
+2. **`notes-fn` を登録します。** `config-methods(show-only-notes: ..)` の描画関数の上書きを、`touying-notes` を基にした `config-common(notes-fn: ..)` に置き換えてください。テーマごとに約10行で色などを指定できます。別のオプションである `config-common(show-only-notes: ..)` フラグは変更ありません。
+3. **特殊なスライドには不可視の見出しを付けます。** `utils.display-current-heading` からタイトルを取得でき、ヘッダーとノートパネルの両方で利用できます。
    ```typst
    place(hide(heading(
      level: self.slide-level, title,
      bookmarked: false, outlined: false, numbering: none,
    )))
    ```
-4. **Prefer `touying-fn-wrapper-raw` for helper components** that need `self`, and pass the body as a positional argument so animations inside it are parsed:
+4. **`self` が必要なヘルパーコンポーネントでは `touying-fn-wrapper-raw` を優先します。** 本文を位置引数として渡し、内部のアニメーションが解析されるようにします。
    ```typst
    #let tblock(title: none, it) = touying-fn-wrapper-raw(_tblock.with(title: title), it)
    ```
-5. **Do not paint behind the notes half** through `config-page(background: ..)`. Use `touying-notes`' `fill` and `header-fill`.
+5. **ノート側の背景に `config-page(background: ..)` を使わないでください。** `touying-notes` の `fill` と `header-fill` を使用します。
 
 ## v0.7.4
 
 ### 機能追加
 
-- feat: adds `touying-reduce` which automatically looks up reducer bindings given a package ([#363](https://github.com/touying-typ/touying/pull/363))
-- feat(i18n): add Polish locale for outline message ([#372](https://github.com/touying-typ/touying/pull/372))
-- feat: Left/Right keyboard navigation support ([#352](https://github.com/touying-typ/touying/pull/352))
-- feat: add `grid-size` parameter to `lazy-layout` for quantized position grouping, improving robustness of column/row detection
-- feat: add `components.full-width-block` component that spans the full page width by cancelling horizontal margins
+- **機能：パッケージからreducerのバインディングを自動検出する `touying-reduce` を追加** ([#363](https://github.com/touying-typ/touying/pull/363))
+- **多言語対応：アウトラインメッセージにポーランド語を追加** ([#372](https://github.com/touying-typ/touying/pull/372))
+- **機能：左右キーによるナビゲーションに対応** ([#352](https://github.com/touying-typ/touying/pull/352))
+- **機能：`lazy-layout` に位置の量子化グループ化用 `grid-size` パラメーターを追加し、列・行の検出を安定化**
+- **機能：左右のマージンを相殺してページ幅全体に広がる `components.full-width-block` を追加**
 
 ### 修正
 
-- fix (minor breaking change): set `lazy-layout` default to `false` for `cols`
-- fix: handle missing `fn` field in mark warning message gracefully
-- fix: `hide` doing unexpected things to headings ([#366](https://github.com/touying-typ/touying/pull/366))
-- fix: export `touying-fn-wrapper-raw` as part of the public API ([#362](https://github.com/touying-typ/touying/pull/362))
-- fix: improved mark-warning, now also displayed as `magic.warning` when `enable-mark-warning` is `false` ([#348](https://github.com/touying-typ/touying/pull/348))
-- fix: warnings now emitted via `uniwarn` ([#359](https://github.com/touying-typ/touying/pull/359))
+- **修正（軽微な破壊的変更）：`cols` の `lazy-layout` の既定値を `false` に変更**
+- **修正：マーク警告で `fn` フィールドが存在しない場合を適切に処理**
+- **修正：`hide` が見出しに予期しない影響を与える問題** ([#366](https://github.com/touying-typ/touying/pull/366))
+- **修正：`touying-fn-wrapper-raw` を公開APIとしてエクスポート** ([#362](https://github.com/touying-typ/touying/pull/362))
+- **修正：マーク警告を改善し、`enable-mark-warning` が `false` の場合も `magic.warning` として表示** ([#348](https://github.com/touying-typ/touying/pull/348))
+- **修正：警告を `uniwarn` 経由で出力** ([#359](https://github.com/touying-typ/touying/pull/359))
 
 ## v0.7.3
 
 ### 軽微な破壊的変更
 
-- **feat!: always attach `#speaker-note[]` to the previous slide & default `receive-body-for-new-*-slide-fn` to `false`** ([#354](https://github.com/touying-typ/touying/pull/354))
-  - `#speaker-note[]` now always attaches to the **slide above it**, regardless of how that slide was created (explicit slide calls, heading-triggered section slides, or normal content slides). This eliminates the common pitfall where a `#speaker-note[]` placed after a slide would silently create an unwanted empty "ghost" slide.
-  - `receive-body-for-new-section-slide-fn` and its variants are now **defaulted to `false`** (previously `true`).
+- **機能・破壊的変更：`#speaker-note[]` を常に前のスライドへ関連付け、`receive-body-for-new-*-slide-fn` の既定値を `false` に変更** ([#354](https://github.com/touying-typ/touying/pull/354))
+  - `#speaker-note[]` は、明示的なスライド呼び出し、見出しから生成されたセクションスライド、通常の内容スライドのいずれでも、常に**直前のスライド**へ関連付けられます。スライドの後に記述したノートが意図しない空の「ゴーストスライド」を生成する問題を防ぎます。
+  - `receive-body-for-new-section-slide-fn` と関連する設定の**既定値が `true` から `false` に変更**されました。
 
 ### 移行ガイド
 
-If you relied on content after `= Section` headings being absorbed into the section slide body, explicitly set `receive-body-for-new-section-slide-fn: true` in your `config-common(...)`.
+`= Section` の後の内容がセクションスライドの本文に入る動作に依存していた場合は、`config-common(...)` で `receive-body-for-new-section-slide-fn: true` を明示してください。
 
 ### 機能追加
 
-- feat: `item-by-item-fn` and presets for it ([#347](https://github.com/touying-typ/touying/pull/347))
-- feat: improved `custom-progressive-outline` and new `section-relationship` and some other things ([#345](https://github.com/touying-typ/touying/pull/345))
-- feat: better lazy-layout for mixed layouts ([#355](https://github.com/touying-typ/touying/pull/355))
-- feat: add `cols` as alias of `side-by-side` and export some components `cols`, `lazy-xxx` to outside ([#356](https://github.com/touying-typ/touying/pull/356))
-- theme(metropolis): add outline-slide for metropolis ([#349](https://github.com/touying-typ/touying/pull/349))
-- feat: add warning for empty slide content height detection
+- **機能：`item-by-item-fn` とそのプリセットを追加** ([#347](https://github.com/touying-typ/touying/pull/347))
+- **機能：`custom-progressive-outline` の改善、`section-relationship` などを追加** ([#345](https://github.com/touying-typ/touying/pull/345))
+- **機能：混在したレイアウトでの `lazy-layout` を改善** ([#355](https://github.com/touying-typ/touying/pull/355))
+- **機能：`side-by-side` の別名 `cols` を追加し、`cols` や `lazy-xxx` などのコンポーネントを公開** ([#356](https://github.com/touying-typ/touying/pull/356))
+- **metropolisテーマ：`outline-slide` を追加** ([#349](https://github.com/touying-typ/touying/pull/349))
+- **機能：スライドの内容の高さが空の場合に警告を追加**
 
 ### ドキュメント
 
-- docs: add multiple columns example and improve docs structure
+- **ドキュメント：複数列の例を追加し、構造を改善**
 
 ## v0.7.1
 
 ### 機能追加
 
-- feat(agents): `breakable` and `clip` options to avoid slide overflow ([#336](https://github.com/touying-typ/touying/pull/336))
-- feat(components): add `lazy-v` (`lazy-h`) and `lazy-layout` for equalizing multi-column (-row) block heights (widths) ([#339](https://github.com/touying-typ/touying/pull/339))
-- feat: additional `contact` and `extra` field in `config-info` ([#342](https://github.com/touying-typ/touying/pull/342))
-- feat: `touying-get-config` function ([#333](https://github.com/touying-typ/touying/pull/333))
+- **機能（エージェント）：スライドのはみ出しを防ぐ `breakable` と `clip` オプションを追加** ([#336](https://github.com/touying-typ/touying/pull/336))
+- **機能（コンポーネント）：複数列・行のブロックの高さ・幅を揃える `lazy-v`（`lazy-h`）と `lazy-layout` を追加** ([#339](https://github.com/touying-typ/touying/pull/339))
+- **機能：`config-info` に `contact` と `extra` フィールドを追加** ([#342](https://github.com/touying-typ/touying/pull/342))
+- **機能：`touying-get-config` 関数を追加** ([#333](https://github.com/touying-typ/touying/pull/333))
 
 ### 修正
 
-- fix: fix `fit-to-height` and `size-to-pt` and allow text reflow ([#332](https://github.com/touying-typ/touying/pull/332))
-- fix: fix waypoint markers ([#341](https://github.com/touying-typ/touying/pull/341))
+- **修正：`fit-to-height` と `size-to-pt` を修正し、テキストの再配置に対応** ([#332](https://github.com/touying-typ/touying/pull/332))
+- **修正：ウェイポイントマーカー** ([#341](https://github.com/touying-typ/touying/pull/341))
 
 
 ## v0.7.0
 
 ### 機能追加
 
-- **major feature:** a named waypoint feature ([#298](https://github.com/touying-typ/touying/pull/298))
-- feat(waypoint): start param and Waypoints in handout-subslides ([#304](https://github.com/touying-typ/touying/pull/304))
-- feat: auto, "h"-here string and inverse function for string subslide-numbers and waypoints ([#301](https://github.com/touying-typ/touying/pull/301))
-- feat: implicitly allow fn-wrapper based animation functions via reducer ([#300](https://github.com/touying-typ/touying/pull/300))
+- **主要機能：名前付きウェイポイント** ([#298](https://github.com/touying-typ/touying/pull/298))
+- **機能（ウェイポイント）：`start` パラメーターと配布資料のサブスライド指定への対応** ([#304](https://github.com/touying-typ/touying/pull/304))
+- **機能：サブスライド番号とウェイポイントに `auto`、現在位置を表す `"h"`、反転指定を追加** ([#301](https://github.com/touying-typ/touying/pull/301))
+- **機能：reducerを通じて関数ラッパーによるアニメーションを暗黙に利用可能に** ([#300](https://github.com/touying-typ/touying/pull/300))
 
 ### 修正
 
-- fix: fix cover-with-rect breaking long lines of text when partially hidden and fallback functions for color/alpha cover ([#328](https://github.com/touying-typ/touying/pull/328))
-- fix: using explicit numbering in display-current-heading when style=auto ([#329](https://github.com/touying-typ/touying/pull/329))
-- fix: fix ghost slides with show rules. Fix proper consistent handling of show rules and defer keyword ([#317](https://github.com/touying-typ/touying/pull/317))
-- fix: alert not delayed ([#316](https://github.com/touying-typ/touying/pull/316))
-- fix: remove redundant nested text call ([#324](https://github.com/touying-typ/touying/pull/324))
-- fix: function alternatives-match takes into account parameter stretch ([#320](https://github.com/touying-typ/touying/pull/320))
-- fix: correctly handle page margin merge/precedence ([#322](https://github.com/touying-typ/touying/pull/322))
-- fix: fix cover spacing issues surrounding lists ([#303](https://github.com/touying-typ/touying/pull/303))
-- fix: correctly parses negative subslide indices (ints, arrays) for handout-subslides ([#307](https://github.com/touying-typ/touying/pull/307))
-- fix: slide function does not update via scoped import ([#310](https://github.com/touying-typ/touying/pull/310))
+- **修正：一部を隠した長い行を `cover-with-rect` が分割する問題と、色・アルファ値のカバーの代替処理** ([#328](https://github.com/touying-typ/touying/pull/328))
+- **修正：`style=auto` の `display-current-heading` で明示的な番号付けを使用** ([#329](https://github.com/touying-typ/touying/pull/329))
+- **修正：showルールによるゴーストスライドを解消し、showルールとdeferキーワードの扱いを統一** ([#317](https://github.com/touying-typ/touying/pull/317))
+- **修正：alertの適用が遅延しないように変更** ([#316](https://github.com/touying-typ/touying/pull/316))
+- **修正：重複した入れ子のtext呼び出しを削除** ([#324](https://github.com/touying-typ/touying/pull/324))
+- **修正：`alternatives-match` が `stretch` パラメーターを考慮するように変更** ([#320](https://github.com/touying-typ/touying/pull/320))
+- **修正：ページマージンの統合と優先順位の扱い** ([#322](https://github.com/touying-typ/touying/pull/322))
+- **修正：リスト周辺のカバーの間隔** ([#303](https://github.com/touying-typ/touying/pull/303))
+- **修正：配布資料のサブスライド指定で負の番号（整数・配列）を正しく解析** ([#307](https://github.com/touying-typ/touying/pull/307))
+- **修正：スコープ付きインポートを介してスライド関数が更新されない問題** ([#310](https://github.com/touying-typ/touying/pull/310))
 
-Thanks for the contributions from [@zral0kh](https://github.com/zral0kh), [@Andrew15-5](https://github.com/Andrew15-5), [@navdeeprana](https://github.com/navdeeprana), and [@Cemoixerestre](https://github.com/Cemoixerestre).
+以下の方々の貢献に感謝します： [@zral0kh](https://github.com/zral0kh), [@Andrew15-5](https://github.com/Andrew15-5), [@navdeeprana](https://github.com/navdeeprana), and [@Cemoixerestre](https://github.com/Cemoixerestre).
 
 ## v0.6.3
 
-A major bugfix release, fixing many long-standing bugs and introducing many practical features.
+長年残っていた多くの不具合を修正し、実用的な機能を多数追加した大規模な修正リリースです。
 
 ### 機能追加
 
@@ -726,7 +726,7 @@ It's not a big update, but it's the first touying release since typst 0.13 was r
 - theme(metropolis): respect colors dict in metropolis theme https://github.com/touying-typ/touying/pull/133
 - fix: fix bug of `#effect` function
 
-Thanks for the contributions from [@enklht](https://github.com/enklht).
+以下の方々の貢献に感謝します： [@enklht](https://github.com/enklht).
 
 
 ## v0.5.3
