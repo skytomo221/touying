@@ -7,7 +7,7 @@ The docs are written in Markdown and are consumed by the website repository.
 
 - `docs/en/`: English source docs.
 - `docs/zh/`: Chinese source docs.
-- `docs/ja/`: Japanese source docs (translation in progress; older changelog entries remain in English).
+- `docs/ja/`: Japanese source docs, including localized example comments and slide content.
 - `docs/README.md`: This guide for contributors.
 
 ## Key Writing Conventions
@@ -70,5 +70,5 @@ When updating docs, keep `en`, `zh`, and `ja` aligned in structure and topic cov
 - Use `example` fences for runnable demos.
 - Add `>>>` prelude lines when a snippet needs Touying bootstrap setup.
 - Keep `<<<` only where multi-file or special display/execution behavior is required.
-- Preserve heading structure and frontmatter consistency across `en` and `zh`.
+- Preserve heading structure and frontmatter consistency across `en`, `zh`, and `ja`.
 - Verify links and package versions in examples.
