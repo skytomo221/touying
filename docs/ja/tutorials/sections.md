@@ -16,13 +16,13 @@ dewdropテーマなどでは第1・第2・第3レベルの見出しが、それ�
 
 #show: dewdrop-theme.with(aspect-ratio: "16-9")
 
-= Section
+= セクション
 
 == Subsection
 
-=== Title
+=== タイトル
 
-Hello, Touying!
+こんにちは、Touying！
 ```
 
 サブセクションが不要なら、universityテーマのように第1レベルをセクション、第2レベルをスライドタイトルとして使用できます。
@@ -33,11 +33,11 @@ Hello, Touying!
 
 #show: university-theme.with(aspect-ratio: "16-9")
 
-= Section
+= セクション
 
-== Title
+== タイトル
 
-Hello, Touying!
+こんにちは、Touying！
 ```
 
 この動作は `config-common` の `slide-level` で調整できます。`slide-level` は0から始まる見出しの階層を表します。`slide-level: 2` ではセクションとサブセクション、`slide-level: 3` ではサブサブセクションまでが新しいスライドの対象になります。
@@ -66,7 +66,7 @@ Touyingで目次を表示するのは簡単です。
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-= Section
+= セクション
 
 == Subsection
 
@@ -122,7 +122,7 @@ Touyingは見出しの特殊なラベルを認識してスライドを制御し�
 ```typst
 == Only in the handout <touying:handout>
 
-#slide[Only in the presentation] <touying:presentation>
+#slide[プレゼンテーションでのみ表示] <touying:presentation>
 ```
 
 たとえば `<touying:hidden>` は目次スライドの見出しを番号付け・目次・PDFブックマークから除外します（スライド自体は表示されます）。
@@ -140,11 +140,11 @@ Touyingは見出しの特殊なラベルを認識してスライドを制御し�
 
 #components.adaptive-columns(outline(title: none, indent: 1em))
 
-= First Section
+= 最初のセクション
 
 == Slide One
 
-Content.
+内容.
 ```
 
 ## 付録
@@ -159,17 +159,17 @@ Content.
 
 #show: simple-theme
 
-= Main Section
+= 本文のセクション
 
-== Introduction
+== はじめに
 
 Main content here. Check the slide number in the footer.
 
 #show: appendix
 
-= Appendix
+= 付録
 
-== Appendix Slide
+== 付録 Slide
 
-The denominator is frozen at the last main-section slide; the slide number keeps advancing.
+分母は本文最後のスライド数で固定されますが、スライド番号は進み続けます。
 ```

@@ -17,16 +17,16 @@ Typstで見栄えのよいスライドを作るには、ページモデルを正
 #set text(size: 30pt)
 #set page(
   paper: "presentation-16-9",
-  header: container[#innerbox[Header]],
+  header: container[#innerbox[ヘッダー]],
   header-ascent: 30%,
-  footer: container[#innerbox[Footer]],
+  footer: container[#innerbox[フッター]],
   footer-descent: 30%,
 )
 
 #place(top + right)[Margin→]
 #container[
   #container[
-    #innerbox[Content]
+    #innerbox[内容]
   ]
 ]
 ```
@@ -44,8 +44,8 @@ Typstで見栄えのよいスライドを作るには、ページモデルを正
 ```typst
 #set page(
   margin: (x: 4em, y: 2em),
-  header: align(top)[Header],
-  footer: align(bottom)[Footer],
+  header: align(top)[ヘッダー],
+  footer: align(bottom)[フッター],
   header-ascent: 0em,
   footer-descent: 0em,
 )
@@ -58,23 +58,23 @@ Typstで見栄えのよいスライドを作るには、ページモデルを正
 #let innerbox = rect.with(fill: rgb("#d0d0d0"))
 #let margin = (x: 4em, y: 2em)
 
-// negative padding for header and footer
+// ヘッダーとフッターに負のパディングを指定
 #let negative-padding = pad.with(x: -margin.x, y: 0em)
 
 #set text(size: 30pt)
 #set page(
   paper: "presentation-16-9",
   margin: margin,
-  header: negative-padding[#container[#align(top)[#innerbox(width: 100%)[Header]]]],
+  header: negative-padding[#container[#align(top)[#innerbox(width: 100%)[ヘッダー]]]],
   header-ascent: 0em,
-  footer: negative-padding[#container[#align(bottom)[#innerbox(width: 100%)[Footer]]]],
+  footer: negative-padding[#container[#align(bottom)[#innerbox(width: 100%)[フッター]]]],
   footer-descent: 0em,
 )
 
 #place(top + right)[↑Margin→]
 #container[
   #container[
-    #innerbox[Content]
+    #innerbox[内容]
   ]
 ]
 ```
@@ -89,8 +89,8 @@ Typstでは `set page(..)` でページ設定を変更すると、現在のペ�
 #show: default-theme.with(
   config-page(
     margin: (x: 4em, y: 2em),
-    header: align(top)[Header],
-    footer: align(bottom)[Footer],
+    header: align(top)[ヘッダー],
+    footer: align(bottom)[フッター],
     header-ascent: 0em,
     footer-descent: 0em,
   ),
@@ -102,7 +102,7 @@ Typstでは `set page(..)` でページ設定を変更すると、現在のペ�
 同様に、テーマのヘッダーやフッターが好みに合わない場合は、次のように変更できます。
 
 ```typst
-config-page(footer: [Custom Footer])
+config-page(footer: [独自のフッター])
 ```
 
 :::warning[注意]
@@ -122,9 +122,9 @@ config-page(footer: [Custom Footer])
 >>> #import themes.simple: *
 >>> #show: simple-theme
 #slide[
-  First column.
+  1列目の内容です。
 ][
-  Second column.
+  2列目の内容です。
 ]
 ```
 
@@ -135,9 +135,9 @@ config-page(footer: [Custom Footer])
 >>> #import themes.simple: *
 >>> #show: simple-theme
 #slide(composer: (1fr, auto))[
-  First column.
+  1列目の内容です。
 ][
-  Second column.
+  2列目の内容です。
 ]
 ```
 
@@ -217,17 +217,17 @@ config-page(footer: [Custom Footer])
 はみ出しによる改ページを防ぐには `config-common(breakable: false)` を指定します。
 
 ```typst
-// Prevent overflow, warn on overflow (default behavior when breakable: false)
+// はみ出しを防ぎ、超過時に警告する（breakable: false の既定動作）
 #show: simple-theme.with(
   config-common(breakable: false),
 )
 
-// Prevent overflow and visually clip overflowing content
+// はみ出しを防ぎ、超過部分を切り取る
 #show: simple-theme.with(
   config-common(breakable: false, clip: true),
 )
 
-// Prevent overflow, disable overflow detection (performance-first)
+// はみ出しを防ぎ、検出を無効化する（性能優先）
 #show: simple-theme.with(
   config-common(breakable: false, detect-overflow: false),
 )
@@ -252,7 +252,7 @@ config-page(footer: [Custom Footer])
 >>> #show: simple-theme.with(config-common(breakable: false))
 == This slide's overflow will be clipped
 
-// Enable clipping for a specific slide
+// 特定のスライドで切り取りを有効にする
 #show: touying-set-config.with(config-common(clip: true))
 
 #lorem(500)

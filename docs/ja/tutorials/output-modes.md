@@ -24,7 +24,7 @@ sidebar_position: 10
   config-common(export-mode: "article"),
 )
 
-== A Section
+== A セクション
 
 Compiled as an article rather than as a deck.
 ```

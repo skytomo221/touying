@@ -90,7 +90,7 @@ sidebar_position: 1
 >>> #show: simple-theme
 #slide[
   #utils.fit-to-width(1fr)[
-    #text(weight: "bold")[A Very Long Presentation Title That Should Fill the Entire Slide Width]
+    #text(weight: "bold")[スライド幅いっぱいに広がる非常に長いプレゼンテーションのタイトル]
   ]
 ]
 ```

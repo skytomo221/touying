@@ -16,8 +16,8 @@ sidebar_position: 9
 #align(horizon+center, text(size: 2em)[Light in, sugar out.])
 
 #speaker-note[
-  - Recap respiration from the previous section.
-  - Time check: we should be at the 10 minute mark.
+  - 前のセクションの呼吸に関する内容を振り返ります。
+  - 時間を確認します。ここで10分経過している想定です。
 ]
 ```
 
@@ -93,7 +93,7 @@ typst compile slides.typ --input notes=true notes.pdf
 // only on subslide 2
 #speaker-note(subslide: 2)[Mention the caveat here.]
 
-// on every subslide, regardless of where it sits
+// 配置場所によらず、すべてのサブスライドで表示
 #speaker-note(subslide: none)[Keep an eye on the clock.]
 ```
 

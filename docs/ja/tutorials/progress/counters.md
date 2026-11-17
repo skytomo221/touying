@@ -11,7 +11,7 @@ Touyingにはプレゼンテーションの進捗を追跡・表示するカウ�
 `utils.slide-counter` は、スライドごとに増加する基本的なTypstのカウンターです。
 
 ```typst
-// Display the current slide number
+// 現在のスライド番号を表示
 #context utils.slide-counter.display()
 ```
 
@@ -30,13 +30,13 @@ Touyingにはプレゼンテーションの進捗を追跡・表示するカウ�
   ),
 )
 
-= Section
+= セクション
 
-== First Slide
+== 最初のスライド
 
-Content here.
+ここに内容を記述します。
 
-== Second Slide
+== 2番目のスライド
 
 More content.
 ```
@@ -57,7 +57,7 @@ More content.
 
 ```typst
 #utils.touying-progress(ratio => {
-  // ratio is a float between 0.0 and 1.0
+  // 進捗率は0.0〜1.0の浮動小数点数
   box(width: ratio * 100%, height: 4pt, fill: primary)
 })
 ```
@@ -74,23 +74,23 @@ More content.
 
 #show: simple-theme
 
-= Main Section
+= 本文のセクション
 
-== Introduction
+== はじめに
 
-The slide count increments normally here.
+ここでは通常どおりスライド数が増加します。
 
-== Second Slide
+== 2番目のスライド
 
 Still counting.
 
 #show: appendix
 
-= Appendix
+= 付録
 
 == Backup Slide
 
-The denominator still shows the count from the last main slide,
+分母は引き続き本文最後のスライド数を示します。
 while the slide number itself keeps advancing.
 ```
 
@@ -98,6 +98,6 @@ while the slide number itself keeps advancing.
 
 ```typst
 #slide(config: config-common(freeze-slide-counter: true))[
-  This slide does not advance the slide counter.
+  このスライドはスライドカウンターを進めません。
 ]
 ```

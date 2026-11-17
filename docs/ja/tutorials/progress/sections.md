@@ -11,10 +11,10 @@ Touyingは各スライドに不可視の見出しを挿入するため、Typst�
 `utils.display-current-heading(level: N)` は指定したレベルで直近の見出しの文字列を返します。多くのテーマがヘッダーの表示に使っています。
 
 ```typst
-// Show the current section (level 1) in the header
+// ヘッダーに現在のセクション（レベル1）を表示
 utils.display-current-heading(level: 1)
 
-// Show the current subsection (level 2)
+// 現在のサブセクション（レベル2）を表示
 utils.display-current-heading(level: 2)
 ```
 
@@ -43,15 +43,15 @@ utils.display-current-short-heading(level: 2)
   ),
 )
 
-= My Section
+= 私のセクション
 
-== First Slide
+== 最初のスライド
 
-Header shows "First Slide" on the right side.
+ヘッダー shows "最初のスライド" on the right side.
 
-== Second Slide
+== 2番目のスライド
 
-Header updates automatically.
+ヘッダー updates automatically.
 ```
 
 ## 段階的に変化するアウトライン
@@ -68,17 +68,17 @@ Touyingには進捗に応じて変化するアウトラインのユーティリ�
 
 #show: dewdrop-theme.with(aspect-ratio: "16-9")
 
-= Introduction
+= はじめに
 
 == Overview <touying:hidden>
 
 #components.progressive-outline()
 
-= Background
+= 背景
 
 == Slide
 
-Content.
+内容.
 ```
 
 [`components.adaptive-columns(outline(...))`](https://touying-typ.github.io/docs/reference/components/adaptive-columns) は通常の [`outline()`](https://typst.app/docs/reference/model/outline/) を適切な列数に分け、1ページに収める方法です。
@@ -93,7 +93,7 @@ Content.
 
 #show: dewdrop-theme.with(aspect-ratio: "16-9")
 
-= Introduction
+= はじめに
 
 == Overview <touying:hidden>
 
@@ -108,11 +108,11 @@ Content.
   title: none,
 )
 
-= Background
+= 背景
 
 == Slide
 
-Content.
+内容.
 ```
 
 見た目の整った既定値がないため、各項目を自分で指定する必要があります。パラメーターによっては値が自動的に繰り返されるものと、そうでないものがあります。`set` ルールでアウトライン項目を直接変更する方法もあります。そのために現在のセクション情報を取得するヘルパーも用意されています。
@@ -135,13 +135,13 @@ Content.
 = Start
 == Start Sub
 #lorem(5)
-= My content
+= 私の内容
 == My heading
 #lorem(5)
 ---
 #{// displays all top levels and all levels of the current top-level normally,
-  // with future siblings and other top levels semi-transparent
-  // the current entry bold and all others red.
+  // 後続の同階層項目とほかの最上位項目を半透明にする
+  // 現在の項目を太字に、それ以外を赤色にする
 
   show outline.entry: it => {
     let relationship = utils.section-relationship(it)
@@ -151,7 +151,7 @@ Content.
       "bold"
     } else { "regular" }
     if it.level > 1 and calc.abs(relationship) > 1 {
-      text(fill: red, it) //normally you put `none` here.
+      text(fill: red, it) // 通常はここに `none` を指定する
     } else {
       text(fill: utils.update-alpha(text.fill, alpha), weight: weight, it)
     }
@@ -165,7 +165,7 @@ Content.
 == Another heading
 #lorem(5)
 
-= Next Top Level
+= 次の最上位見出し
 
 == Subsection
 #lorem(5)

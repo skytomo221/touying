@@ -33,11 +33,11 @@ Touyingは通常のTypst文書と同様の簡潔な構文と柔軟な設定を�
 #show: university-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.school,
   ),
@@ -52,11 +52,11 @@ Touyingは通常のTypst文書と同様の簡潔な構文と柔軟な設定を�
 // content.typ
 #import "/globals.typ": *
 
-= The Section
+= The セクション
 
-== Slide Title
+== Slide タイトル
 
-Hello, Touying!
+こんにちは、Touying！
 
 #focus-slide[
   Focus on me.
@@ -74,11 +74,11 @@ Hello, Touying!
 #show: university-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Title],
-    subtitle: [Subtitle],
-    author: [Authors],
+    title: [タイトル],
+    subtitle: [サブタイトル],
+    author: [著者],
     date: datetime.today(),
-    institution: [Institution],
+    institution: [所属],
     contact: [contact\@mail.com],
     logo: emoji.school,
   ),
@@ -94,11 +94,11 @@ And
 // sections/content.typ
 #import "/globals.typ": *
 
-= The Section
+= The セクション
 
-== Slide Title
+== Slide タイトル
 
-Hello, Touying!
+こんにちは、Touying！
 
 #focus-slide[
   Focus on me.

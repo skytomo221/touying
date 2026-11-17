@@ -30,19 +30,19 @@ sidebar_position: 2
   ],
 )
 
-= Navigation Demo
+= ナビゲーションの例
 
 == Slide A
 
-This slide has a pause.
+このスライドにはpauseがあります。
 
 #pause
 
-This appears on the next subslide.
+これは次のサブスライドで表示されます。
 
 == Slide B
 
-Now the page-level links can jump between full slides.
+ページ単位のリンクでスライド全体の間を移動できます。
 ```
 
 ## ミニスライドのナビゲーション
@@ -70,17 +70,17 @@ Now the page-level links can jump between full slides.
     ),
 )
 
-= Introduction
+= はじめに
 
 == Motivation
 
-The mini-slides row updates as you move.
+移動に合わせてミニスライドの表示が更新されます。
 
 == Scope
 
-Another subsection.
+別のサブセクションです。
 
-= Methods
+= 方法
 
 == Setup
 
@@ -110,7 +110,7 @@ Touyingには単独の `sidebar-navigation` 関数はありません。Dewdrop�
 )
 #outline-slide()
 
-= Part I <touying:skip>
+= パートI <touying:skip>
 
 == Problem
 
@@ -120,11 +120,11 @@ Sidebar highlights where you are in the outline.
 
 Indented subsection entries.
 
-= Part II
+= パートII
 
 == Solution
 
-The active section and subsection are emphasized automatically.
+現在のセクションとサブセクションが自動的に強調されます。
 ```
 
 この方式を採用する場合は、dewdropテーマの実装を参考にしてください。

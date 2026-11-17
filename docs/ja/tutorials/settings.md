@@ -39,14 +39,14 @@ TouyingはBeamerと同様に、統一されたAPIでグローバル情報を管�
 
 ```typc
 config-info(
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
+  title: [タイトル],
+  subtitle: [サブタイトル],
+  author: [著者],
   date: datetime.today(),
-  institution: [Institution],
+  institution: [所属],
   contact: [contact\@mail.com],
   logo: [logo.png],
-  extra: (supervisor:[Supervisor],),
+  extra: (supervisor:[指導者],),
 )
 ```
 
@@ -96,7 +96,7 @@ Touyingの設定は `config-*` 関数群を通してテーマに渡され、そ�
 #import themes.article: article-theme
 
 #show: simple-theme.with(
-  config-info(title: [Title], author: [Author], date: datetime.today()),
+  config-info(title: [タイトル], author: [著者], date: datetime.today()),
   config-common(
     export-mode: "article",
     article-theme: article-theme.with(numbering: "1.1"),
@@ -138,17 +138,17 @@ Touyingの設定は `config-*` 関数群を通してテーマに渡され、そ�
 
 == Normal Slide
 
-This slide uses the default settings.
+このスライドは既定の設定を使います。
 
 
 
-== Blue Background Slide
+== Blue 背景 Slide
 #show: touying-set-config.with(config-page(fill: blue.lighten(80%)))
-This slide has a blue background applied via `touying-set-config`.
+このスライドには `touying-set-config` による青い背景が適用されています。
 
 == Red Accent Slide
 #show: touying-set-config.with(config-colors(primary: red))
-This slide uses a red primary color, e.g. in `#alert` boxes.
+このスライドでは `#alert` などの基本色が赤くなります。
 
 #alert[This is an alert box with red accent color.]
 
@@ -156,11 +156,11 @@ This slide uses a red primary color, e.g. in `#alert` boxes.
 #show: touying-set-config.with(config-methods(
   cover: utils.alpha-changing-cover,
 ))
-Initial Content.
+Initial 内容.
 
 #pause
 
-Content that is hidden by showing with low alpha value.
+低いアルファ値で薄く表示される内容です。
 ```
 
 ## ローカル設定の上書き
@@ -188,15 +188,15 @@ Only this slide has a light purple background, but the next slide goes back bein
 
 >>> #show: codly-init.with()
 >>> #show: simple-theme.with(aspect-ratio: "16-9")
-== Content Slide
-Some content.
+== 内容 Slide
+いくつかの内容です。
 #show: touying-set-config.with(defer:true, config-common(appendix:true))
-// you can just write `show: appendix`
-== Appendix
+// `show: appendix` と書くだけでもよい
+== 付録
 Page counter does no longer increase.
 #show: touying-set-config.with(defer:true, (slide-preamble:{codly(languages: codly-languages)}))
 == Deferred Config Change
-Now we have codly available.
+これでcodlyが使えるようになりました。
 ```
 
 ## カウンターの固定
@@ -234,7 +234,7 @@ config-common(frozen-counters: (theorem-counter,))
 `common` のフィールドはトップレベルに登録されるため、直接参照できます。
 
 ```typst
-#touying-get-config().handout  // same as .common.handout
+#touying-get-config().handout  // .common.handout と同じ
 ```
 
 ### キーによる取得
@@ -244,7 +244,7 @@ config-common(frozen-counters: (theorem-counter,))
 ```typst
 #touying-get-config("info.author")
 
-#touying-get-config("info")  // returns the entire info sub-dict
+#touying-get-config("info")  // infoの部分辞書全体を返す
 ```
 
 ### 既定値
@@ -262,7 +262,7 @@ config-common(frozen-counters: (theorem-counter,))
 ```typst
 #show: touying-set-config.with((random: (dict: (value: 123))))
 
-#touying-get-config("random.dict.value")  // displays "123"
+#touying-get-config("random.dict.value")  // 「123」を表示
 ```
 
 :::warning[注意]
