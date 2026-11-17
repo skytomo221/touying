@@ -1,0 +1,8 @@
+{
+  "label": "テーマ",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Touyingの組み込みテーマと独自テーマの作成方法を紹介します。"
+  }
+}

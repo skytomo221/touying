@@ -1,0 +1,8 @@
+{
+  "label": "チュートリアル",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Touyingの主な機能を段階的に学べるチュートリアルです。"
+  }
+}
