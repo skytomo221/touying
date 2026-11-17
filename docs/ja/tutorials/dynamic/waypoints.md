@@ -80,7 +80,7 @@ sidebar_position: 7
 
   #uncover(<part>)[Shown from the first part: waypoint on.]
 
-  #effect(text.with(fill: red), <part:main>)[Highlighted only during main.]
+  #effect(text.with(fill: red), <part:main>)[mainの範囲だけ強調されます。]
 ]
 ```
 
@@ -140,7 +140,7 @@ sidebar_position: 7
   #uncover(<done>)[すべて完了!]
 ][
   #alternatives(at: (<steps>, <done>))[
-    _Working through the steps..._
+    _手順を進めています……_
   ][
     _Complete!_
   ]
@@ -164,9 +164,9 @@ sidebar_position: 7
   #uncover(from-wp(<done>))[すべて完了, even before the remark!]
 ][
   #waypoint(<parallel>, start: <done>)
-  Explaining stuff.
+  内容を説明します。
   #pause
-  More explanation.
+  さらに説明します。
 ]
 ```
 

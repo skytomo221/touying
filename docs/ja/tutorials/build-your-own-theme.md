@@ -74,7 +74,7 @@ Touyingの `themes` ディレクトリに入れて組み込みテーマにする
 通常、スライド作成の最初の段階では文字サイズとページの縦横比を決めるため、初期化メソッドを登録します。
 
 ```example
-// bamboo.typ
+// bamboo.typ（Bambooテーマの定義）
 #import "@preview/touying:0.8.0": *
 
 #let bamboo-theme(
@@ -95,7 +95,7 @@ Touyingの `themes` ディレクトリに入れて組み込みテーマにする
   body
 }
 
-// main.typ
+// main.typ（メインの文書）
 <<< #import "@preview/touying:0.8.0": *
 <<< #import "bamboo.typ": *
 
@@ -105,7 +105,7 @@ Touyingの `themes` ディレクトリに入れて組み込みテーマにする
 
 == 最初のスライド
 
-A slide with a title and an *important* information.
+タイトルと*重要な*情報を含むスライドです。
 ```
 
 `bamboo-theme` 関数を作成し、`aspect-ratio` パラメーターでページの縦横比を設定しています。`set text(size: 20pt)` では文字サイズを指定します。`set par(justify: true)` などのグローバルなスタイルも追加できます。`self` が必要な場合は、`config-methods(init: (self: none, body) => { .. })` を使って `init` メソッドを登録する方法があります。
@@ -198,7 +198,7 @@ config-methods(alert: utils.alert-with-primary-color)
 `slide-fn` は `config-methods` ではなく `config-common` のキーです。`config-methods` は未知のキーを `..args` で `self.methods` に集めるため、`config-methods(slide-fn: slide)` は警告やエラーなしでコンパイルできますが、設定は有効にならずヘッダーやフッターが消えてしまいます。後述の `new-section-slide-fn` や `notes-fn` などの `*-fn` キーも同様です。
 
 ```example
-// bamboo.typ
+// bamboo.typ（Bambooテーマの定義）
 #import "@preview/touying:0.8.0": *
 
 #let slide(title: auto, ..args) = touying-slide-wrapper(self => {
@@ -273,7 +273,7 @@ config-methods(alert: utils.alert-with-primary-color)
 }
 
 
-// main.typ
+// main.typ（メインの文書）
 <<< #import "@preview/touying:0.8.0": *
 <<< #import "bamboo.typ": *
 
@@ -283,7 +283,7 @@ config-methods(alert: utils.alert-with-primary-color)
 
 == 最初のスライド
 
-A slide with a title and an *important* information.
+タイトルと*重要な*情報を含むスライドです。
 ```
 
 ## 特殊なスライドのカスタマイズ
@@ -309,7 +309,7 @@ A slide with a title and an *important* information.
 ```
 
 ```example
-// bamboo.typ
+// bamboo.typ（Bambooテーマの定義）
 #import "@preview/touying:0.8.0": *
 
 #let slide(title: auto, ..args) = touying-slide-wrapper(self => {
@@ -432,7 +432,7 @@ A slide with a title and an *important* information.
 }
 
 
-// main.typ
+// main.typ（メインの文書）
 <<< #import "@preview/touying:0.8.0": *
 <<< #import "bamboo.typ": *
 
@@ -455,7 +455,7 @@ A slide with a title and an *important* information.
 
 == 最初のスライド
 
-A slide with a title and an *important* information.
+タイトルと*重要な*情報を含むスライドです。
 
 #focus-slide[
   Focus on it!
@@ -477,7 +477,7 @@ Touying 0.8.0以降は `notes` 関数を定義し、`config-common(notes-fn: not
 `header` はノートページの上部を横幅いっぱいに占めます。既定では現在のセクション見出しを表示します。
 
 ```example
-// bamboo.typ
+// bamboo.typ（Bambooテーマの定義）
 #import "@preview/touying:0.8.0": *
 
 #let slide(title: auto, ..args) = touying-slide-wrapper(self => {
@@ -616,7 +616,7 @@ Touying 0.8.0以降は `notes` 関数を定義し、`config-common(notes-fn: not
 }
 
 
-// main.typ
+// main.typ（メインの文書）
 <<< #import "@preview/touying:0.8.0": *
 <<< #import "bamboo.typ": *
 
@@ -640,7 +640,7 @@ Touying 0.8.0以降は `notes` 関数を定義し、`config-common(notes-fn: not
 
 == 最初のスライド
 
-A slide with a title and an *important* information.
+タイトルと*重要な*情報を含むスライドです。
 
 #speaker-note[
   Remember to explain why bamboo is the fastest-growing plant on earth.

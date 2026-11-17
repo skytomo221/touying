@@ -195,11 +195,11 @@ TouyingでのFletcherアニメーション：
 ]
 #example[
   $2$、$3$、$17$ は素数です。
-  @cor_largest_prime shows that this list is not exhaustive!
+  @cor_largest_prime より、この一覧がすべてではないとわかります。
 ]
 
 #theorem(title: "Euclid")[
-  There are infinitely many primes.
+  素数は無限に存在します。
 ]
 #pagebreak(weak: true)
 #proof[
@@ -211,14 +211,14 @@ TouyingでのFletcherアニメーション：
 ]
 
 #corollary[
-  There is no largest prime number.
+  最大の素数は存在しません。
 ] <cor_largest_prime>
 #corollary[
-  There are infinitely many composite numbers.
+  合成数は無限に存在します。
 ]
 
 #theorem[
-  There are arbitrarily long stretches of composite numbers.
+  任意の長さだけ連続する合成数が存在します。
 ]
 
 #proof[
@@ -242,12 +242,12 @@ TouyingでのFletcherアニメーション：
 
 #cols(columns: (1fr, 1fr), gutter: 1em, lazy-layout: true)[
   #emph-block[
-    First column with equal height: #lorem(10)
+    高さを揃えた1列目： #lorem(10)
     #lazy-v(1fr)
   ]
 ][
   #emph-block[
-    Second column with equal height: : #lorem(15)
+    高さを揃えた2列目： #lorem(15)
     #lazy-v(1fr)
   ]
 ]
@@ -264,7 +264,7 @@ TouyingでのFletcherアニメーション：
 
 == 付録
 
-Please pay attention to the current slide number.
+現在のスライド番号に注目してください。
 ```
 
 Touyingには多数の組み込みテーマがあり、たとえば `#show: university-theme.with()` でuniversityテーマを使えます。テーマの詳細については、後続の節を参照してください。

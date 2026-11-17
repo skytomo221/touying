@@ -111,7 +111,7 @@ Typstの `place` 関数を使用します。
 #import themes.simple: *
 #show: simple-theme
 #slide[
-  Main slide content here.
+  ここにスライドの本文を記述します。
 
   #place(bottom + right, dx: -1em, dy: -1em)[
     #rect(fill: blue.lighten(80%), inset: 0.5em)[Note]
@@ -299,12 +299,12 @@ Typst標準の `outline` を `components.adaptive-columns` で囲みます。
 #slide[
   == 私のスライド
 
-  Visible content here.
+  ここに表示する内容を記述します。
 
   #speaker-note[
-    - Remind the audience of the previous topic.
-    - Emphasize the key takeaway.
-    - Time check: should be at 10 min mark.
+    - 前の話題を聴衆に振り返ってもらいます。
+    - 最も重要な要点を強調します。
+    - 時間を確認します。ここで10分経過している想定です。
   ]
 ]
 ```
@@ -341,7 +341,7 @@ Typst標準の `outline` を `components.adaptive-columns` で囲みます。
 #show: simple-theme.with(
   aspect-ratio: "16-9",
   footer-right: context [
-    スライド #utils.slide-counter.display() of #utils.last-slide-number
+    スライド #utils.slide-counter.display() / #utils.last-slide-number
   ],
 )
 
@@ -624,7 +624,7 @@ Touyingでは深い階層のサブセクションも含め、既定で `config-c
 >>>
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
-  config-info(title: [content slides next to section slides]),
+  config-info(title: [セクションスライドの次に本文スライドを配置]),
   config-common(receive-body-for-new-section-slide-fn: true)
 )
 
@@ -677,7 +677,7 @@ Touyingでは深い階層のサブセクションも含め、既定で `config-c
 
 == 通常のスライド
 
-Appears in the outline.
+目次に表示されます。
 
 == 挿入スライド <touying:unoutlined>
 
@@ -685,7 +685,7 @@ Appears in the outline.
 
 == Another 通常のスライド
 
-Also appears in the outline.
+これも目次に表示されます。
 ```
 
 ### 新しいスライドを作成する見出しレベルを変更するには？
@@ -707,11 +707,11 @@ Also appears in the outline.
 
 == Subsection スライド
 
-Each `==` heading creates a new slide.
+各 `==` 見出しから新しいスライドが作成されます。
 
 === Sub-subheading
 
-Sub-subheadings do not create new slides.
+第3レベルの見出しでは新しいスライドは作られません。
 ```
 
 ### 独自のヘッダーやフッターを追加するには？
