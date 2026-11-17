@@ -84,7 +84,7 @@ Touyingには美しいスライドを簡単に作成できる組み込みテー�
 
 #pause
 
-Just like this.
+このように表示されます。
 
 #meanwhile
 

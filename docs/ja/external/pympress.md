@@ -26,7 +26,7 @@ sidebar_position: 4
 
 #pause
 
-Just like this.
+このように表示されます。
 
 #meanwhile
 

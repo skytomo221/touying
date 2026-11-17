@@ -26,7 +26,7 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
 
 // CeTZのアニメーション
 #slide[
-  Cetz in Touying:
+  TouyingでのCeTZ：
 
   #cetz-canvas({
     import cetz.draw: *
@@ -47,7 +47,7 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
 
 // Fletcherのアニメーション
 #slide[
-  Fletcher in Touying:
+  TouyingでのFletcher：
 
   #fletcher-diagram(
     node-stroke: .1em,
@@ -81,9 +81,9 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
 // Touying向けCeTZのバインディング
 #let cetz-canvas = touying-diagram.with(cetz) // 名前を公開するパッケージ向けの新しい構文
 
-== Only and Uncover in Cetz
+== CeTZでのOnlyとUncover
 
-Cetz in Touying in subslide #touying-get-config("subslide")
+TouyingでCeTZを使ったサブスライド #touying-get-config("subslide")
 
 #cetz-canvas({
   import cetz.draw: *
@@ -115,7 +115,7 @@ Cetz in Touying in subslide #touying-get-config("subslide")
 #slide(repeat: 3, self => [
   #let (uncover, only, alternatives) = utils.methods(self)
 
-  Cetz in Touying in subslide #self.subslide:
+  TouyingでCeTZを使ったサブスライド #self.subslide:
 
   #cetz.canvas({
     import cetz.draw: *

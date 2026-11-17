@@ -22,7 +22,7 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
 
 // CeTZのアニメーション
 #slide[
-  Cetz in Touying:
+  TouyingでのCeTZ：
 
   #cetz-canvas({
     import cetz.draw: *
@@ -43,7 +43,7 @@ Touyingは同義の関数 `touying-diagram` と `touying-reduce` を提供して
 
 // Fletcherのアニメーション
 #slide[
-  Fletcher in Touying:
+  TouyingでのFletcher：
 
   #fletcher-diagram(
     node-stroke: .1em,

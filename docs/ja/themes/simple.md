@@ -123,7 +123,7 @@ Simpleテーマは独自の `notes` 関数を `config-common(notes-fn: notes)` �
   July 23
 ]
 
-== First slide
+== 最初のスライド
 
 #lorem(20)
 
@@ -135,9 +135,9 @@ Simpleテーマは独自の `notes` 関数を `config-common(notes-fn: notes)` �
 
 = 新しいセクションを始めましょう！
 
-== Dynamic slide
+== 動的なスライド
 
-Did you know that...
+知っていましたか……
 
 #pause
 

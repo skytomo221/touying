@@ -192,13 +192,13 @@ $ x_(n+1) = (x_n + a/x_n) / 2 $
   Wake up!
 ]
 
-== Simple Animation
+== シンプルなアニメーション
 
 `#pause` を使うと、#pause 内容を後から表示できます。
 
 #meanwhile
 
-Meanwhile, #pause we can also use `#meanwhile` to display other content synchronously.
+また、#pause `#meanwhile` を使って別の内容を同時に表示できます。
 
 #speaker-note[
   + これは発表者ノートです。
@@ -211,5 +211,5 @@ Meanwhile, #pause we can also use `#meanwhile` to display other content synchron
 
 ---
 
-Please pay attention to the current slide number.
+現在のスライド番号に注目してください。
 ```

@@ -89,11 +89,11 @@ sidebar_position: 4
 #import themes.simple: *
 #show: simple-theme
 #slide(composer: (1fr, 1fr))[
-  == Left Column
+  == 左列
 
   左側に表示する文章です。
 ][
-  == Right Column
+  == 右列
 
   右側に表示する文章です。
 ]
@@ -114,7 +114,7 @@ Typstの `place` 関数を使用します。
   ここにスライドの本文を記述します。
 
   #place(bottom + right, dx: -1em, dy: -1em)[
-    #rect(fill: blue.lighten(80%), inset: 0.5em)[Note]
+    #rect(fill: blue.lighten(80%), inset: 0.5em)[注釈]
   ]
 ]
 ```
@@ -353,7 +353,7 @@ Typst標準の `outline` を `components.adaptive-columns` で囲みます。
 
 == 2枚目のスライド
 
-Still counting.
+番号は引き続き進みます。
 ```
 
 ### 見出しの番号をなくすには？
@@ -709,7 +709,7 @@ Touyingでは深い階層のサブセクションも含め、既定で `config-c
 
 各 `==` 見出しから新しいスライドが作成されます。
 
-=== Sub-subheading
+=== 第3レベルの見出し
 
 第3レベルの見出しでは新しいスライドは作られません。
 ```
@@ -839,11 +839,11 @@ Touyingでは深い階層のサブセクションも含め、既定で `config-c
 
 == スライド
 
-Content here.
+ここに内容を記述します。
 
 #pause
 
-More content.
+さらに内容を追加します。
 ```
 
 実行タイミングに応じて `preamble`、`slide-preamble`、`subslide-preamble`、`page-preamble` があります。`page-preamble` だけがスライドのヘッダーより前に実行され、ほかはそれぞれの対象の最初のページのヘッダーの後に実行されます。
@@ -865,13 +865,13 @@ More content.
 
 == スライド1
 
-Content here.
+ここに内容を記述します。
 
 ---
 
 == スライド2
 
-Separated by horizontal rule.
+水平線によって分割されています。
 ```
 
 ---
@@ -928,7 +928,7 @@ Touyingに貢献する手順は次のとおりです。
   config-info(
     title: [私のプレゼンテーション],
     subtitle: [A サブタイトル],
-    author: [Jane Doe],
+    author: [山田花子],
     date: datetime.today(),
     institution: [My University],
     contact: [contact\@mail.com],
@@ -941,7 +941,7 @@ Touyingに貢献する手順は次のとおりです。
 
 == 最初のスライド
 
-Content here.
+ここに内容を記述します。
 ```
 
 ### 1つのスライドだけ設定を上書きするには？
@@ -953,7 +953,7 @@ Content here.
 #import themes.simple: *
 #show: simple-theme
 #slide[
-  Normal slide.
+  通常のスライドです。
 ]
 
 #touying-set-config(config-page(fill: rgb("#fff3cd")))[
@@ -963,7 +963,7 @@ Content here.
 ]
 
 #slide[
-  Back to normal.
+  通常の設定に戻りました。
 ]
 ```
 
@@ -1041,7 +1041,7 @@ typst watch slides.typ
 
 == スライド
 
-The header shows the current section name.
+ヘッダーに現在のセクション名が表示されます。
 ```
 
 ### `pinit` と組み合わせて注釈を付けるには？

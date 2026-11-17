@@ -20,7 +20,7 @@ typst compile --input export-mode=article talk.typ talk.pdf   # 記事出力
   config-common(export-mode: "article"),
 )
 
-== A Section
+== セクション
 
 このページにはスライド用ではなく記事用のテーマが適用されます。
 ```
@@ -41,9 +41,9 @@ typst compile --input export-mode=article talk.typ talk.pdf   # 記事出力
   config-common(export-mode: "article"),
 )
 
-== A Section
+== セクション
 
-Ordinary content. #pause This appears on a second subslide in the deck, and inline here.
+通常の内容です。#pause これはスライドでは2番目のサブスライドに、記事ではこの位置に表示されます。
 ```
 
 ## 記事テーマの選択
@@ -59,9 +59,9 @@ Touyingには既定で使われるシンプルな記事テーマが含まれて�
   config-common(export-mode: "article", article-theme: arkheion),
 )
 
-== A Section
+== セクション
 
-Rendered by arkheion rather than by touying's own article theme.
+Touying標準の記事テーマではなくarkheionによって描画されます。
 ```
 
 テーマは記事全体に適用する関数です。指定時に `.with(..)` で設定してください。
@@ -80,9 +80,9 @@ Rendered by arkheion rather than by touying's own article theme.
 
 = あるパート
 
-== A Section
+== セクション
 
-Numbered by the article theme.
+記事テーマによって番号が付きます。
 ```
 
 ### スライドのメタデータを渡す
@@ -100,7 +100,7 @@ Numbered by the article theme.
   config-article(available-fields: (title: "info.title")),
 )
 
-== A Section
+== セクション
 
 上のタイトルは `config-info` から取得されました。
 ```
@@ -126,7 +126,7 @@ Numbered by the article theme.
   config-common(export-mode: "article"),
 )
 
-== Why This Matters
+== なぜ重要なのか
 
 - terse
 - bullet
@@ -156,7 +156,7 @@ Numbered by the article theme.
   cover: cetz.draw.hide.with(bounds: true),
 )
 
-== The Construction
+== 作図
 #canvas(label: "fig", {
   import cetz.draw: *
   rect((0, 0), (4, 3))
@@ -168,7 +168,7 @@ Numbered by the article theme.
   最初に枠を固定します：
   #touying-recall(<fig>, subslides: 1)
 
-  Then the inscribed circle follows:
+  次に内接円を描きます。
   #touying-recall(<fig>, subslides: 2)
 ]
 ```
@@ -186,7 +186,7 @@ Numbered by the article theme.
 >>> #import "@preview/touying:0.8.0": *
 >>> #import themes.simple: *
 >>> #show: simple-theme.with(config-common(export-mode: "article"))
-== Two Ways To Use A Table
+== 表の2つの使い方
 
 #components.side-by-side[Left half.][Right half.]
 
@@ -289,7 +289,7 @@ config-article(wrap: (
 >>> #show: simple-theme.with(config-common(export-mode: "article"))
 #slides-only(title-slide[])
 
-== A Section
+== セクション
 
 No duplicated title block above this.
 ```

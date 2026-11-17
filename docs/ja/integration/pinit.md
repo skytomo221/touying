@@ -65,7 +65,7 @@ Touyingと組み合わせた使用例：
   #pause
 
   #greybox[
-    Given a function $g(n)$, we denote by $O(g(n))$ the following *set of functions*:
+    関数 $g(n)$ に対して、次の*関数の集合*を $O(g(n))$ と表します。
     #redbold(${f(n): "exists" c > 0 "and" n_0 > 0, "such that" f(n) <= c dot g(n) "for all" n >= n_0}$)
   ]
 
@@ -103,7 +103,7 @@ Touyingと組み合わせた使用例：
 
   #pinit-point-to("que", fill: crimson, redbold[No.])
   #pinit-point-from("ans", body-dx: -150pt)[
-    Show that the equation $(3/2)^n >= c$ \
+    次の不等式 $(3/2)^n >= c$ を示してください \
     has infinitely many solutions for $n$.
   ]
 ]

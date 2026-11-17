@@ -80,7 +80,7 @@ Typst 0.15以降は、1回のコンパイルで複数ファイルをまとめた
   #show: simple-theme
 
   == A slide
-  #speaker-note[Only the speaker sees this.]
+  #speaker-note[これは発表者だけに見えます。]
 ])
 ```
 

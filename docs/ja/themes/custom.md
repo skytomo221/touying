@@ -104,7 +104,7 @@ sidebar_position: 7
 
 Content.
 
-#speaker-note[Remember to slow down here.]
+#speaker-note[ここではゆっくり話すこと。]
 ```
 
 ## 特殊なスライドのタイトルを取得可能にする

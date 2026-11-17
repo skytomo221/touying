@@ -25,7 +25,7 @@ Touyingは [Theorion](https://github.com/OrangeX4/typst-theorion) パッケー�
 
 = 定理
 
-== Prime numbers
+== 素数
 
 #definition[
   A natural number is called a #highlight[_prime number_] if it is greater
@@ -39,7 +39,7 @@ Touyingは [Theorion](https://github.com/OrangeX4/typst-theorion) パッケー�
 #pause
 
 #theorem(title: "Euclid")[
-  There are infinitely many primes.
+  素数は無限に存在します。
 ]
 
 #pagebreak(weak: true)
@@ -53,14 +53,14 @@ Touyingは [Theorion](https://github.com/OrangeX4/typst-theorion) パッケー�
 ]
 
 #corollary[
-  There is no largest prime number.
+  最大の素数は存在しません。
 ] <cor_largest_prime>
 #corollary[
-  There are infinitely many composite numbers.
+  合成数は無限に存在します。
 ]
 
 #theorem[
-  There are arbitrarily long stretches of composite numbers.
+  任意の長さだけ連続する合成数が存在します。
 ]
 
 #proof[

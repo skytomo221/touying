@@ -194,7 +194,7 @@ Stargazerは独自の `notes` 関数を `config-common(notes-fn: notes)` に登�
 
 = セクションA
 
-== Subsection A.1
+== サブセクションA.1
 
 #tblock(title: [定理])[
   A simple theorem.
@@ -202,13 +202,13 @@ Stargazerは独自の `notes` 関数を `config-common(notes-fn: notes)` に登�
   $ x_(n+1) = (x_n + a / x_n) / 2 $
 ]
 
-== Subsection A.2
+== サブセクションA.2
 
 A slide without a title but with *important* information.
 
 = セクションB
 
-== Subsection B.1
+== サブセクションB.1
 
 #lorem(80)
 
@@ -216,17 +216,17 @@ A slide without a title but with *important* information.
   Wake up!
 ]
 
-== Subsection B.2
+== サブセクションB.2
 
 `#pause` を使うと、#pause 内容を後から表示できます。
 
 #pause
 
-Just like this.
+このように表示されます。
 
 #meanwhile
 
-Meanwhile, #pause we can also use `#meanwhile` to #pause display other content synchronously.
+また、#pause `#meanwhile` を使って #pause 別の内容を同時に表示できます。
 
 #show: appendix
 
@@ -234,5 +234,5 @@ Meanwhile, #pause we can also use `#meanwhile` to #pause display other content s
 
 == 付録
 
-Please pay attention to the current slide number.
+現在のスライド番号に注目してください。
 ```
