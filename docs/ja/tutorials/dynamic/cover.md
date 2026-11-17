@@ -20,7 +20,7 @@ sidebar_position: 4
 config-methods(cover: utils.hiding-cover)
 ```
 
-独自のメソッドに求められる仕様は、後述の[独自のカバー関数を作成する](#writing-your-own-cover-function)を参照してください。
+独自のメソッドに求められる仕様は、後述の[独自のカバー関数を作成する](#独自のカバー関数を作成する)を参照してください。
 
 ## 透明度や色を変えるカバー関数
 

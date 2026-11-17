@@ -76,7 +76,7 @@ sidebar_position: 7
 
 ノート用パネルでは `config-page(..)` を使用しません。背景は `fill` と `header-fill` に直接指定してください。
 
-詳しくは[独自テーマを作成する・ノートのカスタマイズ](../tutorials/build-your-own-theme.md#customizing-the-notes)を参照してください。
+詳しくは[独自テーマを作成する・ノートのカスタマイズ](../tutorials/build-your-own-theme.md#発表者ノートのカスタマイズ)を参照してください。
 
 ```example
 #import "@preview/touying:0.8.0": *
