@@ -337,7 +337,7 @@ sidebar_position: 8
   ])
   ```
 
-- **feat: themes style the speaker-note panel through `touying-notes`**
+- **機能：テーマが `touying-notes` を通じて発表者ノートのパネルを装飾可能に**
 
   `touying-notes` は `header`、`header-fill`、`fill`、`note-setting`、`preview-setting` を受け取ります。テーマは `note-setting` でページや内容を装飾できます。`header-height` は既定で内容の高さに合わせて縮み、`header: none` では帯を完全に削除します。`preview-setting` には元のサイズのスライドプレビューが渡されるため、`preview => place(bottom + right, box(scale(x: 30%, y: 15%, reflow: true, preview)))` のように自由に拡大縮小・配置できます。組み込みの6テーマはすべて独自の設定を持ちます。詳しくは[発表者ノート](https://touying-typ.github.io/docs/tutorials/speaker-notes)を参照してください。
 
@@ -413,9 +413,9 @@ sidebar_position: 8
 
 - **修正：`touying-reducer` が `reduce` と `cover` にパッケージ自身の要素形式を渡します**, so a package whose drawing function takes `..args` rather than one array now binds without any adapter.
 
-  A package's element is whatever its element constructor returns, and that differs: a CeTZ `rect(..)` and an alchemist `molecule(..)` are each a one-element array, while a fletcher `node(..)` is content and a lilaq `plot(..)` is a dictionary. Writing the body as a code block (`#cetz-canvas({ rect(..); circle(..) })`) makes Typst join those arrays into one, so the reducer received the elements already unpacked and had to guess how to put one back together when covering it. It always wrapped, which is right for CeTZ and alchemist and wrong for everything else.
+  パッケージの要素はそのコンストラクターが返す値であり、形式はさまざまです。CeTZの `rect(..)` とalchemistの `molecule(..)` は単一要素の配列、Fletcherの `node(..)` は内容、lilaqの `plot(..)` は辞書です。本文をコードブロック（`#cetz-canvas({ rect(..); circle(..) })`）として記述するとTypstが配列を結合するため、reducerは展開済みの要素を受け取り、カバー時に元へ戻す方法を推測する必要がありました。以前は常に配列で囲んでいたため、CeTZやalchemistでは正しく、それ以外では誤っていました。
 
-  The two call styles are distinguishable where the arguments arrive, before any flattening: a code block is a single array-typed positional argument, while elements passed directly are separate arguments. The reducer now records that per item and gives each side back what it started with — `cover` gets a whole element, and `reduce` gets one array for a block body or spread arguments for a variadic one such as `lq.diagram(..plots)`.
+  2種類の呼び出し方法は、引数が渡されてから平坦化されるまでの段階で区別できます。コードブロックは配列型の位置引数1つですが、要素を直接渡した場合は別々の引数になります。reducerはこの情報を要素ごとに記録し、元の形式で渡すようになりました。`cover` は要素全体を受け取り、`reduce` はブロック本文の場合は1つの配列、`lq.diagram(..plots)` のような可変長引数の場合は展開した引数を受け取ります。
 
   ```typst
   // lilaq, whose plots are dictionaries and whose diagram takes `..plots`
