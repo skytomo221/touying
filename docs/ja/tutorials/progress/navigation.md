@@ -72,7 +72,7 @@ sidebar_position: 2
 
 = はじめに
 
-== Motivation
+== 動機
 
 移動に合わせてミニスライドの表示が更新されます。
 
@@ -84,7 +84,7 @@ sidebar_position: 2
 
 == Setup
 
-Current section is highlighted.
+現在のセクションが強調されています。
 ```
 
 ## サイドバーのナビゲーション
@@ -114,15 +114,15 @@ Touyingには単独の `sidebar-navigation` 関数はありません。Dewdrop�
 
 == Problem
 
-Sidebar highlights where you are in the outline.
+サイドバーが目次内の現在位置を強調します。
 
-== Constraints
+== 制約
 
-Indented subsection entries.
+インデントされたサブセクション項目です。
 
 = パートII
 
-== Solution
+== 解決方法
 
 現在のセクションとサブセクションが自動的に強調されます。
 ```

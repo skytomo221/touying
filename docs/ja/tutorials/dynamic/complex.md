@@ -131,7 +131,7 @@ use #only("2-")[`#only` function] for not reserving space,
 #slide(repeat: 3, self => [
   #let (uncover, only, alternatives) = utils.methods(self)
 
-  #alternatives[Ann][Bob][Christopher]
+  #alternatives[アン][ボブ][クリストファー]
   likes
   #alternatives[chocolate][strawberry][vanilla]
   ice cream.
@@ -207,10 +207,10 @@ use #only("2-")[`#only` function] for not reserving space,
 >>> #show: simple-theme
 #let steps = [first #pause second #pause third]
 
-== The Steps
+== 手順
 #steps
 
-== Just the Middle
+== 中間部分だけ
 #touying-render(steps, subslides: 2, base: 1)
 ```
 
@@ -228,7 +228,7 @@ use #only("2-")[`#only` function] for not reserving space,
 >>> #import "@preview/touying:0.8.0": *
 >>> #import themes.simple: *
 >>> #show: simple-theme
-== The Construction
+== 作図
 #box[the frame #pause and the inscribed circle]<fig>
 
 == Later

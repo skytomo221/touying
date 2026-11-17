@@ -11,7 +11,7 @@ sidebar_position: 9
 #import themes.simple: *
 #show: simple-theme
 
-== Photosynthesis
+== 光合成
 
 #align(horizon+center, text(size: 2em)[Light in, sugar out.])
 
@@ -90,11 +90,11 @@ typst compile slides.typ --input notes=true notes.pdf
 ノートも通常の内容と同じように記述位置の `#pause` に従います。`#pause` の後に置いたノートはそのサブスライド以降で表示されます。`subslide:` で上書きできます。
 
 ```typst
-// only on subslide 2
-#speaker-note(subslide: 2)[Mention the caveat here.]
+// サブスライド2だけに表示
+#speaker-note(subslide: 2)[ここで注意点を説明します。]
 
 // 配置場所によらず、すべてのサブスライドで表示
-#speaker-note(subslide: none)[Keep an eye on the clock.]
+#speaker-note(subslide: none)[時間に注意すること。]
 ```
 
 ノート本文に `#pause` を記述して、サブスライドごとに内容を段階表示することもできます。

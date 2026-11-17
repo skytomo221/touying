@@ -136,7 +136,7 @@ Touyingの設定は `config-*` 関数群を通してテーマに渡され、そ�
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-== Normal Slide
+== 通常のスライド
 
 このスライドは既定の設定を使います。
 
@@ -146,13 +146,13 @@ Touyingの設定は `config-*` 関数群を通してテーマに渡され、そ�
 #show: touying-set-config.with(config-page(fill: blue.lighten(80%)))
 このスライドには `touying-set-config` による青い背景が適用されています。
 
-== Red Accent Slide
+== 赤い強調色のスライド
 #show: touying-set-config.with(config-colors(primary: red))
 このスライドでは `#alert` などの基本色が赤くなります。
 
 #alert[This is an alert box with red accent color.]
 
-== Changed Cover
+== 変更したカバー
 #show: touying-set-config.with(config-methods(
   cover: utils.alpha-changing-cover,
 ))
@@ -170,9 +170,9 @@ Initial 内容.
 >>> #import themes.simple: *
 
 >>> #show: simple-theme.with(aspect-ratio: "16-9")
-== Local Config 
+== ローカル設定 
 #slide(config:config-page(fill: purple.lighten(90%)))[
-Only this slide has a light purple background, but the next slide goes back being light blue.
+このスライドだけ背景が薄紫色になり、次のスライドでは薄青色に戻ります。
 ]
 ```
 
@@ -193,9 +193,9 @@ Only this slide has a light purple background, but the next slide goes back bein
 #show: touying-set-config.with(defer:true, config-common(appendix:true))
 // `show: appendix` と書くだけでもよい
 == 付録
-Page counter does no longer increase.
+ページカウンターはこれ以上増加しません。
 #show: touying-set-config.with(defer:true, (slide-preamble:{codly(languages: codly-languages)}))
-== Deferred Config Change
+== 遅延適用する設定変更
 これでcodlyが使えるようになりました。
 ```
 

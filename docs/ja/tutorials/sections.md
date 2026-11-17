@@ -18,7 +18,7 @@ dewdropテーマなどでは第1・第2・第3レベルの見出しが、それ�
 
 = セクション
 
-== Subsection
+== サブセクション
 
 === タイトル
 
@@ -68,7 +68,7 @@ Touyingで目次を表示するのは簡単です。
 
 = セクション
 
-== Subsection
+== サブセクション
 
 #components.adaptive-columns(outline(indent: 1em))
 ```
@@ -120,7 +120,7 @@ Touyingは見出しの特殊なラベルを認識してスライドを制御し�
 ラベルは見出しにもスライド全体にも指定できます。
 
 ```typst
-== Only in the handout <touying:handout>
+== 配布資料でのみ表示 <touying:handout>
 
 #slide[プレゼンテーションでのみ表示] <touying:presentation>
 ```
@@ -136,13 +136,13 @@ Touyingは見出しの特殊なラベルを認識してスライドを制御し�
 
 #show: simple-theme.with(aspect-ratio: "16-9")
 
-== Outline <touying:hidden>
+== 目次 <touying:hidden>
 
 #components.adaptive-columns(outline(title: none, indent: 1em))
 
 = 最初のセクション
 
-== Slide One
+== スライド1
 
 内容.
 ```
@@ -163,7 +163,7 @@ Touyingは見出しの特殊なラベルを認識してスライドを制御し�
 
 == はじめに
 
-Main content here. Check the slide number in the footer.
+ここに本文を配置します。フッターのスライド番号を確認してください。
 
 #show: appendix
 

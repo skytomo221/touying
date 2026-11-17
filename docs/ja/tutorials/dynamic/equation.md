@@ -21,7 +21,7 @@ sidebar_position: 3
 >>> #import themes.simple: *
 >>> #show: simple-theme
 #slide[
-  Equation with pause:
+  pauseを使った数式：
 
   $
     f(x) &= pause x^2 + 2x + 1  \
@@ -30,7 +30,7 @@ sidebar_position: 3
 
   #meanwhile
 
-  Animating an equation is very simple.
+  数式をアニメーション化するのはとても簡単です。
 ]
 ```
 

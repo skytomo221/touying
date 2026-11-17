@@ -458,7 +458,7 @@ config-methods(alert: utils.alert-with-primary-color)
 タイトルと*重要な*情報を含むスライドです。
 
 #focus-slide[
-  Focus on it!
+  ここに注目してください！
 ]
 ```
 
@@ -643,11 +643,11 @@ Touying 0.8.0以降は `notes` 関数を定義し、`config-common(notes-fn: not
 タイトルと*重要な*情報を含むスライドです。
 
 #speaker-note[
-  Remember to explain why bamboo is the fastest-growing plant on earth.
+  竹が世界で最も成長の速い植物である理由を説明すること。
 ]
 
 #focus-slide[
-  Focus on it!
+  ここに注目してください！
 ]
 ```
 

@@ -70,7 +70,7 @@ Touyingには進捗に応じて変化するアウトラインのユーティリ�
 
 = はじめに
 
-== Overview <touying:hidden>
+== 概要 <touying:hidden>
 
 #components.progressive-outline()
 
@@ -95,7 +95,7 @@ Touyingには進捗に応じて変化するアウトラインのユーティリ�
 
 = はじめに
 
-== Overview <touying:hidden>
+== 概要 <touying:hidden>
 
 #components.custom-progressive-outline(
   level: 1,
@@ -133,13 +133,13 @@ Touyingには進捗に応じて変化するアウトラインのユーティリ�
 >>> #set heading(numbering: "1.1")
 
 = Start
-== Start Sub
+== サブセクションの開始
 #lorem(5)
 = 私の内容
-== My heading
+== 私の見出し
 #lorem(5)
 ---
-#{// displays all top levels and all levels of the current top-level normally,
+#{// すべての最上位見出しと、現在の最上位見出しの下位項目を通常どおり表示
   // 後続の同階層項目とほかの最上位項目を半透明にする
   // 現在の項目を太字に、それ以外を赤色にする
 
@@ -159,14 +159,14 @@ Touyingには進捗に応じて変化するアウトラインのユーティリ�
   outline(title: none)
 }
 ---
-=== Subsubheading
+=== 第3レベルの見出し
 #lorem(3)
 
-== Another heading
+== 別の見出し
 #lorem(5)
 
 = 次の最上位見出し
 
-== Subsection
+== サブセクション
 #lorem(5)
 ```

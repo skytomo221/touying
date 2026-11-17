@@ -25,7 +25,7 @@ config-common(handout: true)
 
 = タイトル
 
-== Animated Slide
+== アニメーション付きスライド
 
 最初の項目です。
 
@@ -69,7 +69,7 @@ config-common(handout: true, handout-subslides: "waypoints")
 `<touying:handout>` ラベルを使うと、通常の発表では非表示になり、配布資料モードで**のみ**表示されるスライドを作れます。
 
 ```typst
-== Extra Notes for Handout <touying:handout>
+== 配布資料向けの補足ノート <touying:handout>
 
 このスライドは `handout: true` の場合だけ表示され、それ以外では非表示です。
 ```

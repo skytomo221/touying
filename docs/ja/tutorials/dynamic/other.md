@@ -24,7 +24,7 @@ Touyingは `touying-reduce`（別名 `touying-diagram`）を提供しており�
 
 // CeTZのアニメーション
 #slide[
-  Cetz in Touying:
+  TouyingでのCeTZ：
 
   #cetz-canvas({
     import cetz.draw: *
@@ -45,7 +45,7 @@ Touyingは `touying-reduce`（別名 `touying-diagram`）を提供しており�
 
 // Fletcherのアニメーション
 #slide[
-  Fletcher in Touying:
+  TouyingでのFletcher：
 
   #fletcher-diagram(
     node-stroke: .1em,
@@ -74,7 +74,7 @@ CeTZとFletcherでは `only`、`uncover`、`alternatives` も同様の構文で�
 // インポート、バインディング、テーマ
 
 #slide[
-  Cetz in Touying:
+  TouyingでのCeTZ：
 
   #cetz-canvas({
     import cetz.draw: *
@@ -94,7 +94,7 @@ CeTZとFletcherでは `only`、`uncover`、`alternatives` も同様の構文で�
 ]
 
 #slide[
-  Fletcher in Touying:
+  TouyingでのFletcher：
 
   #fletcher-diagram(
     node-stroke: .1em,
@@ -122,7 +122,7 @@ If you don't want to have to write the array syntax `(anim-cmd(), )` for CeTZ, y
 #slide(repeat: 3, self => [
   #let (uncover, only, alternatives) = utils.methods(self)
 
-  Cetz in Touying in subslide #self.subslide:
+  TouyingのCeTZによるサブスライド #self.subslide:
 
   #cetz.canvas({
     import cetz.draw: *

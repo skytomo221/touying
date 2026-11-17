@@ -38,7 +38,7 @@ Touyingにはプレゼンテーションの進捗を追跡・表示するカウ�
 
 == 2番目のスライド
 
-More content.
+さらに内容を追加します。
 ```
 
 ## スライドの総数
@@ -82,13 +82,13 @@ More content.
 
 == 2番目のスライド
 
-Still counting.
+カウントは引き続き進みます。
 
 #show: appendix
 
 = 付録
 
-== Backup Slide
+== 予備スライド
 
 分母は引き続き本文最後のスライド数を示します。
 while the slide number itself keeps advancing.

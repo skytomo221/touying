@@ -12,11 +12,11 @@ sidebar_position: 7
 
 ```typst
 #slide[
-  Base content.
+  基本の内容です。
   #waypoint(<step-a>)
-  #uncover(<step-a>)[Uncovered from step-a.]
+  #uncover(<step-a>)[step-aから表示されます。]
   #waypoint(<step-b>)
-  #only(<step-b>)[Only during step-b.]
+  #only(<step-b>)[step-bの間だけ表示されます。]
 ]
 ```
 
@@ -29,8 +29,8 @@ sidebar_position: 7
 ```typst
 #slide[
   最初の内容です。
-  #uncover(<reveal>)[Appears from here.]
-  #only(<final>)[Only on the last step.]
+  #uncover(<reveal>)[ここから表示されます。]
+  #only(<final>)[最後の段階だけ表示されます。]
 ]
 ```
 
@@ -47,7 +47,7 @@ sidebar_position: 7
     - ベータ
     - ガンマ
   ]
-  #only(<done>)[All items revealed.]
+  #only(<done>)[すべての項目が表示されました。]
 ]
 ```
 
@@ -78,7 +78,7 @@ sidebar_position: 7
   #waypoint(<part:main>)
   Main
 
-  #uncover(<part>)[Shown from the first part: waypoint on.]
+  #uncover(<part>)[最初のpartウェイポイントから表示されます。]
 
   #effect(text.with(fill: red), <part:main>)[mainの範囲だけ強調されます。]
 ]
@@ -103,10 +103,10 @@ sidebar_position: 7
 ```typst
 #slide[
   #waypoint(<mid>)
-  #uncover(<mid>)[Visible during mid.]
+  #uncover(<mid>)[midの間に表示されます。]
   #waypoint(<end>)
-  #uncover(from-wp(<mid>))[From mid onward.]
-  #only(prev-wp(<end>))[Only before end starts.]
+  #uncover(from-wp(<mid>))[mid以降に表示されます。]
+  #only(prev-wp(<end>))[endの直前のウェイポイントでのみ表示されます。]
 ]
 ```
 
@@ -115,13 +115,13 @@ sidebar_position: 7
 ```typst
 #slide[
   #waypoint(<mid>, advance:false)
-  #uncover(<mid>)[Visible during mid.]
+  #uncover(<mid>)[midの間に表示されます。]
   #pause
   2番目の中間段階です。
   #waypoint(<end>)
   End.
 
-  #only(not-wp(get-first(<mid>)))[Soon finished.]
+  #only(not-wp(get-first(<mid>)))[もうすぐ完了です。]
 ]
 ```
 

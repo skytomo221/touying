@@ -26,7 +26,7 @@ sidebar_position: 10
 
 == A セクション
 
-Compiled as an article rather than as a deck.
+スライドではなく記事としてコンパイルされます。
 ```
 
 コマンドラインから指定した場合は、ファイル内の設定より優先されます。
@@ -52,7 +52,7 @@ typst compile --input export-mode=article talk.typ paper.pdf
 >>> #import "@preview/touying:0.8.0": *
 >>> #import themes.simple: *
 >>> #show: simple-theme
-== What Each Mode Keeps
+== 各モードで残る内容
 
 #presentation-only[_Live demo here, watch the screen._]
 
@@ -90,7 +90,7 @@ typst compile --input export-mode=article talk.typ paper.pdf
 >>> #import "@preview/touying:0.8.0": *
 >>> #import themes.simple: *
 >>> #show: simple-theme.with(config-common(export-mode: "article"))
-== Why This Matters
+== なぜ重要なのか
 
 - terse
 - bullet
@@ -111,11 +111,11 @@ typst compile --input export-mode=article talk.typ paper.pdf
 >>> #import "@preview/touying:0.8.0": *
 >>> #import themes.simple: *
 >>> #show: simple-theme
-== Always Here
+== 常に表示される内容
 
-== Extra Detail for the Handout <touying:handout>
+== 配布資料向けの詳しい説明 <touying:handout>
 
-== Live Demo <touying:presentation>
+== ライブデモ <touying:presentation>
 ```
 
 `<touying:slides>` や `<touying:article>` などは対応する関数と同じように動作し、キーワードはハイフンで組み合わせられます。詳しくは[セクションとラベル](sections)を参照してください。

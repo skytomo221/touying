@@ -162,13 +162,13 @@ config-page(footer: [独自のフッター])
   #block(fill: luma(220), inset: .5em, radius: .2em, width: 100%)[
     #lorem(10)
     #lazy-v(1fr)
-    Bottom left.
+    左下の内容です。
   ]
 ][
   #block(fill: luma(220), inset: .5em, radius: .2em, width: 100%)[
     #lorem(20)
     #lazy-v(1fr)
-    Bottom right.
+    右下の内容です。
   ]
 ]
 ```
@@ -194,12 +194,12 @@ config-page(footer: [独自のフッター])
   block(fill: luma(220), inset: .5em, radius: .2em, width: 100%)[
     #lorem(10)
     #lazy-v(1fr)
-    Bottom left.
+    左下の内容です。
   ],
   block(fill: luma(220), inset: .5em, radius: .2em, width: 100%)[
     #lorem(20)
     #lazy-v(1fr)
-    Bottom right.
+    右下の内容です。
   ],
 ))
 ```
@@ -250,7 +250,7 @@ config-page(footer: [独自のフッター])
 >>> #import "@preview/touying:0.8.0": *
 >>> #import themes.simple: *
 >>> #show: simple-theme.with(config-common(breakable: false))
-== This slide's overflow will be clipped
+== このスライドではみ出し部分が切り取られます
 
 // 特定のスライドで切り取りを有効にする
 #show: touying-set-config.with(config-common(clip: true))

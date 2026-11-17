@@ -21,7 +21,7 @@ Touyingは通常のTypst文書と同様の簡潔な構文と柔軟な設定を�
 #import "@preview/touying:0.8.0": *
 #import themes.university: *
 
-// as well as some utility functions
+// いくつかのユーティリティ関数も定義
 ```
 
 `main.typ` は `globals.typ` をインポートしてshowルールを適用し、`#include` で `content.typ` を読み込みます。
@@ -59,7 +59,7 @@ Touyingは通常のTypst文書と同様の簡潔な構文と柔軟な設定を�
 こんにちは、Touying！
 
 #focus-slide[
-  Focus on me.
+  私に注目してください。
 ]
 ```
 
@@ -101,7 +101,7 @@ And
 こんにちは、Touying！
 
 #focus-slide[
-  Focus on me.
+  私に注目してください。
 ]
 ```
 
