@@ -1,0 +1,8 @@
+{
+  "label": "進捗とセクション",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "スライドカウンター、セクションの追跡、付録など、Touyingで進捗を管理し、表示する方法を扱います。"
+  }
+}
