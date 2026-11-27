@@ -1,0 +1,8 @@
+{
+  "label": "テーマ",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Touyingに含まれる組み込みテーマを見て、独自のカスタムテーマを作成する方法を学びましょう。"
+  }
+}
