@@ -1,0 +1,8 @@
+{
+  "label": "パッケージ連携",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "機能を強化するために、サードパーティーのTypstパッケージをTouyingと連携させる方法を見ていきましょう。"
+  }
+}
